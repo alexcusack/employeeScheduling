@@ -1,0 +1,307 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"is",
+				"isLeaf"
+			],
+			[
+				"read",
+				"readData"
+			],
+			[
+				"ed",
+				"end"
+			],
+			[
+				"di",
+				"diffHrTime"
+			],
+			[
+				"rea",
+				"readCallback"
+			],
+			[
+				"sta",
+				"stack"
+			],
+			[
+				"re",
+				"reducer"
+			],
+			[
+				"st",
+				"stackTree"
+			],
+			[
+				"new",
+				"newRow"
+			],
+			[
+				"co",
+				"column"
+			],
+			[
+				"pro",
+				"process"
+			],
+			[
+				"nes",
+				"nestedTree"
+			],
+			[
+				"nest",
+				"nested"
+			],
+			[
+				"n",
+				"nestedArray"
+			],
+			[
+				"ne",
+				"nestString"
+			],
+			[
+				"c",
+				"currentValue"
+			]
+		]
+	},
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 400.0,
+		"last_filter": "linter",
+		"selected_items":
+		[
+			[
+				"linter",
+				"SublimeLinter: Enable Linting"
+			],
+			[
+				"sublime",
+				"SublimeLinter: Toggle Linter"
+			],
+			[
+				"sublimte",
+				"SublimeLinter: Show All Errors"
+			],
+			[
+				"sublimel",
+				"SublimeLinter: Toggle Linter"
+			],
+			[
+				"package ",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"package in",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Preferences: Browse Packages"
+			]
+		],
+		"width": 475.0
+	},
+	"console":
+	{
+		"height": 139.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/Alex/Desktop/Dev/code_challenges/js_generateGraph.js",
+		"/Users/Alex/Desktop/Dev/code_challenges/facebook/src/calendar.css",
+		"/Users/Alex/Desktop/Dev/code_challenges/facebook/src/visualTest.js",
+		"/Users/Alex/Desktop/Dev/code_challenges/facebook/src/sortEvents.test.js",
+		"/Users/Alex/Desktop/Dev/code_challenges/facebook/src/renderEventNode.js",
+		"/Users/Alex/Desktop/Dev/code_challenges/facebook/src/priorEventOverlap.test.js",
+		"/Users/Alex/Desktop/Dev/code_challenges/facebook/src/nextEventOverlap.test.js",
+		"/Users/Alex/Desktop/Dev/code_challenges/facebook/src/layOutDay.js",
+		"/Users/Alex/Desktop/Dev/code_challenges/facebook/src/eventBuilder.test.js",
+		"/Users/Alex/Desktop/Dev/code_challenges/facebook/src/calendar.js",
+		"/Users/Alex/Desktop/Dev/code_challenges/facebook/exampelCode.js",
+		"/Users/Alex/Desktop/Dev/code_challenges/facebook/src/renderDay.test.js",
+		"/Users/Alex/Desktop/Dev/code_challenges/js_maxDepthTree.js",
+		"/Users/Alex/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/Alex/Desktop/Dev/code_challenges/js_buildTree.js",
+		"/Users/Alex/Desktop/Dev/code_challenges/js_googleAsGraph.js",
+		"/Users/Alex/Desktop/Dev/code_challenges/js_joinStrings.js",
+		"/Users/Alex/Desktop/Dev/code_challenges/js_flattenTree.js",
+		"/Users/Alex/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings"
+	],
+	"find":
+	{
+		"height": 32.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"+",
+			"0",
+			"hrTime",
+			"reducer",
+			"flatArraytoTree",
+			"nestString",
+			"const",
+			"stackAndTree",
+			"stackAndTree[0]",
+			"stackAndTree[1]",
+			"stackTree",
+			"JSON.stringify(",
+			"countWhiteSpace",
+			"countBlobs",
+			"updateNeighbors",
+			"updateAsGraph",
+			"postitionInRange",
+			"searchAsGraph",
+			"console",
+			"row",
+			"column",
+			"newColumn",
+			"column",
+			"new",
+			"column",
+			"-1",
+			"column",
+			"console",
+			"nes",
+			"nestedTree",
+			"stack",
+			"nested",
+			"node",
+			"tree",
+			"rest",
+			"/"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"incremental_find":
+	{
+		"height": 32.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"replace":
+	{
+		"height": 60.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/Desktop/new_relic/project.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 135.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
