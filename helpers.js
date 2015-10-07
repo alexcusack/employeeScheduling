@@ -4,10 +4,10 @@ const dateIsWeekend = (dateString) => { return dateString.getDay() === 6 || date
 
 export const getDate = (dateString) => { return new Date(Date.parse(dateString)) }
 
+export let mapIdToName = {}
 export const loadSeedFacts = (names, date) => {
   let currentDate = date
   let facts = []
-  let mapIdToName = {}
   const uniqueNames = new Set(names)
 
   /* todo seed holiday */

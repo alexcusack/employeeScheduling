@@ -1,5 +1,6 @@
 import * as redux from 'redux'
-import { loadNamesWithStartDate, readSeedNames } from './actions'
+import { loadNamesWithStartDate } from './actions'
+import { addUser, removeUser, readSeedNames } from './reducers'
 
 const initialState = { dates: {}, users: {}, assignmentList: [] }
 
@@ -9,5 +10,8 @@ const dispatch = (state = initialState, action) => {
 }
 
 const store = redux.createStore(dispatch)
-store.dispatch(loadNamesWithStartDate('2015-10-16'))
+// store.dispatch(loadNamesWithStartDate('2015-10-16'))
 
+console.log(addUser(store.getState(), 'alex'))
+console.log(addUser(store.getState(), 'Sherry'))
+console.log(removeUser(store.getState(), 'Sherry'))
