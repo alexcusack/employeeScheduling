@@ -1,0 +1,28 @@
+import uuid from 'uuid'
+
+const dateIsWeekend = (dateString) => { return dateString.getDay() === 6 || dateString.getDay() === 0 }
+
+export const getDate = (dateString) => { return new Date(Date.parse(dateString)) }
+
+export const loadSeedFacts = (names, date) => {
+  let currentDate = date
+  let facts = []
+  let mapIdToName = {}
+  const uniqueNames = new Set(names)
+
+  /* todo seed holiday */
+  uniqueNames.forEach((name) => {
+    const entityID = uuid()
+    facts.push(['assert', entityID, 'User/name', name])
+    mapIdToName[name] = entityID
+  })
+
+  names.forEach((name) => {
+    const assignmentID = uuid()
+    while (dateIsWeekend(currentDate)) { currentDate.setDate(currentDate.getDate() + 1) }
+    facts.push(['assert', assignmentID, 'assignment/Date', currentDate])
+    facts.push(['assert', assignmentID, 'assignment/User', mapIdToName[name]])
+    currentDate.setDate(currentDate.getDate() + 1)
+  })
+  return facts
+}
