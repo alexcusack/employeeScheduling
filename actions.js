@@ -22,8 +22,7 @@ export const createAssignment = (currentFact, state) => {
   }
 }
 
-
-export const LOAD_SEED_NAMES = (names, startDate, state) => {
+export const readSeedNames = (names, startDate, state) => {
   const loadedSeed = loadSeedFacts(names, startDate)
   return Object.assign({}, state,
     loadedSeed.reduce((newState, currentFact) => {

@@ -20,7 +20,7 @@ export const loadSeedFacts = (names, date) => {
   names.forEach((name) => {
     const assignmentID = uuid()
     while (dateIsWeekend(currentDate)) { currentDate.setDate(currentDate.getDate() + 1) }
-    facts.push(['assert', assignmentID, 'assignment/Date', currentDate])
+    facts.push(['assert', assignmentID, 'assignment/Date', currentDate.toString()])
     facts.push(['assert', assignmentID, 'assignment/User', mapIdToName[name]])
     currentDate.setDate(currentDate.getDate() + 1)
   })
