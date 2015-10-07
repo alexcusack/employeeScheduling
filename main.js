@@ -4,55 +4,27 @@ import uuid from 'uuid'
 const dispatch = (state = {}, action) => {
   if (action.type === 'LOAD_SEED_NAMES') {
     const loadedSeed = loadSeedNameFacts(action.names, action.startDate)
-
-    state = Object.assign({}, state, {
-      users: createUsersSet(loadedSeed),
-    })
-    state = Object.assign({}, state, {
-      dates: createDates(loadedSeed),
-    })
-    // state = Object.assign({}, state, {
-      // holidays: //,
-    // })
-    state = Object.assign({}, state, {
-      assignments: mapUserAssignments(loadedSeed, state),
-    })
-    // state = Object.assign({}, state, {
-      // unavailabilitites: //,
-    // })
+    /* build state */
+    return Object.assign({}, state,
+      loadedSeed.reduce((newState, currentFact) => {
+        if (currentFact[2] === 'User/name') { newState.users[currentFact[1]] = currentFact[3] }
+        if (currentFact[2] === 'assignment/Date') { newState.dates[currentFact[1]] = currentFact[3] }
+        if (currentFact[2] === 'assignment/User') {
+          newState.assignmentList.push(generateAssignment(currentFact, newState))
+        }
+        return newState
+      }, { dates: {}, users: {}, assignmentList: [] })
+    )
   }
-
-  /* build state */
-  console.log(state)
   return state
 }
 
-const createUsersSet = (loadedSeed) => {
-  return loadedSeed.reduce((userMap, currentFact) => {
-    if (currentFact[2] === 'User/name') { userMap[currentFact[1]] = currentFact[3] }
-    return userMap
-  }, {})
-}
-
-const createDates = (loadedSeed) => {
-  return loadedSeed.reduce((listOfDates, currentFact) => {
-    if (currentFact[2] === 'assignment/Date') { listOfDates[currentFact[1]] = currentFact[3] }
-    return listOfDates
-  }, {})
-}
-
-const mapUserAssignments = (loadedSeed, state) => {
-  return loadedSeed.reduce((assignmentList, currentFact) => {
-    if (currentFact[2] === 'assignment/User') {
-      assignmentList.push(
-        {
-          date: state.dates[currentFact[1]],
-          assignedUser: currentFact[3],
-          unavailabilitites: [],
-        })
-    }
-    return assignmentList
-  }, [])
+const generateAssignment = (currentFact, state) => {
+  return {
+    date: state.dates[currentFact[1]],
+    assignedUser: currentFact[3],
+    unavailabilitites: [],
+  }
 }
 
 const loadSeedNameFacts = (names, date) => {
@@ -75,10 +47,8 @@ const loadSeedNameFacts = (names, date) => {
     facts.push(['assert', assignmentID, 'assignment/User', mapIdToName[name]])
     currentDate.setDate(currentDate.getDate() + 1)
   })
-
   return facts
 }
-
 
 const getDate = (dateString) => { return new Date(Date.parse(dateString)) }
 const dateIsWeekend = (dateString) => { return dateString.getDay() === 6 || dateString.getDay() === 0 }
@@ -98,15 +68,9 @@ store.dispatch({
 })
 
 const generateScheduleForCurrentMonth = (applicationState) => {
-  // [ // list of dates
-  //   {
-  //     date: Date.parse(2015-10-16),
-  //     assignedUser: 'FC5706BE-6B22-488A-B492-AF0B0C98966E',
-  //     unavailability: [/* Users */ ],
-  //     holiday: [/* Holidays UUIDs */]
-  //   }
-  // ]
+  console.log(applicationState)
 }
 
-// const currentSchedule = scheduleForCurrentMonth(store.getState())
+// const currentSchedule = generateScheduleForCurrentMonth(store.getState())
 // console.log(currentSchedule)
+generateScheduleForCurrentMonth(store.getState())
