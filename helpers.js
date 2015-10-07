@@ -4,7 +4,11 @@ const dateIsWeekend = (dateString) => { return dateString.getDay() === 6 || date
 
 export const getDate = (dateString) => { return new Date(Date.parse(dateString)) }
 
-export let mapIdToName = {}
+export const lookUpUserIDByName = (name) => { return mapIdToName[name] }
+export const UserAlreadyExist = (name) => { return !!lookUpUserIDByName(name) }
+
+export let mapIdToName = {} // better strategy for this?
+
 export const loadSeedFacts = (names, date) => {
   let currentDate = date
   let facts = []

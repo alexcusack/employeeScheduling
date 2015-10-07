@@ -1,6 +1,6 @@
 import * as redux from 'redux'
 import { loadNamesWithStartDate, createUser } from './actions'
-import { readSeedNames, addUser, removeUser } from './reducers'
+import { readSeedNames, addUser, removeUser, createUnvailability } from './reducers'
 
 const initialState = { dates: {}, users: {}, assignmentList: [] }
 
@@ -8,6 +8,7 @@ const dispatch = (state = initialState, action) => {
   if (action.type === 'LOAD_SEED_NAMES') { return readSeedNames(action.names, action.startDate, state) }
   if (action.type === 'CREATE_NEW_USER') { return addUser(state, action.name) }
   if (action.type === 'REMOVE_USER') { return removeUser(state, action.name) }
+  if (action.type === 'CREATE_UNAVAILABILITY') { return createUnvailability(state, name, date) }
   return state
 }
 
