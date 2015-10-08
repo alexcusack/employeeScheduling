@@ -1,8 +1,11 @@
+import Promise from 'bluebird'
+global.Promise = Promise
+import fetch from 'node-fetch'
 import * as redux from 'redux'
 import { loadJournalEntries, createUser } from './actions'
-import { readSeedNames, addUser, removeUser, createUnvailability } from './reducers'
+import { readJournalLog, addUser, removeUser, createUnvailability } from './reducers'
 
-const initialState = { dates: {}, users: {}, assignmentList: [] }
+const initialState = { users: {}, assignments: {}, unavailabilities: {} }
 
 const dispatch = (state = initialState, action) => {
   if (action.type === 'LOAD_JOURNAL_ENTRIES') { return readJournalLog(action.journalEntries, state) }
@@ -15,8 +18,13 @@ const dispatch = (state = initialState, action) => {
 const store = redux.createStore(dispatch)
 
 // store.dispatch(loadJournalEntries('2015-10-16'))
-store.dispatch(loadJournalEntries())
-
-console.log(store.getState())
+// store.dispatch(loadJournalEntries())
 
 
+fetch('http://localhost:3000/journal')
+  .then(function (res) {
+    return res.json()
+  }).then(function (journalEntries) {
+    store.dispatch(loadJournalEntries(journalEntries))
+    console.log(store.getState())
+})

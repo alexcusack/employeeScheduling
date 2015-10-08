@@ -3,10 +3,12 @@ import { loadSeedFacts, mapIdToName, UserAlreadyExist, lookUpUserIDByName } from
 import { createAssignment } from './actions'
 
 export const readJournalLog = (journalEntries, state) => {
+  console.log("read journal log")
   let newState = Object.assign({}, state)
   for (let entry of journalEntries) {
+    console.log(entry)
     if (entry.name === 'createUser') {
-      let currentFact = JSON.parse(entry.facts)
+      let currentFact = JSON.parse(entry.facts)[0]
       newState.users[currentFact[1]] = currentFact[3]
     }
     if (entry.name === 'createAssignment') {
