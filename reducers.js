@@ -2,18 +2,30 @@ import uuid from 'uuid'
 import { loadSeedFacts, mapIdToName, UserAlreadyExist, lookUpUserIDByName } from './helpers'
 import { createAssignment } from './actions'
 
-export const readSeedNames = (names, startDate, state) => {
-  const loadedSeed = loadSeedFacts(names, startDate)
-  return Object.assign({}, state,
-    loadedSeed.reduce((newState, currentFact) => {
-      if (currentFact[2] === 'User/name') { newState.users[currentFact[1]] = currentFact[3] }
-      if (currentFact[2] === 'assignment/Date') { newState.dates[currentFact[1]] = currentFact[3] }
-      if (currentFact[2] === 'assignment/User') {
-        newState.assignmentList.push(createAssignment(currentFact, newState))
-      }
-      return newState
-    }, state)
-  )
+export const readJournalLog = (journalEntries, state) => {
+  let newState = Object.assign({}, state)
+  for (let entry of journalEntries) {
+    if (entry.name === 'createUser') {
+      let currentFact = JSON.parse(entry.facts)
+      newState.users[currentFact[1]] = currentFact[3]
+    }
+    if (entry.name === 'createAssignment') {
+      let userAssignment = JSON.parse(entry.facts)[0]
+      let dateAssignment = JSON.parse(entry.facts)[1]
+      newState.assignments[userAssignment[1]] = { date: dateAssignment[3], user: userAssignment[3] }
+    }
+    if (entry.name === 'createUnavailability') {
+      let userUnavailability = JSON.parse(entry.facts)[0]
+      let dateUnavailability = JSON.parse(entry.facts)[1]
+      newState.unavailabilities[userUnavailability[1]] = { date: dateUnavailability[3], user: userUnavailability[3] }
+      // remove user from assigned date
+    }
+    if (entry.name === 'removeUnavailability') {
+      let currentFact = JSON.parse(entry.facts)[0]
+      delete newState.unavailabilities[currentFact[1]]
+    }
+  }
+  return newState
 }
 
 export const addUser = (state, name) => {
@@ -46,3 +58,9 @@ export const createUnvailability = (state, name, date) => {
   // update the schedule to add someone into that date
   return newState
 }
+
+// mark unavailable,
+// find replacement,
+  // other user that is not unavailable.
+  // -- get this from list of users that are available that
+// swap user

@@ -19,12 +19,12 @@
     - Assert assignment(userA, dateB)
     - Assert assignment(userB, dateA)
   + CreateAssignment(user, date)
-  + CreateHoliday(date, name)
-  + RemoveHoliday(Holiday)
+  <!-- + CreateHoliday(date, name) -->
+  <!-- + RemoveHoliday(Holiday) -->
   + CreateUser(name)
   + RemoveUser(name)
   + CreateUnavailability(User, date)
-  + RemoveUnavailability(User, date)
+  + {RemoveUnavailability}(User, date)
 
 + Queries
   + Schedule for current month

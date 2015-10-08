@@ -1,15 +1,19 @@
 import { getDate } from './helpers'
 
-export const loadNamesWithStartDate = (dateString) => {
+export const loadJournalEntries = (dateString) => {
+  // this will fetch list of facts from server
   return {
-    type: 'LOAD_SEED_NAMES',
-    names: ['Sherry', 'Boris', 'Vicente', 'Matte', 'Jack', 'Sherry',
-     // 'Matte', 'Kevin', 'Kevin', 'Vicente', 'Zoe', 'Kevin',
-     // 'Matte', 'Zoe', 'Jay', 'Boris', 'Eadon', 'Sherry',
-     // 'Franky', 'Sherry', 'Matte', 'Franky', 'Franky', 'Kevin',
-     // 'Boris', 'Franky', 'Vicente', 'Luis', 'Eadon', 'Boris',
-     // 'Kevin', 'Matte', 'Jay', 'James', 'Kevin', 'Sherry',
-     'Sherry', 'Jack', 'Sherry', 'Jack'],
+    type: 'LOAD_JOURNAL_ENTRIES',
+    journalEntries: [
+      {"id":2, "timestamp": "2015-10-08T16:56:45.597Z", "name": "createUser", "facts": "[\"assert\",\"D0DF1923-964B-4CF9-ACAE-C4D8CCA42EE0\",\"user/name\",\"alex\"]", "created_at": "2015-10-08T16:56:51.290Z", "updated_at": "2015-10-08T16:56:51.290Z"},
+    ],
+    // names: ['Sherry', 'Boris', 'Vicente', 'Matte', 'Jack', 'Sherry',
+    //  'Matte', 'Kevin', 'Kevin', 'Vicente', 'Zoe', 'Kevin',
+    //  'Matte', 'Zoe', 'Jay', 'Boris', 'Eadon', 'Sherry',
+    //  'Franky', 'Sherry', 'Matte', 'Franky', 'Franky', 'Kevin',
+    //  'Boris', 'Franky', 'Vicente', 'Luis', 'Eadon', 'Boris',
+    //  'Kevin', 'Matte', 'Jay', 'James', 'Kevin', 'Sherry',
+    //  'Sherry', 'Jack', 'Sherry', 'Jack'],
     startDate: getDate(dateString),
   }
 }

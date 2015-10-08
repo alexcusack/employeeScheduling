@@ -1,4 +1,4 @@
-import { addUser, removeUser } from './reducers'
+import { addUser, removeUser } from '../reducers'
 
 const initialState = { dates: {}, users: {}, assignmentList: [] }
 let localState = addUser(initialState, 'alex')

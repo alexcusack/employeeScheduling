@@ -1,4 +1,4 @@
-import { addUser } from './reducers'
+import { addUser } from '../reducers'
 
 
 const initialState = { dates: {}, users: {}, assignmentList: [] }
