@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+export PATH="./node_modules/.bin:$PATH"
+watchify main.js \
+    --transform babelify \
+    --extension .jsx \
+    --debug \
+    --verbose \
+    --outfile bundle.js

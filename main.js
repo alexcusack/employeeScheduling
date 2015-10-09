@@ -1,112 +1,49 @@
+// import ReactDOM from 'react-dom'
+import Promise from 'bluebird'
+global.Promise = Promise
+import fetch from 'node-fetch'
+import React from 'react'
 import * as redux from 'redux'
-import uuid from 'uuid'
+import { connect, Provider } from 'react-redux'
+import { CalendarMonth } from './components'
+import { loadJournalEntries } from './actions'
+import { readJournalLog, addUser, removeUser, createUnvailability } from './reducers'
 
-const dispatch = (state = {}, action) => {
-  if (action.type === 'LOAD_SEED_NAMES') {
-    const loadedSeed = loadSeedNameFacts(action.names, action.startDate)
+const initialState = { users: {}, assignments: {}, unavailabilities: {} }
 
-    state = Object.assign({}, state, {
-      users: createUsersSet(loadedSeed),
-    })
-    state = Object.assign({}, state, {
-      dates: createDates(loadedSeed),
-    })
-    // state = Object.assign({}, state, {
-      // holidays: //,
-    // })
-    state = Object.assign({}, state, {
-      assignments: mapUserAssignments(loadedSeed, state),
-    })
-    // state = Object.assign({}, state, {
-      // unavailabilitites: //,
-    // })
-  }
-
-  /* build state */
-  console.log(state)
+const dispatch = (state = initialState, action) => {
+  if (action.type === "foo") { return Object.assign({}, state, { foo: "foo" }) }
+  if (action.type === 'LOAD_JOURNAL_ENTRIES') { return readJournalLog(action.journalEntries, state) }
+  if (action.type === 'CREATE_NEW_USER') { return addUser(state, action.name) }
+  if (action.type === 'REMOVE_USER') { return removeUser(state, action.name) }
+  if (action.type === 'CREATE_UNAVAILABILITY') { return createUnvailability(state, name, date) }
   return state
 }
 
-const createUsersSet = (loadedSeed) => {
-  return loadedSeed.reduce((userMap, currentFact) => {
-    if (currentFact[2] === 'User/name') { userMap[currentFact[1]] = currentFact[3] }
-    return userMap
-  }, {})
-}
-
-const createDates = (loadedSeed) => {
-  return loadedSeed.reduce((listOfDates, currentFact) => {
-    if (currentFact[2] === 'assignment/Date') { listOfDates[currentFact[1]] = currentFact[3] }
-    return listOfDates
-  }, {})
-}
-
-const mapUserAssignments = (loadedSeed, state) => {
-  return loadedSeed.reduce((assignmentList, currentFact) => {
-    if (currentFact[2] === 'assignment/User') {
-      assignmentList.push(
-        {
-          date: state.dates[currentFact[1]],
-          assignedUser: currentFact[3],
-          unavailabilitites: [],
-        })
-    }
-    return assignmentList
-  }, [])
-}
-
-const loadSeedNameFacts = (names, date) => {
-  let currentDate = date
-  let facts = []
-  let mapIdToName = {}
-  const uniqueNames = new Set(names)
-
-  /* todo seed holiday */
-  uniqueNames.forEach((name) => {
-    const entityID = uuid()
-    facts.push(['assert', entityID, 'User/name', name])
-    mapIdToName[name] = entityID
-  })
-
-  names.forEach((name) => {
-    const assignmentID = uuid()
-    while (dateIsWeekend(currentDate)) { currentDate.setDate(currentDate.getDate() + 1) }
-    facts.push(['assert', assignmentID, 'assignment/Date', currentDate])
-    facts.push(['assert', assignmentID, 'assignment/User', mapIdToName[name]])
-    currentDate.setDate(currentDate.getDate() + 1)
-  })
-
-  return facts
-}
-
-
-const getDate = (dateString) => { return new Date(Date.parse(dateString)) }
-const dateIsWeekend = (dateString) => { return dateString.getDay() === 6 || dateString.getDay() === 0 }
-
 const store = redux.createStore(dispatch)
+global.store = store
 
-store.dispatch({
-  type: 'LOAD_SEED_NAMES', // THE COMMAND
-  names: ['Sherry', 'Boris', 'Vicente', 'Matte', 'Jack', 'Sherry',
-   'Matte', 'Kevin', 'Kevin', 'Vicente', 'Zoe', 'Kevin',
-   'Matte', 'Zoe', 'Jay', 'Boris', 'Eadon', 'Sherry',
-   'Franky', 'Sherry', 'Matte', 'Franky', 'Franky', 'Kevin',
-   'Boris', 'Franky', 'Vicente', 'Luis', 'Eadon', 'Boris',
-   'Kevin', 'Matte', 'Jay', 'James', 'Kevin', 'Sherry',
-   'Sherry', 'Jack', 'Sherry', 'Jack'],
-  startDate: getDate('2015-10-16'),
-})
+const Controller = connect(
+  (state) => {
+  // maps state to props
+    return state
+  },
+  () => ({
+  // maps props to action dispatchers
+    addUser: addUser,
+    removeUser: removeUser,
+  })
+)(CalendarMonth)
 
-const generateScheduleForCurrentMonth = (applicationState) => {
-  // [ // list of dates
-  //   {
-  //     date: Date.parse(2015-10-16),
-  //     assignedUser: 'FC5706BE-6B22-488A-B492-AF0B0C98966E',
-  //     unavailability: [/* Users */ ],
-  //     holiday: [/* Holidays UUIDs */]
-  //   }
-  // ]
-}
+fetch('http://localhost:3000/journal')
+  .then(function (res) {
+    return res.json()
+  }).then(function (journalEntries) {
+    store.dispatch(loadJournalEntries(journalEntries))
+    console.log(store.getState())
+  })
 
-// const currentSchedule = scheduleForCurrentMonth(store.getState())
-// console.log(currentSchedule)
+React.render(
+  <Provider store={ store }>{ () => <Controller/> }</Provider>,
+  document.querySelector('main')
+)

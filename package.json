@@ -2,5 +2,10 @@
   "private": true,
   "name": "new_relic",
   "version": "0.0.0",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "node-fetch": "^1.3.3",
+    "react": "0.13.3",
+    "react-redux": "3.0.1"
+  }
 }
