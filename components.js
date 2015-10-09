@@ -6,3 +6,5 @@ export class CalendarMonth extends React.Component {
     return <div> Calendar { Object.keys(this.props.users) } </div>
   }
 }
+
+

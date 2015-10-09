@@ -6,25 +6,26 @@ import React from 'react'
 import * as redux from 'redux'
 import { connect, Provider } from 'react-redux'
 import { CalendarMonth } from './components'
-import { updateState } from './actions'
-import { readJournal, addUser, removeUser, createUnvailability } from './reducers'
-import { sendToServer } from './server_calls'
-import { generateUnavailabilityFacts } from './helpers'
+import { fetchFromServer } from './actions'
+import { readJournal } from './reducers'
+import { pushToServer, pullFromServer } from './server_calls'
+import { generateUnavailabilityFacts, generateRemoveUnavailabilityFacts, generateAssignmentSwapFacts } from './helpers'
 
 const initialState = { users: {}, assignments: {}, unavailabilities: {} }
 
 const dispatch = (state = initialState, action) => {
   if (action.type === 'UPDATE_STATE') { return readJournal(action.journalEntries, state) }
-  if (action.type === 'CREATE_UNAVAILABILITY') { return generateUnavailabilityFacts(action.name, action.date) }
-  if (action.type === 'SEND_FACT_TO_SERVER') { return sendToServer(action.facts, action.originatingAction) }
-  // if (action.type === "foo") { return Object.assign({}, state, { foo: "foo" }) }
-  // if (action.type === 'CREATE_NEW_USER') { return addUser(state, action.name) }
-  // if (action.type === 'REMOVE_USER') { return removeUser(state, action.name) }
+  if (action.type === 'CREATE_UNAVAILABILITY') { generateUnavailabilityFacts(action.userID, action.date) }
+  if (action.type === 'REMOVE_UNAVAILABILITY') { generateRemoveUnavailabilityFacts(action.unavailabilityID) }
+  if (action.type === 'SEND_FACT_TO_SERVER') { pushToServer(action.facts, action.originatingAction) }
+  if (action.type === 'SWAP_ASSIGNMENT') { generateAssignmentSwapFacts(action.assignmentA, action.assignmentB, action.userA, action.userB) }
+  if (action.type === 'FETCH_FROM_SERVER') { pullFromServer() }
+  // create swap event
   return state
 }
 
-const store = redux.createStore(dispatch)
-global.store = store
+export const store = redux.createStore(dispatch)
+// global.store = store
 
 const Controller = connect(
   (state) => {
@@ -33,17 +34,13 @@ const Controller = connect(
   },
   () => ({
   // maps props to action dispatchers
-    addUser: addUser,
-    removeUser: removeUser,
+    // addUser: addUser,
+    // removeUser: removeUser,
+    // createUnavailablity: createUnavailablity,
   })
 )(CalendarMonth)
 
-fetch('http://localhost:3000/journal')
-  .then(function (res) {
-    return res.json()
-  }).then(function (journalEntries) {
-    store.dispatch(updateState(journalEntries))
-  })
+store.dispatch(fetchFromServer())
 
 React.render(
   <Provider store={ store }>{() => <Controller/>}</Provider>,

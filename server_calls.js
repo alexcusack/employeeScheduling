@@ -1,5 +1,8 @@
+import fetch from 'node-fetch'
+import { updateState } from './actions'
+import { store } from './main'
 
-export const sendToServer = (facts, originalAction) => {
+export const pushToServer = (facts, originalAction) => {
   const timeStamp = new Date()
   const postBody = {actionType: originalAction, timestamp: timeStamp.toISOString(), facts: facts}
 
@@ -17,5 +20,17 @@ export const sendToServer = (facts, originalAction) => {
       if (res.status === 200) { return store.dispatch(updateState(facts)) }
       if (res.status === 201) { console.log('fail', res) /* store.dispatch(loadJournalEntries(res.newEntries)) */}// append missed entries with new *compatable* fact
       if (res.status > 399) { console.log('error', res) /* don't let fact append, alert user of error */ }
+    })
+}
+
+export const pullFromServer = () => {
+  fetch('http://localhost:3000/journal')
+    .then(function (res) {
+      return res.json()
+    })
+    .then(function (journalEntries) {
+      console.log('success')
+      store.dispatch(updateState(journalEntries))
+      console.log(store.getState())
     })
 }
