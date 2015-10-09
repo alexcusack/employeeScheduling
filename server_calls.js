@@ -29,8 +29,8 @@ export const pullFromServer = () => {
       return res.json()
     })
     .then(function (journalEntries) {
-      console.log('success')
+      console.log('success: pull from server')
       store.dispatch(updateState(journalEntries))
-      console.log(store.getState())
+      // console.log(store.getState())
     })
 }
