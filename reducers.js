@@ -3,28 +3,29 @@ import { loadSeedFacts, mapIdToName, UserAlreadyExist, lookUpUserIDByName } from
 import { createAssignment } from './actions'
 
 export const readJournalLog = (journalEntries, state) => {
-  console.log("read journal log")
   let newState = Object.assign({}, state)
   for (let entry of journalEntries) {
-    console.log(entry)
+    const facts = JSON.parse(entry.facts)
     if (entry.name === 'createUser') {
-      let currentFact = JSON.parse(entry.facts)[0]
-      newState.users[currentFact[1]] = currentFact[3]
+      newState.users[facts[1]] = facts[3]
     }
     if (entry.name === 'createAssignment') {
-      let userAssignment = JSON.parse(entry.facts)[0]
-      let dateAssignment = JSON.parse(entry.facts)[1]
-      newState.assignments[userAssignment[1]] = { date: dateAssignment[3], user: userAssignment[3] }
+      newState.assignments[facts[0][1]] = { date: facts[1][3], user: facts[0][3] }
     }
     if (entry.name === 'createUnavailability') {
-      let userUnavailability = JSON.parse(entry.facts)[0]
-      let dateUnavailability = JSON.parse(entry.facts)[1]
-      newState.unavailabilities[userUnavailability[1]] = { date: dateUnavailability[3], user: userUnavailability[3] }
-      // remove user from assigned date
+      newState.unavailabilities[facts[0][1]] = { date: facts[1][3], user: facts[0][3] }
+      // swap user with a replacement user
     }
     if (entry.name === 'removeUnavailability') {
-      let currentFact = JSON.parse(entry.facts)[0]
-      delete newState.unavailabilities[currentFact[1]]
+      delete newState.unavailabilities[facts[0][1]]
+    }
+    if (entry.name === 'swapAssignment') {
+      // update initiating user's old assignment to replacement user's id
+      newState.assignments[facts[0][1]].user = facts[0][3]
+      // update replacement users assignment to initializing user's id
+      newState.assignments[facts[1][1]].user = facts[1][3]
+      // create initializing user's unavailablity
+      newState.unavailabilities[facts[2][1]] = { date: facts[3][3], user: facts[2][3] }
     }
   }
   return newState
@@ -60,9 +61,3 @@ export const createUnvailability = (state, name, date) => {
   // update the schedule to add someone into that date
   return newState
 }
-
-// mark unavailable,
-// find replacement,
-  // other user that is not unavailable.
-  // -- get this from list of users that are available that
-// swap user
