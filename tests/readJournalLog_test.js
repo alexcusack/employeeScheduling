@@ -4,7 +4,7 @@ const readJournalLog = (journalEntries, state) => {
   for (let entry of journalEntries) {
     const facts = JSON.parse(entry.facts)
     if (entry.name === 'createUser') {
-      newState.users[facts[1]] = facts[3]
+      newState.users[facts[0][1]] = facts[0][3]
     }
     if (entry.name === 'createAssignment') {
       newState.assignments[facts[0][1]] = { date: facts[1][3], user: facts[0][3] }
