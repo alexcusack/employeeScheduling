@@ -1,28 +1,29 @@
 import React from 'react'
-// import PureComponent from 'react-pure-render/component'
 import pullFromServer from './server_calls'
 import store from './main'
-
 export default class CalendarMonth extends React.Component {
 
   render () {
     const assignmentNodes = (assignmentsObject) => {
       let list = []
+      console.log(this.props.actions)
       for (let assignment in assignmentsObject) {
         list.push(
           <Assignment
-            userName={assignmentsObject[assignment].user}
+            userID={assignmentsObject[assignment].user}
             date={assignmentsObject[assignment].date}
             usersObject={this.props.users}
+            createUnavailablity={this.props.actions.createUnavailablity}
+            removeUnavailability={this.props.actions.removeUnavailability}
+            swapAssignment={this.props.actions.swapAssignment}
           />
         )
       }
       return list
     }.call(null, this.props.assignments)
 
-    console.log(assignmentNodes)
     return (
-      <div>{assignmentNodes}</div>
+        <div>{assignmentNodes}</div>
     )
   }
 }
@@ -30,7 +31,23 @@ export default class CalendarMonth extends React.Component {
 class Assignment extends React.Component {
   render () {
     return (
-      <div>{this.props.usersObject[this.props.userName]} {this.props.date}</div>
+      <div>
+        <div>{this.props.usersObject[this.props.userID]} {this.props.date}</div>
+        <button onClick={this.newUnavailability()}></button>
+      </div>
       )
   }
+
+  newUnavailability(){
+    this.props.createUnavailablity(this.props.userID, this.props.date)
+  }
 }
+
+Assignment.propTypes = {
+  userID: React.PropTypes.string.isRequired,
+  date: React.PropTypes.string.isRequired,
+  usersObject: React.PropTypes.object.isRequired,
+  createUnavailablity: React.PropTypes.func.isRequired,
+  removeUnavailability: React.PropTypes.func.isRequired,
+  swapAssignment: React.PropTypes.func.isRequired,
+};

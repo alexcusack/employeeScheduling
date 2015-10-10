@@ -26,9 +26,7 @@ const dispatch = (state = initialState, action) => {
 export let store = redux.createStore(dispatch)
 global.store = store
 
-store.dispatch(actions.fetchFromServer())
-// console.log('store is')
-// console.log(store.getState())
+// store.dispatch(actions.fetchFromServer())
 
 export const Controller = connect(
   (state) => {
