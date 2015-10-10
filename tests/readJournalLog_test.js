@@ -1,32 +1,4 @@
-
-const readJournalLog = (journalEntries, state) => {
-  let newState = Object.assign({}, state)
-  for (let entry of journalEntries) {
-    const facts = JSON.parse(entry.facts)
-    if (entry.name === 'createUser') {
-      newState.users[facts[0][1]] = facts[0][3]
-    }
-    if (entry.name === 'createAssignment') {
-      newState.assignments[facts[0][1]] = { date: facts[1][3], user: facts[0][3] }
-    }
-    if (entry.name === 'createUnavailability') {
-      newState.unavailabilities[facts[0][1]] = { date: facts[1][3], user: facts[0][3] }
-      // remove user from assigned date
-    }
-    if (entry.name === 'removeUnavailability') {
-      delete newState.unavailabilities[facts[0][1]]
-    }
-    if (entry.name === 'swapAssignment') {
-      // update initiating user's old assignment to replacement user's id
-      newState.assignments[facts[0][1]].user = facts[0][3]
-      // update replacement users assignment to initializing user's id
-      newState.assignments[facts[1][1]].user = facts[1][3]
-      // create initializing user's unavailablity
-      newState.unavailabilities[facts[2][1]] = { date: facts[3][3], user: facts[2][3] }
-    }
-  }
-  return newState
-}
+import readJournal from '../reducers'
 
 // "facts" => [     #  alex assignment                                             myles uID
 //       ["assert", "95D131AF-62CC-4C68-8202-B970EBBCC977", "assignment/user", "4BF57F2A-67AE-4C3D-AF7C-5B240F47E006" ],
@@ -39,11 +11,6 @@ const readJournalLog = (journalEntries, state) => {
 // const exampleFactList = [{"id":2,"timestamp":"2015-10-08T16:56:45.597Z","name":"createUser","facts":"[\"assert\",\"D0DF1923-964B-4CF9-ACAE-C4D8CCA42EE0\",\"user/name\",\"alex\"]","created_at":"2015-10-08T16:56:51.290Z","updated_at":"2015-10-08T16:56:51.290Z"},{"id":3,"timestamp":"2015-10-08T17:46:45.891Z","name":"createAssignment","facts":"[[\"assert\",\"95D131AF-62CC-4C68-8202-B970EBBCC977\",\"assignment/user\",\"D0DF1923-964B-4CF9-ACAE-C4D8CCA42EE0\"],[\"assert\",\"95D131AF-62CC-4C68-8202-B970EBBCC977\",\"assignment/date\",\"2015-10-08\"]]","created_at":"2015-10-08T17:46:48.043Z","updated_at":"2015-10-08T17:46:48.043Z"},{"id":4,"timestamp":"2015-10-08T17:54:28.345Z","name":"createUnavailability","facts":"[[\"assert\",\"3791D856-DBB2-4715-9CDB-9098286476C9\",\"unavailability/user\",\"D0DF1923-964B-4CF9-ACAE-C4D8CCA42EE0\"],[\"assert\",\"3791D856-DBB2-4715-9CDB-9098286476C9\",\"unavailability/date\",\"2015-10-09\"]]","created_at":"2015-10-08T17:54:29.899Z","updated_at":"2015-10-08T17:54:29.899Z"}]
 // const exampleFactList = [{"id":2,"timestamp":"2015-10-08T16:56:45.597Z","name":"createUser","facts":"[\"assert\",\"D0DF1923-964B-4CF9-ACAE-C4D8CCA42EE0\",\"user/name\",\"alex\"]","created_at":"2015-10-08T16:56:51.290Z","updated_at":"2015-10-08T16:56:51.290Z"},{"id":3,"timestamp":"2015-10-08T17:46:45.891Z","name":"createAssignment","facts":"[[\"assert\",\"95D131AF-62CC-4C68-8202-B970EBBCC977\",\"assignment/user\",\"D0DF1923-964B-4CF9-ACAE-C4D8CCA42EE0\"],[\"assert\",\"95D131AF-62CC-4C68-8202-B970EBBCC977\",\"assignment/date\",\"2015-10-08\"]]","created_at":"2015-10-08T17:46:48.043Z","updated_at":"2015-10-08T17:46:48.043Z"},{"id":4,"timestamp":"2015-10-08T17:54:28.345Z","name":"createUnavailability","facts":"[[\"assert\",\"3791D856-DBB2-4715-9CDB-9098286476C9\",\"unavailability/user\",\"D0DF1923-964B-4CF9-ACAE-C4D8CCA42EE0\"],[\"assert\",\"3791D856-DBB2-4715-9CDB-9098286476C9\",\"unavailability/date\",\"2015-10-09\"]]","created_at":"2015-10-08T17:54:29.899Z","updated_at":"2015-10-08T17:54:29.899Z"},{"id":5,"timestamp":"2015-10-08T18:03:51.816Z","name":"removeUnavailability","facts":"[[\"retract\",\"3791D856-DBB2-4715-9CDB-9098286476C9\"]]","created_at":"2015-10-08T18:03:54.264Z","updated_at":"2015-10-08T18:03:54.264Z"}]
 const sampleState = { users: {}, assignments: {}, unavailabilities: {} }
-// console.log(readSeedNames(exampleFactList, sampleState))
-
-
-
-
 
 const sampleSeed = [
   {
@@ -91,4 +58,22 @@ const sampleSeed = [
 ]
 
 
-console.log(readJournalLog(sampleSeed, sampleState))
+const actual = readJournal(sampleSeed, sampleState)
+
+const expected = { users:
+   { 'D0DF1923-964B-4CF9-ACAE-C4D8CCA42EE0': 'alex',
+     '4BF57F2A-67AE-4C3D-AF7C-5B240F47E006': 'myles' },
+  assignments:
+   { '95D131AF-62CC-4C68-8202-B970EBBCC977':
+      { date: '2015-10-08',
+        user: '4BF57F2A-67AE-4C3D-AF7C-5B240F47E006' },
+     '1A160698-EFE0-40E0-8300-233A9F5F2E4D':
+      { date: '2015-10-10',
+        user: 'D0DF1923-964B-4CF9-ACAE-C4D8CCA42EE0' } },
+  unavailabilities:
+   { '06EC3D88-BA33-4151-8E87-97F025A8EACE':
+      { date: '2015-10-08',
+        user: 'D0DF1923-964B-4CF9-ACAE-C4D8CCA42EE0' } } }
+
+
+console.log(Object.is(actual, expected))

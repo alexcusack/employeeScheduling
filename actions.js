@@ -1,4 +1,3 @@
-
 // fetch full list from server
 export const updateState = (journalEntries) => {
   return {

@@ -1,12 +1,11 @@
-// import ReactDOM from 'react-dom'
 import Promise from 'bluebird'
 global.Promise = Promise
-// import fetch from 'node-fetch'
 import React from 'react'
+// import PureComponent from 'react-pure-render/component'
 import * as redux from 'redux'
 import { connect, Provider } from 'react-redux'
-import { CalendarMonth } from './components'
-import { fetchFromServer, updateState, createUnavailablity, removeUnavailability, swapAssignment } from './actions'
+import CalendarMonth from './components'
+import * as actions from './actions'
 import { readJournal } from './reducers'
 import { pushToServer, pullFromServer } from './server_calls'
 import { generateUnavailabilityFacts, generateRemoveUnavailabilityFacts, generateAssignmentSwapFacts } from './helpers'
@@ -24,29 +23,45 @@ const dispatch = (state = initialState, action) => {
   return state
 }
 
-export const store = redux.createStore(dispatch)
+export let store = redux.createStore(dispatch)
 global.store = store
 
-const Controller = connect(
-  (state) => ({
-  // maps state to props
-    users: store.getState().users,
-    assignments: store.getState().assignments,
-    unavailabilities: store.getState().unavailabilities,
-  }),
-  () => ({
-  // maps props to action dispatchers
-    updateState: updateState,
-    createUnavailablity: createUnavailablity,
-    removeUnavailability: removeUnavailability,
-    swapAssignment: swapAssignment,
-  })
+store.dispatch(actions.fetchFromServer())
+// console.log('store is')
+// console.log(store.getState())
+
+export const Controller = connect(
+  (state) => {
+    // return {
+    //   users: state.users,
+    //   unavailabilities: state.unavailabilities,
+    //   assignments: state.assignments,
+    // }
+    return {
+      users:
+       { 'D0DF1923-964B-4CF9-ACAE-C4D8CCA42EE0': 'alex',
+         '4BF57F2A-67AE-4C3D-AF7C-5B240F47E006': 'myles' },
+      assignments:
+       { '95D131AF-62CC-4C68-8202-B970EBBCC977':
+          { date: '2015-10-08',
+            user: '4BF57F2A-67AE-4C3D-AF7C-5B240F47E006' },
+         '1A160698-EFE0-40E0-8300-233A9F5F2E4D':
+          { date: '2015-10-10',
+            user: 'D0DF1923-964B-4CF9-ACAE-C4D8CCA42EE0' } },
+      unavailabilities:
+       { '06EC3D88-BA33-4151-8E87-97F025A8EACE':
+          { date: '2015-10-08',
+            user: 'D0DF1923-964B-4CF9-ACAE-C4D8CCA42EE0' } }
+    }
+  },
+(dispatch) => {
+  return {
+    actions: redux.bindActionCreators(actions, dispatch),
+  }
+}
 )(CalendarMonth)
 
-store.dispatch(fetchFromServer())
-
-
 React.render(
-  <Provider store={store} checked={'hi'}>{() => <Controller/>}</Provider>,
+  <Provider store={store}>{() => <Controller/>}</Provider>,
   document.querySelector('main')
 )
