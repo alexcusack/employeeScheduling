@@ -2,7 +2,7 @@ import uuid from 'uuid'
 import { sendFactToServer } from './actions'
 import { store } from './main'
 
-// const dateIsWeekend = (dateString) => { return dateString.getDay() === 6 || dateString.getDay() === 0 }
+export const dateIsWeekend = (dateString) => { return dateString.getDay() === 6 || dateString.getDay() === 0 }
 // export const lookUpUserIDByName = (name) => { return mapIdToName[name] }
 // export const UserAlreadyExist = (name) => { return !!lookUpUserIDByName(name) }
 export const getDaysOfMonth = (m, yyyy) => { return new Date(yyyy, m, 0).getDate() }

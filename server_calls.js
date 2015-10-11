@@ -25,7 +25,7 @@ export const pullFromServer = () => {
   fetch('http://localhost:3000/journal')
   .then((response) => response.json())
   .then(response => {
-    // console.log('pull from server success')
+    console.log('pull from server success')
     // console.log(response)
     store.dispatch(updateState(response))
   })

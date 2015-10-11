@@ -1,3 +1,11 @@
+
+.weekend {
+  height: 50px;
+  width: 300px;
+  margin: 5px;
+  background-color: blue;
+}
+
 .dayOfMonth {
   height: 50px;
   width: 300px;
