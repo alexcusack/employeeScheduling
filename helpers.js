@@ -5,6 +5,8 @@ import { store } from './main'
 // const dateIsWeekend = (dateString) => { return dateString.getDay() === 6 || dateString.getDay() === 0 }
 // export const lookUpUserIDByName = (name) => { return mapIdToName[name] }
 // export const UserAlreadyExist = (name) => { return !!lookUpUserIDByName(name) }
+export const getDaysOfMonth = (m, yyyy) => { return new Date(yyyy, m, 0).getDate() }
+
 export const getDate = (dateString) => { return new Date(Date.parse(dateString)) }
 
 export const generateUnavailabilityFacts = (userID, date) => {
