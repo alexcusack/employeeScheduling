@@ -31,6 +31,11 @@ export const readJournal = (journalEntries, state) => {
   return newState
 }
 
+export const setUser = (userid, state) => {
+  let newState = Object.assign({}, state)
+  newState.currrentUserID = userid
+  return newState
+}
 
 
 

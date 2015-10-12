@@ -6,6 +6,13 @@ export const updateState = (journalEntries) => {
   }
 }
 
+export const setCurrentUser = (userID) => {
+  return {
+    type: 'SET_CURRENT_USER',
+    userid: userID,
+  }
+}
+
 export const createUnavailablity = (userID, date) => {
   return {
     type: 'CREATE_UNAVAILABILITY',

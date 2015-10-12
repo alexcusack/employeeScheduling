@@ -5,14 +5,15 @@ import * as redux from 'redux'
 import { connect, Provider } from 'react-redux'
 import CalendarMonth from './components'
 import * as actions from './actions'
-import { readJournal } from './reducers'
+import { readJournal, setUser } from './reducers'
 import { pushToServer, pullFromServer } from './server_calls'
 import { generateUnavailabilityFacts, generateRemoveUnavailabilityFacts, generateAssignmentSwapFacts } from './helpers'
 
-const initialState = { users: {}, assignments: {}, unavailabilities: {}, lastEntryDate: undefined }
+const initialState = { users: {}, assignments: {}, unavailabilities: {}, lastEntryDate: undefined, currentUserID: null }
 
 const dispatch = (state = initialState, action) => {
   if (action.type === 'FETCH_FROM_SERVER') { pullFromServer() }
+  if (action.type === 'SET_CURRENT_USER') { setUser(action.userid, state) }
   if (action.type === 'SEND_FACT_TO_SERVER') { pushToServer(action.facts, action.originatingAction) }
   if (action.type === 'UPDATE_STATE') { return readJournal(action.journalEntries, state) }
   if (action.type === 'CHECK_FOR_NEW_FACTS') { return readJournal(action.journalEntries, state) }
@@ -25,7 +26,6 @@ const dispatch = (state = initialState, action) => {
 export let store = redux.createStore(dispatch)
 global.store = store
 
-
 export const Controller = connect(
   (state) => {
     // return {
@@ -34,6 +34,7 @@ export const Controller = connect(
     //   assignments: state.assignments,
     // }
     return {
+      currentUserID: "D0DF1923-964B-4CF9-ACAE-C4D8CCA42EE0",
       users:
        { 'D0DF1923-964B-4CF9-ACAE-C4D8CCA42EE0': 'alex',
          '4BF57F2A-67AE-4C3D-AF7C-5B240F47E006': 'myles' },
