@@ -18,14 +18,10 @@ export class Assignment extends React.Component {
   }
 
   updateAvailability (event) {
-    if (event.target.value === 'unavailable') {
-      this.props.createUnavailablity(this.props.userID, this.props.date)
-      event.target.value = 'available'
-      // need to persist this on state change.
-    } else {
-      this.props.createUnavailablity(this.props.userID, this.props.date)
-      event.target.value = 'unavailable'
-    }
+    this.props.createUnavailablity(this.props.userID, this.props.date)
+    // event.target.checked ? this.props.createUnavailablity(this.props.userID, this.props.date)
+      // : this.props.removeUnavailability(this.props.userID, this.props.date)
+    // if (event.target.value === 'unava
   }
 }
 

@@ -7,18 +7,6 @@ import { DayOfMonth } from './components/DayOfMonth'
 export default class CalendarMonth extends React.Component {
   render () {
 
-    const dayNodes = (m, yyyy) => {
-      let nodes = []
-      const days = getDaysOfMonth(m, yyyy)
-      for (let day = 1; day <= days; ++day){
-        const date = new Date(yyyy, m, day)
-        dateIsWeekend(date) ?
-          nodes.push(<div className='weekend'><DayOfMonth calendarDate={date} /></div>)
-          : nodes.push(<div className='weekday'><DayOfMonth calendarDate={date} /></div>)
-      }
-      return nodes
-    }.call(null, 9, 2015)
-
     const assignmentNodes = (assignmentsObject) => {
       let list = []
       console.log(this.props.actions)
@@ -37,6 +25,19 @@ export default class CalendarMonth extends React.Component {
       }
       return list
     }.call(null, this.props.assignments)
+
+
+    const dayNodes = (m, yyyy) => {
+      let nodes = []
+      const days = getDaysOfMonth(m, yyyy)
+      for (let day = 1; day <= days; ++day){
+        const date = new Date(yyyy, m, day)
+        dateIsWeekend(date) ?
+          nodes.push(<div className='weekend'><DayOfMonth calendarDate={date} /></div>)
+          : nodes.push(<div className='weekday'><DayOfMonth calendarDate={date} /></div>)
+      }
+      return nodes
+    }.call(null, 9, 2015)
 
 
     return (

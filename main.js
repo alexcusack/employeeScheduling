@@ -1,7 +1,6 @@
 import Promise from 'bluebird'
 global.Promise = Promise
 import React from 'react'
-// import PureComponent from 'react-pure-render/component'
 import * as redux from 'redux'
 import { connect, Provider } from 'react-redux'
 import CalendarMonth from './components'
@@ -13,7 +12,6 @@ import { generateUnavailabilityFacts, generateRemoveUnavailabilityFacts, generat
 const initialState = { users: {}, assignments: {}, unavailabilities: {}, lastEntryDate: undefined }
 
 const dispatch = (state = initialState, action) => {
-  if (action.type === 'FOO') { console.log('call made'); return Object.assign({}, store.getState()) }
   if (action.type === 'FETCH_FROM_SERVER') { pullFromServer() }
   if (action.type === 'SEND_FACT_TO_SERVER') { pushToServer(action.facts, action.originatingAction) }
   if (action.type === 'UPDATE_STATE') { return readJournal(action.journalEntries, state) }
@@ -27,7 +25,6 @@ const dispatch = (state = initialState, action) => {
 export let store = redux.createStore(dispatch)
 global.store = store
 
-// store.dispatch(actions.fetchFromServer())
 
 export const Controller = connect(
   (state) => {

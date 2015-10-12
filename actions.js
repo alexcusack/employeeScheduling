@@ -7,8 +7,6 @@ export const updateState = (journalEntries) => {
 }
 
 export const createUnavailablity = (userID, date) => {
-// creates the action that fetchs user ID, and builds facts. thats then passed to a new action with facts as args
-  console.log('createUnavailablity')
   return {
     type: 'CREATE_UNAVAILABILITY',
     userID: userID,
