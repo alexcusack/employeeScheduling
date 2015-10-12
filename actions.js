@@ -1,40 +1,52 @@
-import { getDate } from './helpers'
-
 // fetch full list from server
-export const loadJournalEntries = (journalEntries, dateString) => {
+export const updateState = (journalEntries) => {
   return {
-    type: 'LOAD_JOURNAL_ENTRIES',
+    type: 'UPDATE_STATE',
     journalEntries: journalEntries,
-    startDate: getDate(dateString),
   }
 }
 
-// export const createAssignment = (currentFact, state) => {
-//   return {
-//     date: state.dates[currentFact[1]],
-//     assignedUser: currentFact[3],
-//     unvailabilities: [],
-//   }
-// }
-
-export const createUser = (name) => {
-  return {
-    type: 'CREATE_NEW_USER',
-    name: name,
-  }
-}
-
-export const removeUser = (name) => {
-  return {
-    type: 'REMOVE_USER',
-    name: name,
-  }
-}
-
-export const createUnavailablity = (name, date) => {
+export const createUnavailablity = (userID, date) => {
   return {
     type: 'CREATE_UNAVAILABILITY',
-    name: name,
+    userID: userID,
     date: date,
+  }
+}
+
+export const removeUnavailability = (unavailabilityID) => {
+  return {
+    type: 'REMOVE_UNAVAILABILITY',
+    unavailabilityID: unavailabilityID,
+  }
+}
+
+export const swapAssignment = (assignmentA, assignmentB, userA, userB) => {
+  return {
+    type: 'SWAP_ASSIGNMENT',
+    assignmentA: assignmentA,
+    assignmentB: assignmentB,
+    userA: userA,
+    userB: userB,
+  }
+}
+
+export const sendFactToServer = (facts, originatingAction) => {
+  return {
+    type: 'SEND_FACT_TO_SERVER',
+    facts: facts,
+    originatingAction: originatingAction,
+  }
+}
+
+export const fetchFromServer = () => {
+  return {
+    type: 'FETCH_FROM_SERVER',
+  }
+}
+
+export const checkForNewFacts = () => {
+  return {
+    type: 'CHECK_FOR_NEW_FACTS',
   }
 }

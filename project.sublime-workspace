@@ -4,6 +4,162 @@
 		"selected_items":
 		[
 			[
+				"time",
+				"timeStamp"
+			],
+			[
+				"new",
+				"newAction"
+			],
+			[
+				"a",
+				"actionDate"
+			],
+			[
+				"un",
+				"unavailabilities"
+			],
+			[
+				"ass",
+				"assignments"
+			],
+			[
+				"sa",
+				"sampleSeed"
+			],
+			[
+				"cal",
+				"CalendarMonth"
+			],
+			[
+				"journ",
+				"journalEntries"
+			],
+			[
+				"lo",
+				"loadJournalEntries"
+			],
+			[
+				"remove",
+				"removeUnavailability"
+			],
+			[
+				"dat",
+				"dateAssignment"
+			],
+			[
+				"user",
+				"userAssignment"
+			],
+			[
+				"as",
+				"assignmentList"
+			],
+			[
+				"create",
+				"createAssignment"
+			],
+			[
+				"c",
+				"currentFact"
+			],
+			[
+				"load",
+				"loadedSeed"
+			],
+			[
+				"laod",
+				"loadSeedFacts"
+			],
+			[
+				"ex",
+				"exampleFactList"
+			],
+			[
+				"cons",
+				"console"
+			],
+			[
+				"ad",
+				"addUser"
+			],
+			[
+				"in",
+				"initialState"
+			],
+			[
+				"crea",
+				"createUnvailability"
+			],
+			[
+				"u",
+				"UserAlreadyExist"
+			],
+			[
+				"us",
+				"userId"
+			],
+			[
+				"re",
+				"readSeedNames"
+			],
+			[
+				"get",
+				"getState"
+			],
+			[
+				"cu",
+				"currentDate"
+			],
+			[
+				"ge",
+				"getDate"
+			],
+			[
+				"d",
+				"dateString"
+			],
+			[
+				"assi",
+				"assignmentList"
+			],
+			[
+				"assign",
+				"assignmentList"
+			],
+			[
+				"cur",
+				"currentFact"
+			],
+			[
+				"cre",
+				"createUsersSet"
+			],
+			[
+				"seed",
+				"seedFacts"
+			],
+			[
+				"date",
+				"dateString"
+			],
+			[
+				"holid",
+				"holidayChecker"
+			],
+			[
+				"mom",
+				"moment"
+			],
+			[
+				"st",
+				"startDate"
+			],
+			[
+				"e",
+				"entityID"
+			],
+			[
 				"is",
 				"isLeaf"
 			],
@@ -28,18 +184,6 @@
 				"stack"
 			],
 			[
-				"re",
-				"reducer"
-			],
-			[
-				"st",
-				"stackTree"
-			],
-			[
-				"new",
-				"newRow"
-			],
-			[
 				"co",
 				"column"
 			],
@@ -62,10 +206,6 @@
 			[
 				"ne",
 				"nestString"
-			],
-			[
-				"c",
-				"currentValue"
 			]
 		]
 	},
@@ -77,9 +217,17 @@
 	"command_palette":
 	{
 		"height": 400.0,
-		"last_filter": "linter",
+		"last_filter": "packag",
 		"selected_items":
 		[
+			[
+				"packag",
+				"Package Control: Install Package"
+			],
+			[
+				"lint",
+				"SublimeLinter: Enable Linting"
+			],
 			[
 				"linter",
 				"SublimeLinter: Enable Linting"
@@ -134,6 +282,30 @@
 	},
 	"file_history":
 	[
+		"/Users/Alex/Desktop/new_relic/readme.md",
+		"/Users/Alex/Desktop/new_relic/server.js",
+		"/Users/Alex/Desktop/new_relic/tests/readJournalLog_test.js",
+		"/Users/Alex/Desktop/new_relic/helpers.js",
+		"/Users/Alex/Desktop/new_relic/index.html",
+		"/Users/Alex/Desktop/new_relic/tests/createUnavailability_test.js",
+		"/Users/Alex/Desktop/new_relic/tests/updateServer_tests.js",
+		"/Users/Alex/Desktop/new_relic/reducers.js",
+		"/Users/Alex/Desktop/new_relic/actions.js",
+		"/Users/Alex/Desktop/new_relic/main.js",
+		"/Users/Alex/Desktop/new_relic/node_modules/babel/node_modules/lodash/function/modArgs.js",
+		"/Users/Alex/Desktop/new_relic/.git/COMMIT_EDITMSG",
+		"/Users/Alex/Desktop/new_relic/components.js",
+		"/Users/Alex/Desktop/new_relic/bundle.js",
+		"/Users/Alex/Desktop/new_relic/package.json",
+		"/Users/Alex/Desktop/new_relic/node_modules/browserify/node_modules/JSONStream/package.json",
+		"/Users/Alex/Desktop/new_relic/run",
+		"/Users/Alex/Desktop/new_relic/tests/addUser_tests.js",
+		"/Users/Alex/Desktop/new_relic/tests/removeUser_tests.js",
+		"/Users/Alex/Desktop/new_relic/tests.js",
+		"/Users/Alex/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/Alex/Desktop/new_relic/test.js",
+		"/Users/Alex/Desktop/new_relic/src/holidayChecker.js",
+		"/Users/Alex/Desktop/new_relic/.gitignore",
 		"/Users/Alex/Desktop/Dev/code_challenges/js_generateGraph.js",
 		"/Users/Alex/Desktop/Dev/code_challenges/facebook/src/calendar.css",
 		"/Users/Alex/Desktop/Dev/code_challenges/facebook/src/visualTest.js",
@@ -147,7 +319,6 @@
 		"/Users/Alex/Desktop/Dev/code_challenges/facebook/exampelCode.js",
 		"/Users/Alex/Desktop/Dev/code_challenges/facebook/src/renderDay.test.js",
 		"/Users/Alex/Desktop/Dev/code_challenges/js_maxDepthTree.js",
-		"/Users/Alex/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
 		"/Users/Alex/Desktop/Dev/code_challenges/js_buildTree.js",
 		"/Users/Alex/Desktop/Dev/code_challenges/js_googleAsGraph.js",
 		"/Users/Alex/Desktop/Dev/code_challenges/js_joinStrings.js",
@@ -156,13 +327,14 @@
 	],
 	"find":
 	{
-		"height": 32.0
+		"height": 48.0
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 136.0,
 		"where_history":
 		[
+			""
 		]
 	},
 	"find_state":
@@ -170,6 +342,73 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"State",
+			"state",
+			"JSON",
+			"store",
+			"actionDate",
+			"ISO",
+			";",
+			"0",
+			"1A160698-EFE0-40E0-8300-233A9F5F2E4D",
+			"06EC3D88-BA33-4151-8E87-97F025A8EACE",
+			"95D131AF-62CC-4C68-8202-B970EBBCC977",
+			"LOAD_JOURNAL_ENTRIES",
+			"currentFact",
+			"console",
+			"addUser",
+			"React",
+			"react",
+			"React",
+			"react",
+			"React",
+			";",
+			"{",
+			":",
+			",",
+			"unavailability",
+			"assignmentList",
+			"[3]",
+			"userUnavailability",
+			"D0DF1923-964B-4CF9-ACAE-C4D8CCA42EE0",
+			"3791D856-DBB2-4715-9CDB-9098286476C9",
+			"D0DF1923-964B-4CF9-ACAE-C4D8CCA42EE0",
+			"loadNamesWithStartDate",
+			"LOAD_SEED_NAMES",
+			"dates",
+			" dates: {}",
+			"readSeedNames",
+			"Facts",
+			"assignmentList",
+			"{ dates: {}, users: { '0eb8e81b-cdbd-4938-8715-7af4df91d87c': 'alex' }",
+			"actual",
+			"unavailabilitites",
+			"UserAlreadyExist",
+			"const",
+			"userName",
+			"addUser",
+			"Thu Dec",
+			"LOAD_SEED_NAMES",
+			"action.",
+			"dateIsWeekend",
+			"loadSeedNameFacts",
+			"generateAssignment",
+			"store",
+			"getDate",
+			"loadNamesAndStartDate",
+			"dispatch",
+			"createStore",
+			"dispatch",
+			"console",
+			"updatedState",
+			"updatestate",
+			"currentDate",
+			"assignmentList",
+			"assignmentMap",
+			"userList",
+			"06",
+			"uuid",
+			"''",
 			"+",
 			"0",
 			"hrTime",
@@ -226,7 +465,7 @@
 	},
 	"input":
 	{
-		"height": 0.0
+		"height": 48.0
 	},
 	"layout":
 	{
@@ -267,6 +506,42 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"ma",
+				"node_modules/babel/node_modules/lodash/function/modArgs.js"
+			],
+			[
+				"action",
+				"actions.js"
+			],
+			[
+				"pack",
+				"package.json"
+			],
+			[
+				"jack",
+				"node_modules/browserify/node_modules/JSONStream/package.json"
+			],
+			[
+				"pac",
+				"package.json"
+			],
+			[
+				"red",
+				"reducers.js"
+			],
+			[
+				"help",
+				"helpers.js"
+			],
+			[
+				"read",
+				"readme.md"
+			],
+			[
+				"rea",
+				"readme.md"
+			]
 		],
 		"width": 0.0
 	},
@@ -299,7 +574,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 135.0,
+	"side_bar_width": 152.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
