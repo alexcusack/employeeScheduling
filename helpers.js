@@ -1,19 +1,18 @@
 import uuid from 'uuid'
 import { sendFactToServer } from './actions'
 import { store } from './main'
+import { pushToServer } from './server_calls'
 
 export const dateIsWeekend = (dateString) => { return dateString.getDay() === 6 || dateString.getDay() === 0 }
-// export const lookUpUserIDByName = (name) => { return mapIdToName[name] }
-// export const UserAlreadyExist = (name) => { return !!lookUpUserIDByName(name) }
 export const getDaysOfMonth = (m, yyyy) => { return new Date(yyyy, m, 0).getDate() }
-
 export const getDate = (dateString) => { return new Date(Date.parse(dateString)) }
 
 export const generateUnavailabilityFacts = (userID, date) => {
   // find replacement user and generate a swap with that info.
   const newUUID = uuid()
   const facts = [[ 'assert', newUUID, 'unavailability/user', userID ], [ 'assert', newUUID, 'unavailability/date', date ]]
-  // store.dispatch(sendFactToServer(facts, 'CREATE_UNAVAILABILITY'))
+  console.log('sending to server', facts)
+  pushToServer(facts, 'CREATE_UNAVAILABILITY')
 }
 
 export const generateRemoveUnavailabilityFacts = (unavailabilityID) => {
@@ -32,6 +31,22 @@ export const generateAssignmentSwapFacts = (assignmentA, assignmentB, userA, use
   ]
   store.dispatch(sendFactToServer(facts, 'SWAP_ASSIGNMENT'))
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // const findAssignmentReplacement = (date) => {
 //   const assignments = store.getState().assignments

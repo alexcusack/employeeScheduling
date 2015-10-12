@@ -3,8 +3,8 @@ import { updateState } from './actions'
 import { store } from './main'
 
 export const pushToServer = (facts, originalAction) => {
-  const timeStamp = new Date()
-  const postBody = {actionType: originalAction, timestamp: timeStamp.toISOString(), facts: facts}
+  const timestamp = new Date()
+  const postBody = {actionType: originalAction, timestamp: timestamp.toISOString(), facts: facts}
 
   fetch('http://localhost:3000/journal',
     {
