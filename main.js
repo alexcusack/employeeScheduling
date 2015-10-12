@@ -10,7 +10,7 @@ import { readJournal } from './reducers'
 import { pushToServer, pullFromServer } from './server_calls'
 import { generateUnavailabilityFacts, generateRemoveUnavailabilityFacts, generateAssignmentSwapFacts } from './helpers'
 
-const initialState = { users: {}, assignments: {}, unavailabilities: {} }
+const initialState = { users: {}, assignments: {}, unavailabilities: {}, lastEntryDate: undefined }
 
 const dispatch = (state = initialState, action) => {
   if (action.type === 'FOO') { console.log('call made'); return Object.assign({}, store.getState()) }
@@ -60,7 +60,7 @@ export const Controller = connect(
 }
 )(CalendarMonth)
 
-// React.render(
-//   <Provider store={store}>{() => <Controller/>}</Provider>,
-//   document.querySelector('main')
-// )
+React.render(
+  <Provider store={store}>{() => <Controller/>}</Provider>,
+  document.querySelector('main')
+)

@@ -1,9 +1,10 @@
 
 export const readJournal = (journalEntries, state) => {
-  // console.log('updating state', journalEntries)
+  //shape -->  json: {status: 200, updates: [], lastEntry:  '2015-10-08 00:06:00 UTC'}
   if (journalEntries === undefined) { return Object.assign({}, state) }
   let newState = Object.assign({}, state)
-  for (let entry of journalEntries) {
+  newState.lastEntryDate = journalEntries.lastEntry
+  for (let entry of journalEntries.updates) {
     const facts = JSON.parse(entry.facts)
     if (entry.name === 'createUser') {
       newState.users[facts[0][1]] = facts[0][3]
@@ -27,9 +28,16 @@ export const readJournal = (journalEntries, state) => {
       newState.unavailabilities[facts[2][1]] = { date: facts[3][3], user: facts[2][3] }
     }
   }
-  // console.log(newState)
   return newState
 }
+
+
+
+
+
+
+
+
 
 
 

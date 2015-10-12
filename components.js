@@ -1,7 +1,7 @@
 import React from 'react'
-import pullFromServer from './server_calls'
-import store from './main'
 import { getDaysOfMonth, dateIsWeekend } from './helpers'
+import { Assignment } from './components/assignment'
+import { DayOfMonth } from './components/DayOfMonth'
 
 
 export default class CalendarMonth extends React.Component {
@@ -42,52 +42,10 @@ export default class CalendarMonth extends React.Component {
     return (
       <div>
         <div>{assignmentNodes}</div>
+        <div></div>
         <div>{dayNodes}</div>
       </div>
     )
   }
 }
 
-class Assignment extends React.Component {
-  render () {
-    return (
-      <div data-assignmentid={this.props.assignmentID.toString()}>{this.props.usersObject[this.props.userID]} {this.props.date}
-        <input type="checkbox"
-              name="available"
-              value="unavailable"
-              onClick={e => this.updateAvailability(e)}
-              unchecked
-            />
-      </div>
-      )
-  }
-
-  updateAvailability(event){
-    debugger
-    if (event.target.value === 'unavailable'){
-      this.props.createUnavailablity(this.props.userID, this.props.date)
-      event.target.value = 'available'
-      // need to persist this on state change.
-    } else {
-      this.props.createUnavailablity(this.props.userID, this.props.date)
-      event.target.value = 'unavailable'
-    }
-
-  }
-}
-
-Assignment.propTypes = {
-  userID: React.PropTypes.string.isRequired,
-  date: React.PropTypes.string.isRequired,
-  usersObject: React.PropTypes.object.isRequired,
-  createUnavailablity: React.PropTypes.func.isRequired,
-  removeUnavailability: React.PropTypes.func.isRequired,
-  swapAssignment: React.PropTypes.func.isRequired,
-}
-
-
-class DayOfMonth extends React.Component {
-  render () {
-   return (<div className='dayOfMonth' data-date={this.props.calendarDate.toString()}>{this.props.calendarDate.toString().slice(0,15)}</div>)
-  }
-}
