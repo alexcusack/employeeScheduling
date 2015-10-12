@@ -17,6 +17,7 @@ const dispatch = (state = initialState, action) => {
   if (action.type === 'FETCH_FROM_SERVER') { pullFromServer() }
   if (action.type === 'SEND_FACT_TO_SERVER') { pushToServer(action.facts, action.originatingAction) }
   if (action.type === 'UPDATE_STATE') { return readJournal(action.journalEntries, state) }
+  if (action.type === 'CHECK_FOR_NEW_FACTS') { return readJournal(action.journalEntries, state) }
   if (action.type === 'CREATE_UNAVAILABILITY') { generateUnavailabilityFacts(action.userID, action.date) }
   if (action.type === 'REMOVE_UNAVAILABILITY') { generateRemoveUnavailabilityFacts(action.unavailabilityID) }
   if (action.type === 'SWAP_ASSIGNMENT') { generateAssignmentSwapFacts(action.assignmentA, action.assignmentB, action.userA, action.userB) }
@@ -59,7 +60,7 @@ export const Controller = connect(
 }
 )(CalendarMonth)
 
-React.render(
-  <Provider store={store}>{() => <Controller/>}</Provider>,
-  document.querySelector('main')
-)
+// React.render(
+//   <Provider store={store}>{() => <Controller/>}</Provider>,
+//   document.querySelector('main')
+// )

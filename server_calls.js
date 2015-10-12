@@ -21,8 +21,8 @@ export const pushToServer = (facts, originalAction) => {
     })
 }
 
-export const pullFromServer = () => {
-  fetch('http://localhost:3000/journal')
+export const pullFromServer = (date) => {
+  fetch('http://localhost:3000/journal?date=' + date)
   .then((response) => response.json())
   .then(response => {
     console.log('pull from server success')

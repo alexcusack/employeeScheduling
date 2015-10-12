@@ -46,3 +46,9 @@ export const fetchFromServer = () => {
     type: 'FETCH_FROM_SERVER',
   }
 }
+
+export const checkForNewFacts = () => {
+  return {
+    type: 'CHECK_FOR_NEW_FACTS',
+  }
+}
