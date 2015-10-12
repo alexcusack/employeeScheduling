@@ -1,14 +1,30 @@
 
-.weekend {
+/*.weekend {
   height: 50px;
   width: 300px;
   margin: 5px;
   background-color: blue;
 }
-
+*/
 .dayOfMonth {
-  height: 50px;
-  width: 300px;
+  height: 100px;
+  width: 100px;
   margin: 5px;
+  float: left;
   background-color: #C2C2CE;
 }
+
+.assignmentNode {
+  height: 50px;
+  width: 100px;
+  margin: 0px;
+  background-color: red;
+}
+
+main {
+  height: 600px;
+  width: 800px;
+  float: left;
+  margin: 80px;
+}
+

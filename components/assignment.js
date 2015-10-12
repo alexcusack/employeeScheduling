@@ -3,16 +3,14 @@ import React from 'react'
 export class Assignment extends React.Component {
   render () {
     return (
-      <div data-assignmentid={this.props.assignmentID.toString()}>{this.props.usersObject[this.props.userID]} {this.props.date}
-        <div>
-        <h4> Mark Unvailable </h4>
+      <div className='assignmentNode' data-assignmentid={this.props.assignmentID.toString()}>
+        {this.props.usersObject[this.props.userID]}
         <input type='checkbox'
               name='available'
               value='unavailable'
               onClick={e => this.updateAvailability(e)}
               unchecked
             />
-        </div>
       </div>
       )
   }

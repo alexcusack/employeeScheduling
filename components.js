@@ -7,12 +7,13 @@ import { DayOfMonth } from './components/DayOfMonth'
 export default class CalendarMonth extends React.Component {
   render () {
 
+    const assignmentMap = {}
+
     const assignmentNodes = (assignmentsObject) => {
       let list = []
       console.log(this.props.actions)
       for (let assignment in assignmentsObject) {
-        list.push(
-          <Assignment
+        const newAssignment = <Assignment
             assignmentID={assignment}
             userID={assignmentsObject[assignment].user}
             date={assignmentsObject[assignment].date}
@@ -21,20 +22,24 @@ export default class CalendarMonth extends React.Component {
             removeUnavailability={this.props.actions.removeUnavailability}
             swapAssignment={this.props.actions.swapAssignment}
           />
-        )
+        assignmentMap[assignmentsObject[assignment].date] = newAssignment
       }
       return list
     }.call(null, this.props.assignments)
-
 
     const dayNodes = (m, yyyy) => {
       let nodes = []
       const days = getDaysOfMonth(m, yyyy)
       for (let day = 1; day <= days; ++day){
-        const date = new Date(yyyy, m, day)
-        dateIsWeekend(date) ?
-          nodes.push(<div className='weekend'><DayOfMonth calendarDate={date} /></div>)
+        let date = new Date(yyyy, m, day)
+        if (dateIsWeekend(date)) { nodes.push(<div className='weekend'><DayOfMonth calendarDate={date} /></div>) }
+        else {
+          const displayDate = date.toISOString().slice(0,10)
+          const assignment = assignmentMap[displayDate]
+          assignment ?
+            nodes.push(<div className='weekday'><DayOfMonth calendarDate={date} assignment={assignment}/></div>)
           : nodes.push(<div className='weekday'><DayOfMonth calendarDate={date} /></div>)
+        }
       }
       return nodes
     }.call(null, 9, 2015)
@@ -43,7 +48,6 @@ export default class CalendarMonth extends React.Component {
     return (
       <div>
         <div>{assignmentNodes}</div>
-        <div></div>
         <div>{dayNodes}</div>
       </div>
     )
