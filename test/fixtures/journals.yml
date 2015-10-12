@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  timestamp: MyString
+  datetime: MyString
+  name: MyString
+  string: MyString
+  facts: MyString
+  string: MyString
+
+two:
+  timestamp: MyString
+  datetime: MyString
+  name: MyString
+  string: MyString
+  facts: MyString
+  string: MyString
