@@ -21,7 +21,7 @@ export default class CalendarMonth extends React.Component {
     let todaysHero = {}
 
 
-    const assignmentNodeMap = (assignmentsObject) => {
+    let assignmentNodeMap = (assignmentsObject) => {
       let mapOfNodes = {}
       if (this.props.visibilityFilter === 'all'){
         for (let assignment in assignmentsObject) {
@@ -57,45 +57,47 @@ export default class CalendarMonth extends React.Component {
         }
       }
       return mapOfNodes
-    }.call(null, this.props.assignments)
+    }
+    assignmentNodeMap = assignmentNodeMap(this.props.assignments)
 
+    const datesInMonth = (m, yyyy) => {
+      const numberOfDays = getDaysOfMonth(m, yyyy)
+      const dates = []
+      for (let day = 1; day <= numberOfDays; ++day) { dates.push(new Date(yyyy, m, day)) }
+      return dates
+    }
 
-    const calendarDays = (m, yyyy) => {
-      let nodes = []
-      const days = getDaysOfMonth(m, yyyy)
-      for (let day = 1; day <= days; ++day){
-        let date = new Date(yyyy, m, day)
-        if (dateIsWeekend(date)) { nodes.push(<div className='weekend'><DayOfMonth calendarDate={date.toString()} /></div>) }
-        else {
-          const displayDate = date.toISOString().slice(0,10)
-          const assignment = assignmentNodeMap[displayDate]
-          assignment ?
-            nodes.push(<div className='weekday'><DayOfMonth calendarDate={date.toString()} assignment={assignment}/></div>)
-          : nodes.push(<div className='weekday'><DayOfMonth calendarDate={date.toString()} /></div>)
-        }
-      }
-      return nodes
-    }.call(null, 9, 2015)
+    const datesWithAssignments = datesInMonth(9, 2015).map((date) => {
+      const displayDate = date.toISOString().slice(0, 10)
+      const assignment = assignmentNodeMap[displayDate]
+      return [date, assignment]
+    })
 
 
     return (
       <div>
         <div>
-          <button onClick={e => this.previousMonth()} >PreviousMonth</button>
-          <button onClick={e => this.NextMonth()} >NextMonth</button>
+          <button onClick={ () => this.previousMonth()} >PreviousMonth</button>
+          <button onClick={ () => this.NextMonth()} >NextMonth</button>
         </div>
         <div>Today's Hero: {this.props.users[todaysHero.user]}</div>
         <div>
-          <button onClick={e => this.viewAll()} >View all users</button>
-          <button onClick={e => this.viewCurrentUser()}>View selected user schedule</button>
+          <button onClick={ () => this.viewAll()} >View all users</button>
+          <button onClick={ () => this.viewCurrentUser()}>View selected user schedule</button>
         </div>
 
-        <div className="userlist">
+        <div className='userlist'>
           { userIDsAndNames.map(([id, name]) =>
             <User key={id} {...{id, name, setCurrentUser}}/>
           )}
       </div>
-        <div>{calendarDays}</div>
+      <div>
+        { datesWithAssignments.map(([date, assignment]) =>
+          dateIsWeekend(date)
+            ? <div className='weekend'><DayOfMonth calendarDate={date.toString()} /></div>
+            : <div className='weekday'><DayOfMonth calendarDate={date.toString()} assignment={assignment}/></div>
+        )}
+      </div>
       </div>
     )
   }
