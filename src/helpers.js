@@ -3,8 +3,9 @@ import { sendFactToServer } from './actions'
 import { store } from './main'
 // import { pushToServer } from './server_calls'
 
-export const dateIsWeekend = (dateString) => { return dateString.getDay() === 6 || dateString.getDay() === 0 }
-export const getDate = (dateString) => { return new Date(Date.parse(dateString)) }
+//dateObject new Date('Mon Oct 01 2015 17:05:24 GMT-0700 (PDT)')
+export const dateIsWeekend = (dateObject) => { dateObject = new Date(dateObject); return dateObject.getDay() === 6 || dateObject.getDay() === 0 }
+export const getDate = (dateObject) => { return new Date(Date.parse(dateObject)) }
 export const getDaysOfMonth = (m, yyyy) => { return new Date(yyyy, m, 0).getDate() }
 
 export const generateUnavailabilityFacts = (userID, assignmentID, date) => {

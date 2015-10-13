@@ -1,22 +1,18 @@
-import { createUnavailablity } from '../actions'
-
-const actual = createUnavailablity('D0DF1923-964B-4CF9-ACAE-C4D8CCA42EE0', '2015-10-09')
+import { createUnavailability } from '../src/actions'
 
 ;[
-  // { // best place to handle malformed inputs?
-  //   name: 'createUnavailablity, empty input',
-  //   input: ['', ''],
-  //   expected: null,
-  // },
-  {
-    name: 'createUnavailablity, standard input',
-    input: ['D0DF1923-964B-4CF9-ACAE-C4D8CCA42EE0', '2015-10-09'],
-    expected: { type: 'CREATE_UNAVAILABILITY',
-              userID: 'D0DF1923-964B-4CF9-ACAE-C4D8CCA42EE0',
-                date: '2015-10-09' },
+  { // best practice for handleing bad inputs? which component should gaurd?
+    name: 'createUnavailability, standard input',
+    input: ['f777f1a0-b861-49c3-b4fb-b0d745f0dd7a', 'ffa7a825-752d-4d3e-904c-2e3527b58851', '2015-10-09'],
+    expected: {
+      type: 'CREATE_UNAVAILABILITY',
+      userID: 'f777f1a0-b861-49c3-b4fb-b0d745f0dd7a',
+      assignmentID: 'ffa7a825-752d-4d3e-904c-2e3527b58851',
+      date: '2015-10-09',
+    },
   },
 ].forEach((td) => {
-  const actual = createUnavailablity(td.input[0], td.input[1])
+  const actual = createUnavailability(td.input[0], td.input[1], td.input[2])
   const pass = JSON.stringify(actual) === JSON.stringify(td.expected)
   if (pass) {
     console.log('passed:', td.name)

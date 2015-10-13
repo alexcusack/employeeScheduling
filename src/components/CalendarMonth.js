@@ -82,6 +82,10 @@ export default class CalendarMonth extends React.Component {
 
     return (
       <div>
+        <div>
+          <button onClick={e => this.previousMonth()} >PreviousMonth</button>
+          <button onClick={e => this.NextMonth()} >NextMonth</button>
+        </div>
         <div>Today's Hero: {this.props.users[todaysHero.user]}</div>
         <div>
           <button onClick={e => this.viewAll()} >View all users</button>
@@ -98,6 +102,10 @@ export default class CalendarMonth extends React.Component {
   }
 
   viewCurrentUser () {
+    this.props.actions.setVisibilityFilter('currentUser')
+  }
+
+   viewCurrentUser () {
     this.props.actions.setVisibilityFilter('currentUser')
   }
 

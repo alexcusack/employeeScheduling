@@ -1,4 +1,4 @@
-import { getDaysOfMonth } from '../helpers'
+import { getDaysOfMonth } from '../src/helpers'
 
 ;[
   {

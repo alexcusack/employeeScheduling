@@ -33,7 +33,7 @@ export const Controller = connect(
   (dispatch) => { return {actions: redux.bindActionCreators(actions, dispatch)} }
 )(CalendarMonth)
 
-React.render(
-  <Provider store={store}>{() => <Controller/>}</Provider>,
-  document.querySelector('main')
-)
+// React.render(
+//   <Provider store={store}>{() => <Controller/>}</Provider>,
+//   document.querySelector('main')
+// )

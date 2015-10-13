@@ -1,7 +1,7 @@
 
 export const readJournal = (journalEntries, state) => {
   //Journal Entry shape: json: {status: 200, updates: [], lastEntry:  '2015-10-08 00:06:00 UTC'}
-  console.log(state)
+  // console.log(state)
   if (journalEntries === undefined) { return Object.assign({}, state) }
   let newState = Object.assign({}, state)
   newState.lastEntryDate = journalEntries.lastEntry
