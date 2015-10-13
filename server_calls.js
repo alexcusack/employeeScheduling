@@ -6,7 +6,6 @@ import { readJournal } from './reducers'
 export const pushToServer = (facts, originalAction) => {
   const timestamp = new Date()
   const postBody = { actionType: originalAction, timestamp: timestamp.toISOString(), facts: facts, lastEntryDate: store.getState().lastEntryDate }
-
   fetch('http://localhost:3000/journal',
     {
       method: 'POST',

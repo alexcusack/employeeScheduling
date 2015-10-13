@@ -8,18 +8,19 @@ import * as actions from './actions'
 import { readJournal, setUser } from './reducers'
 import { pushToServer, pullFromServer } from './server_calls'
 import { generateUnavailabilityFacts, generateRemoveUnavailabilityFacts, generateAssignmentSwapFacts } from './helpers'
+import { sampleState } from './sampleState'
 
 const initialState = { users: {}, assignments: {}, unavailabilities: {}, lastEntryDate: undefined, currentUserID: null }
 
 const dispatch = (state = initialState, action) => {
-  if (action.type === 'FETCH_FROM_SERVER') { pullFromServer() }
+  if (action.type === 'LOAD_ENTRIES') { return readJournal(action.journalEntries, state) }
   if (action.type === 'SET_CURRENT_USER') { setUser(action.userid, state) }
-  if (action.type === 'SEND_FACT_TO_SERVER') { pushToServer(action.facts, action.originatingAction) }
-  if (action.type === 'UPDATE_STATE') { return readJournal(action.journalEntries, state) }
-  if (action.type === 'CHECK_FOR_NEW_FACTS') { return readJournal(action.journalEntries, state) }
-  if (action.type === 'CREATE_UNAVAILABILITY') { generateUnavailabilityFacts(action.userID, action.date) }
-  if (action.type === 'REMOVE_UNAVAILABILITY') { generateRemoveUnavailabilityFacts(action.unavailabilityID) }
+  if (action.type === 'CREATE_UNAVAILABILITY') { generateUnavailabilityFacts(action.userID, action.assignmentID, action.date) }
+  if (action.type === 'REMOVE_UNAVAILABILITY') { generateRemoveUnavailabilityFacts(action.UnavailabilityID) }
   if (action.type === 'SWAP_ASSIGNMENT') { generateAssignmentSwapFacts(action.assignmentA, action.assignmentB, action.userA, action.userB) }
+  if (action.type === 'CHECK_FOR_NEW_FACTS') { return readJournal(action.journalEntries, state) }
+  if (action.type === 'FETCH_FROM_SERVER') { pullFromServer() }
+  if (action.type === 'SEND_FACT_TO_SERVER') { pushToServer(action.facts, action.originatingAction) }
   return state
 }
 
@@ -33,23 +34,7 @@ export const Controller = connect(
     //   unavailabilities: state.unavailabilities,
     //   assignments: state.assignments,
     // }
-    return {
-      currentUserID: "D0DF1923-964B-4CF9-ACAE-C4D8CCA42EE0",
-      users:
-       { 'D0DF1923-964B-4CF9-ACAE-C4D8CCA42EE0': 'alex',
-         '4BF57F2A-67AE-4C3D-AF7C-5B240F47E006': 'myles' },
-      assignments:
-       { '95D131AF-62CC-4C68-8202-B970EBBCC977':
-          { date: '2015-10-08',
-            user: '4BF57F2A-67AE-4C3D-AF7C-5B240F47E006' },
-         '1A160698-EFE0-40E0-8300-233A9F5F2E4D':
-          { date: '2015-10-12',
-            user: 'D0DF1923-964B-4CF9-ACAE-C4D8CCA42EE0' } },
-      unavailabilities:
-       { '06EC3D88-BA33-4151-8E87-97F025A8EACE':
-          { date: '2015-10-08',
-            user: 'D0DF1923-964B-4CF9-ACAE-C4D8CCA42EE0' } }
-    }
+    return sampleState
   },
 (dispatch) => {
   return {

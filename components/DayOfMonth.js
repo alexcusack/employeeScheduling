@@ -6,6 +6,7 @@ export class DayOfMonth extends React.Component {
   }
 }
 
+
 DayOfMonth.propTypes = {
   calendarDate: React.PropTypes.string.isRequired,
 }

@@ -1,22 +1,24 @@
 // fetch full list from server
-export const updateState = (journalEntries) => {
+export const loadEntries = (journalEntries) => {
   return {
-    type: 'UPDATE_STATE',
+    type: 'LOAD_ENTRIES',
     journalEntries: journalEntries,
   }
 }
 
 export const setCurrentUser = (userID) => {
+  console.log('setting setCurrentUser')
   return {
     type: 'SET_CURRENT_USER',
     userid: userID,
   }
 }
 
-export const createUnavailablity = (userID, date) => {
+export const createUnavailability = (userID, assignmentID, date) => {
   return {
     type: 'CREATE_UNAVAILABILITY',
     userID: userID,
+    assignmentID: assignmentID,
     date: date,
   }
 }

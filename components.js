@@ -4,14 +4,19 @@ import { Assignment } from './components/assignment'
 import { DayOfMonth } from './components/DayOfMonth'
 import { User } from './components/user'
 
-// alex = "D0DF1923-964B-4CF9-ACAE-C4D8CCA42EE0"
 export default class CalendarMonth extends React.Component {
   render () {
 
     const userNodes = (usersOjbect) => {
       let nodes = []
       for (let userID in usersOjbect) {
-        nodes.push( <User userid={userID} userName={usersOjbect[userID]} />)
+        nodes.push(
+          <User
+            userid={userID}
+            userName={usersOjbect[userID]}
+            setCurrentUser={this.props.actions.setCurrentUser}
+          />
+        )
       }
       return nodes
     }.call(null, this.props.users)

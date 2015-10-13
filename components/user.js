@@ -1,17 +1,13 @@
 import React from 'react'
 
-
 export class User extends React.Component {
   render () {
+    console.log('user created')
     return (
-      <div data-userid={this.props.userid} onClick={e => this.chooseUser(e)}>
+      <div data-userid={this.props.userid} onClick={e => this.props.setCurrentUser(e.target.getAttribute('data-userid'))}>
         {this.props.userName}
       </div>
     )
-  }
-
-  chooseUser (event) {
-    const userId = event.target.getAttribute('data-userid')
   }
 }
 
