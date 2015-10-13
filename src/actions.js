@@ -14,6 +14,14 @@ export const setCurrentUser = (userID) => {
   }
 }
 
+// filter set to 'all' or 'currentUser'
+export const setVisibilityFilter = (filter) => {
+  return {
+    type: 'SET_VISIBILITY_FILTER',
+    filter: filter,
+  }
+}
+
 export const createUnavailability = (userID, assignmentID, date) => {
   return {
     type: 'CREATE_UNAVAILABILITY',

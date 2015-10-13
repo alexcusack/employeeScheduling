@@ -7,6 +7,8 @@ import { User } from './user'
 export default class CalendarMonth extends React.Component {
   render () {
 
+    let todaysHero = {}
+
     const userNodes = (usersOjbect) => {
       let nodes = []
       for (let userID in usersOjbect) {
@@ -25,6 +27,7 @@ export default class CalendarMonth extends React.Component {
       let mapOfNodes = {}
       if (this.props.visibilityFilter === 'all'){
         for (let assignment in assignmentsObject) {
+          if(assignmentsObject[assignment].date === this.props.todaysDate) { todaysHero = assignmentsObject[assignment]}
           const newAssignment = <Assignment
               assignmentID={assignment}
               userID={assignmentsObject[assignment].user}
@@ -39,6 +42,7 @@ export default class CalendarMonth extends React.Component {
         }
       } else { // this.props.visibilityFilter = 'currentUser'
         for (let assignment in assignmentsObject) {
+          if(assignmentsObject[assignment].date === this.props.todaysDate) { todaysHero = assignmentsObject[assignment]}
           if (assignmentsObject[assignment].user === this.props.currentUserID){
             const newAssignment = <Assignment
                 assignmentID={assignment}
@@ -78,10 +82,25 @@ export default class CalendarMonth extends React.Component {
 
     return (
       <div>
+        <div>Today's Hero: {this.props.users[todaysHero.user]}</div>
+        <div>
+          <button onClick={e => this.viewAll()} >View all users</button>
+          <button onClick={e => this.viewCurrentUser()}>View selected user schedule</button>
+        </div>
         <div className="userlist">{userNodes}</div>
         <div>{calendarDays}</div>
       </div>
     )
   }
+
+  viewAll () {
+    this.props.actions.setVisibilityFilter('all')
+  }
+
+  viewCurrentUser () {
+    this.props.actions.setVisibilityFilter('currentUser')
+  }
+
+
 }
 

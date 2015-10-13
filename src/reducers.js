@@ -36,3 +36,10 @@ export const setUser = (userid, state) => {
   newState.currrentUserID = userid
   return newState
 }
+
+export const changeVisibility = (filter, state) => {
+  console.log('change visibilityFiler to', filter)
+  let newState = Object.assign({}, state)
+  newState.visibilityFiler = filter
+  return newState
+}
