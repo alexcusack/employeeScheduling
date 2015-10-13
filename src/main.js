@@ -29,11 +29,13 @@ export let store = redux.createStore(dispatch)
 global.store = store
 
 export const Controller = connect(
-  (state) => { return sampleState },
+  (state) => {
+    return sampleState
+  },
   (dispatch) => { return {actions: redux.bindActionCreators(actions, dispatch)} }
 )(CalendarMonth)
 
-// React.render(
-//   <Provider store={store}>{() => <Controller/>}</Provider>,
-//   document.querySelector('main')
-// )
+React.render(
+  <Provider store={store}>{() => <Controller/>}</Provider>,
+  document.querySelector('main')
+)

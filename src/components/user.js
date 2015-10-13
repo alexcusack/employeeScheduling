@@ -1,17 +1,19 @@
 import React from 'react'
 
+// change ancor tag to css
 export class User extends React.Component {
   render () {
-    console.log('user created')
+    const { id, name, setCurrentUser } = this.props
     return (
-      <div className='username' data-userid={this.props.userid} onClick={e => this.props.setCurrentUser(e.target.getAttribute('data-userid'))}>
-        <a href='#'> {this.props.userName} </a>
+      <div className='username' onClick={setCurrentUser.bind(null, id)}>
+        <a href='#'> {name} </a>
       </div>
     )
   }
 }
 
 User.propTypes = {
-  userName: React.PropTypes.string.isRequired,
-  userid: React.PropTypes.string.isRequired,
+  name: React.PropTypes.string.isRequired,
+  id: React.PropTypes.string.isRequired,
+  setCurrentUser: React.PropTypes.func.isRequired,
 }

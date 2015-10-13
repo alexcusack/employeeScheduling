@@ -25,10 +25,9 @@ export const pullFromServer = (date) => {
   fetch('http://localhost:3000/journal?date=' + date)
   .then((response) => response.json())
   .then(response => {
-    if (response.status === 200 || 206) { store.dispatch(updateState(response)) }
+    if (response.status === 200) { store.dispatch(updateState(response)) }
     // 200 -> full log update
-    // 206 -> partial log update
-    // 204 -> no updates
+    // 304 -> no updates
   })
   // TODO: handle errors
 }

@@ -4,24 +4,22 @@ import { Assignment } from './assignment'
 import { DayOfMonth } from './DayOfMonth'
 import { User } from './user'
 
+
+
+
+
 export default class CalendarMonth extends React.Component {
   render () {
 
+    // extract actions
+    const {setCurrentUser} = this.props.actions
+
+    const userIDsAndNames = Object.keys(this.props.users).map((userID) => {
+      return [userID, this.props.users[userID]]
+    })
+
     let todaysHero = {}
 
-    const userNodes = (usersOjbect) => {
-      let nodes = []
-      for (let userID in usersOjbect) {
-        nodes.push(
-          <User
-            userid={userID}
-            userName={usersOjbect[userID]}
-            setCurrentUser={this.props.actions.setCurrentUser}
-          />
-        )
-      }
-      return nodes
-    }.call(null, this.props.users)
 
     const assignmentNodeMap = (assignmentsObject) => {
       let mapOfNodes = {}
@@ -91,7 +89,12 @@ export default class CalendarMonth extends React.Component {
           <button onClick={e => this.viewAll()} >View all users</button>
           <button onClick={e => this.viewCurrentUser()}>View selected user schedule</button>
         </div>
-        <div className="userlist">{userNodes}</div>
+
+        <div className="userlist">
+          { userIDsAndNames.map(([id, name]) =>
+            <User key={id} {...{id, name, setCurrentUser}}/>
+          )}
+      </div>
         <div>{calendarDays}</div>
       </div>
     )
@@ -109,6 +112,13 @@ export default class CalendarMonth extends React.Component {
     this.props.actions.setVisibilityFilter('currentUser')
   }
 
+  previousMonth () {
+    //
+  }
+
+   NextMonth () {
+    //
+  }
 
 }
 
