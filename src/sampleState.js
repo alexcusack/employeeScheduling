@@ -135,4 +135,6 @@ export const sampleState = {
         user: '0682d780-a91c-40a3-8af6-77daceb49c36' } },
   unavailabilities: {},
   lastEntryDate: '2015-10-13',
-  currentUserID: '7bd233f7-c0e4-43df-890c-a0dd10621cff' }
+  currentUserID: '7bd233f7-c0e4-43df-890c-a0dd10621cff',
+  visibilityFilter: 'all',
+}

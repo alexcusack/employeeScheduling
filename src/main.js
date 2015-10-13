@@ -10,7 +10,7 @@ import { pushToServer, pullFromServer } from './server_calls'
 import { generateUnavailabilityFacts, generateRemoveUnavailabilityFacts, generateAssignmentSwapFacts } from './helpers'
 import { sampleState } from './sampleState'
 
-const initialState = { users: {}, assignments: {}, unavailabilities: {}, lastEntryDate: undefined, currentUserID: null }
+const initialState = { users: {}, assignments: {}, unavailabilities: {}, lastEntryDate: undefined, currentUserID: null, visibilityFiler: 'all'}
 
 const dispatch = (state = initialState, action) => {
   if (action.type === 'LOAD_ENTRIES') { return readJournal(action.journalEntries, state) }

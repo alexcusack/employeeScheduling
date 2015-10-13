@@ -23,18 +23,36 @@ export default class CalendarMonth extends React.Component {
 
     const assignmentNodeMap = (assignmentsObject) => {
       let mapOfNodes = {}
-      for (let assignment in assignmentsObject) {
-        const newAssignment = <Assignment
-            assignmentID={assignment}
-            userID={assignmentsObject[assignment].user}
-            currentUserID={this.props.currentUserID}
-            date={assignmentsObject[assignment].date}
-            usersObject={this.props.users}
-            createUnavailability={this.props.actions.createUnavailability}
-            removeUnavailability={this.props.actions.removeUnavailability}
-            swapAssignment={this.props.actions.swapAssignment}
-          />
-        mapOfNodes[assignmentsObject[assignment].date] = newAssignment
+      if (this.props.visibilityFilter === 'all'){
+        for (let assignment in assignmentsObject) {
+          const newAssignment = <Assignment
+              assignmentID={assignment}
+              userID={assignmentsObject[assignment].user}
+              currentUserID={this.props.currentUserID}
+              date={assignmentsObject[assignment].date}
+              usersObject={this.props.users}
+              createUnavailability={this.props.actions.createUnavailability}
+              removeUnavailability={this.props.actions.removeUnavailability}
+              swapAssignment={this.props.actions.swapAssignment}
+            />
+          mapOfNodes[assignmentsObject[assignment].date] = newAssignment
+        }
+      } else { // this.props.visibilityFilter = 'currentUser'
+        for (let assignment in assignmentsObject) {
+          if (assignmentsObject[assignment].user === this.props.currentUserID){
+            const newAssignment = <Assignment
+                assignmentID={assignment}
+                userID={assignmentsObject[assignment].user}
+                currentUserID={this.props.currentUserID}
+                date={assignmentsObject[assignment].date}
+                usersObject={this.props.users}
+                createUnavailability={this.props.actions.createUnavailability}
+                removeUnavailability={this.props.actions.removeUnavailability}
+                swapAssignment={this.props.actions.swapAssignment}
+              />
+            mapOfNodes[assignmentsObject[assignment].date] = newAssignment
+          }
+        }
       }
       return mapOfNodes
     }.call(null, this.props.assignments)
