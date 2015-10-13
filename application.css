@@ -1,0 +1,42 @@
+
+button {
+  display: block;
+}
+
+.dayOfMonth {
+  height: 170px;
+  width: 170px;
+  margin: 5px;
+  float: left;
+  background-color: #C2C2CE;
+}
+
+.assignmentNode {
+  padding-top: 5px;
+  height: 70px;
+  width: 170px;
+  margin: 0px;
+  background-color: #C0D8D4;
+}
+
+main {
+  height: 600px;
+  width: 1200px;
+  float: left;
+  margin: 80px;
+}
+
+.swapWith {
+  display: none;
+}
+
+.username{
+  float: left;
+  margin: 3px;
+}
+
+.userlist {
+  display: block;
+  height: 25px;
+
+}

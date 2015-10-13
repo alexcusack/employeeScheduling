@@ -1,7 +1,7 @@
 import uuid from 'uuid'
 import { sendFactToServer } from './actions'
 import { store } from './main'
-import { pushToServer } from './server_calls'
+// import { pushToServer } from './server_calls'
 
 export const dateIsWeekend = (dateString) => { return dateString.getDay() === 6 || dateString.getDay() === 0 }
 export const getDate = (dateString) => { return new Date(Date.parse(dateString)) }

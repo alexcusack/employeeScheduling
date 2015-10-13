@@ -10,7 +10,7 @@
     - User, Date
 
 + Commands
-  + LoadSeedNames(list of names)
+  //+ LoadSeedNames(list of names)
     - Generate entity for each name
     - Attach name attribute to entity
     - Generate Assignment Entities
@@ -18,11 +18,11 @@
     - Generate user unavailability(userA, DateA)
     - Assert assignment(userA, dateB)
     - Assert assignment(userB, dateA)
-  + CreateAssignment(user, date)
+  //+ CreateAssignment(user, date)
   <!-- + CreateHoliday(date, name) -->
   <!-- + RemoveHoliday(Holiday) -->
-  + CreateUser(name)
-  + RemoveUser(name)
+  //+ CreateUser(name)
+  //+ RemoveUser(name)
   + CreateUnavailability(User, date)
   + {RemoveUnavailability}(User, date)
 
