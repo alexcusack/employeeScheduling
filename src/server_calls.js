@@ -1,6 +1,6 @@
 import fetch from 'node-fetch'
-import { updateState } from './actions'
-import { store } from './main'
+import { loadEntries } from './actions'
+// import { store } from './main'
 import { readJournal } from './reducers'
 
 export const pushToServer = (facts, originalAction) => {
@@ -21,11 +21,12 @@ export const pushToServer = (facts, originalAction) => {
     })
 }
 
-export const pullFromServer = (date) => {
+export const pullFromServer = (dispatch, date) => {
   fetch('http://localhost:3000/journal?date=' + date)
   .then((response) => response.json())
   .then(response => {
-    if (response.status === 200) { store.dispatch(updateState(response)) }
+    console.log(response)
+    if (response.status === 200) { dispatch(loadEntries(response)) }
     // 200 -> full log update
     // 304 -> no updates
   })

@@ -136,6 +136,6 @@ export const sampleState = {
   unavailabilities: {},
   lastEntryDate: '2015-10-13',
   currentUserID: '7bd233f7-c0e4-43df-890c-a0dd10621cff',
-  visibilityFilter: 'all',
+  visibilityFilter: 'currentUser',
   todaysDate: '2015-10-13',
 }

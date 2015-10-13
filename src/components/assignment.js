@@ -5,14 +5,14 @@ export class Assignment extends React.Component {
     return this.props.userID === this.props.currentUserID ? (
       // assigned user is currrent user
       <div className='assignmentNode' data-assignmentid={this.props.assignmentID.toString()} data-userid={this.props.userID}>
-        Assignee: {this.props.usersObject[this.props.userID]}
+        Assignee: {this.props.userObject}
         <button href='#' onClick={e => this.createUnavailability(e)}>I'm Unavailable</button>
         <button onClick={e => this.startAssignmentSwap(e)}>Trade Day</button>
       </div>
     )
     : (// assigned user is not currrent user
       <div className='assignmentNode' data-assignmentid={this.props.assignmentID.toString()} data-userid={this.props.userID}>
-        Assignee: {this.props.usersObject[this.props.userID]}
+        Assignee: {this.props.userObject}
         <button className='swapWith'>Swap </button>
       </div>
     )

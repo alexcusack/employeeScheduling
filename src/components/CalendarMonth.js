@@ -4,61 +4,17 @@ import { Assignment } from './assignment'
 import { DayOfMonth } from './DayOfMonth'
 import { User } from './user'
 
-
-
-
-
 export default class CalendarMonth extends React.Component {
   render () {
-
+    console.log('calender month rendering')
+    let todaysHero = {}
     // extract actions
-    const {setCurrentUser} = this.props.actions
+    const { setCurrentUser, createUnavailability, swapAssignment, setVisibilityFilter } = this.props.actions
 
     const userIDsAndNames = Object.keys(this.props.users).map((userID) => {
       return [userID, this.props.users[userID]]
     })
 
-    let todaysHero = {}
-
-
-    let assignmentNodeMap = (assignmentsObject) => {
-      let mapOfNodes = {}
-      if (this.props.visibilityFilter === 'all'){
-        for (let assignment in assignmentsObject) {
-          if(assignmentsObject[assignment].date === this.props.todaysDate) { todaysHero = assignmentsObject[assignment]}
-          const newAssignment = <Assignment
-              assignmentID={assignment}
-              userID={assignmentsObject[assignment].user}
-              currentUserID={this.props.currentUserID}
-              date={assignmentsObject[assignment].date}
-              usersObject={this.props.users}
-              createUnavailability={this.props.actions.createUnavailability}
-              removeUnavailability={this.props.actions.removeUnavailability}
-              swapAssignment={this.props.actions.swapAssignment}
-            />
-          mapOfNodes[assignmentsObject[assignment].date] = newAssignment
-        }
-      } else { // this.props.visibilityFilter = 'currentUser'
-        for (let assignment in assignmentsObject) {
-          if(assignmentsObject[assignment].date === this.props.todaysDate) { todaysHero = assignmentsObject[assignment]}
-          if (assignmentsObject[assignment].user === this.props.currentUserID){
-            const newAssignment = <Assignment
-                assignmentID={assignment}
-                userID={assignmentsObject[assignment].user}
-                currentUserID={this.props.currentUserID}
-                date={assignmentsObject[assignment].date}
-                usersObject={this.props.users}
-                createUnavailability={this.props.actions.createUnavailability}
-                removeUnavailability={this.props.actions.removeUnavailability}
-                swapAssignment={this.props.actions.swapAssignment}
-              />
-            mapOfNodes[assignmentsObject[assignment].date] = newAssignment
-          }
-        }
-      }
-      return mapOfNodes
-    }
-    assignmentNodeMap = assignmentNodeMap(this.props.assignments)
 
     const datesInMonth = (m, yyyy) => {
       const numberOfDays = getDaysOfMonth(m, yyyy)
@@ -68,8 +24,13 @@ export default class CalendarMonth extends React.Component {
     }
 
     const datesWithAssignments = datesInMonth(9, 2015).map((date) => {
+      console.log('new assignmentNode')
       const displayDate = date.toISOString().slice(0, 10)
-      const assignment = assignmentNodeMap[displayDate]
+      const assignmentID = this.props.assignmentsIDsByDate[displayDate]
+      let assignment = this.props.assignments[assignmentID]
+      console.log(displayDate)
+      if (assignment) { assignment.assignmentID = assignmentID }
+      if (this.props.visibilityFilter === 'currentUser' && assignment && assignment.user !== this.props.currentUserID) { assignment = null }
       return [date, assignment]
     })
 
@@ -95,7 +56,17 @@ export default class CalendarMonth extends React.Component {
         { datesWithAssignments.map(([date, assignment]) =>
           dateIsWeekend(date)
             ? <div className='weekend'><DayOfMonth calendarDate={date.toString()} /></div>
-            : <div className='weekday'><DayOfMonth calendarDate={date.toString()} assignment={assignment}/></div>
+            : <div className='weekday'><DayOfMonth calendarDate={date.toString()}>
+                {assignment &&
+                <Assignment
+                assignmentID={assignment.assignmentID}
+                userID={assignment.user}
+                currentUserID={this.props.currentUserID}
+                date={assignment.date}
+                userObject={this.props.users[assignment.user]}
+                {... {createUnavailability, swapAssignment}}
+              />}
+              </DayOfMonth></div>
         )}
       </div>
       </div>

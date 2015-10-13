@@ -1,7 +1,7 @@
 
 export const readJournal = (journalEntries, state) => {
   //Journal Entry shape: json: {status: 200, updates: [], lastEntry:  '2015-10-08 00:06:00 UTC'}
-  // console.log(state)
+  console.log('loading journal entries')
   if (journalEntries === undefined) { return Object.assign({}, state) }
   let newState = Object.assign({}, state)
   newState.lastEntryDate = journalEntries.lastEntry
@@ -28,6 +28,7 @@ export const readJournal = (journalEntries, state) => {
       newState.unavailabilities[facts[2][1]] = { date: facts[3][3], user: facts[2][3] }
     }
   }
+  console.log('new state', newState)
   return newState
 }
 
