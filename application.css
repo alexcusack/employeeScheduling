@@ -30,3 +30,13 @@ main {
   display: none;
 }
 
+.username{
+  float: left;
+  margin: 3px;
+}
+
+.userlist {
+  display: block;
+  height: 25px;
+
+}

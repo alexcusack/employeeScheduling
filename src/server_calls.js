@@ -6,6 +6,7 @@ import { readJournal } from './reducers'
 export const pushToServer = (facts, originalAction) => {
   const timestamp = new Date()
   const postBody = { actionType: originalAction, timestamp: timestamp.toISOString(), facts: facts, lastEntryDate: store.getState().lastEntryDate }
+
   fetch('http://localhost:3000/journal',
     {
       method: 'POST',
@@ -15,10 +16,8 @@ export const pushToServer = (facts, originalAction) => {
     .then((response) => response.json())
     .then((response) => {
       console.log(response.status)
-      // client log out of sync
-      if (response.status === 406) { readJournal(response) /* retry last action */ }
-      // facts successfully posted
-      if (response.status === 200) { return store.dispatch(updateState(facts)) }
+      if (/* log out of sync */ response.status === 406) { readJournal(response) /* retry last action */ }
+      if (/* successful appended facts */ response.status === 200) { return store.dispatch(updateState(facts)) }
     })
 }
 

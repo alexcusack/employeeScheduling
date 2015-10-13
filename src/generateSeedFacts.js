@@ -3,6 +3,7 @@ import { dateIsWeekend, getDate } from './helpers'
 import { pushToServer } from './server_calls'
 import fetch from 'node-fetch'
 import { readJournal } from './reducers'
+
 // const seedNames = ['Sherry', 'Boris', 'Vicente', 'Matte', 'Jack', 'Sherry',
 //  'Matte', 'Kevin', 'Kevin', 'Vicente', 'Zoe', 'Kevin',
 //  'Matte', 'Zoe', 'Jay', 'Boris', 'Eadon', 'Sherry',

@@ -4,8 +4,8 @@ export class User extends React.Component {
   render () {
     console.log('user created')
     return (
-      <div data-userid={this.props.userid} onClick={e => this.props.setCurrentUser(e.target.getAttribute('data-userid'))}>
-        {this.props.userName}
+      <div className='username' data-userid={this.props.userid} onClick={e => this.props.setCurrentUser(e.target.getAttribute('data-userid'))}>
+        <a href='#'> {this.props.userName} </a>
       </div>
     )
   }

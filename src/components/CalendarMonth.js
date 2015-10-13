@@ -1,8 +1,8 @@
 import React from 'react'
-import { getDaysOfMonth, dateIsWeekend } from './helpers'
-import { Assignment } from './components/assignment'
-import { DayOfMonth } from './components/DayOfMonth'
-import { User } from './components/user'
+import { getDaysOfMonth, dateIsWeekend } from '../helpers'
+import { Assignment } from './assignment'
+import { DayOfMonth } from './DayOfMonth'
+import { User } from './user'
 
 export default class CalendarMonth extends React.Component {
   render () {
@@ -30,7 +30,7 @@ export default class CalendarMonth extends React.Component {
             currentUserID={this.props.currentUserID}
             date={assignmentsObject[assignment].date}
             usersObject={this.props.users}
-            createUnavailablity={this.props.actions.createUnavailablity}
+            createUnavailability={this.props.actions.createUnavailability}
             removeUnavailability={this.props.actions.removeUnavailability}
             swapAssignment={this.props.actions.swapAssignment}
           />
@@ -45,13 +45,13 @@ export default class CalendarMonth extends React.Component {
       const days = getDaysOfMonth(m, yyyy)
       for (let day = 1; day <= days; ++day){
         let date = new Date(yyyy, m, day)
-        if (dateIsWeekend(date)) { nodes.push(<div className='weekend'><DayOfMonth calendarDate={date} /></div>) }
+        if (dateIsWeekend(date)) { nodes.push(<div className='weekend'><DayOfMonth calendarDate={date.toString()} /></div>) }
         else {
           const displayDate = date.toISOString().slice(0,10)
           const assignment = assignmentNodeMap[displayDate]
           assignment ?
-            nodes.push(<div className='weekday'><DayOfMonth calendarDate={date} assignment={assignment}/></div>)
-          : nodes.push(<div className='weekday'><DayOfMonth calendarDate={date} /></div>)
+            nodes.push(<div className='weekday'><DayOfMonth calendarDate={date.toString()} assignment={assignment}/></div>)
+          : nodes.push(<div className='weekday'><DayOfMonth calendarDate={date.toString()} /></div>)
         }
       }
       return nodes
@@ -60,7 +60,7 @@ export default class CalendarMonth extends React.Component {
 
     return (
       <div>
-        <div>{userNodes}</div>
+        <div className="userlist">{userNodes}</div>
         <div>{calendarDays}</div>
       </div>
     )

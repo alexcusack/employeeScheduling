@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 export PATH="./node_modules/.bin:$PATH"
-watchify main.js \
+watchify ./src/main.js \
     --transform babelify \
     --extension .jsx \
     --debug \

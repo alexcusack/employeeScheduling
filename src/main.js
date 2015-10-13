@@ -3,7 +3,7 @@ global.Promise = Promise
 import React from 'react'
 import * as redux from 'redux'
 import { connect, Provider } from 'react-redux'
-import CalendarMonth from './components'
+import CalendarMonth from './components/CalendarMonth'
 import * as actions from './actions'
 import { readJournal, setUser } from './reducers'
 import { pushToServer, pullFromServer } from './server_calls'
@@ -28,19 +28,8 @@ export let store = redux.createStore(dispatch)
 global.store = store
 
 export const Controller = connect(
-  (state) => {
-    // return {
-    //   users: state.users,
-    //   unavailabilities: state.unavailabilities,
-    //   assignments: state.assignments,
-    // }
-    return sampleState
-  },
-(dispatch) => {
-  return {
-    actions: redux.bindActionCreators(actions, dispatch),
-  }
-}
+  (state) => { return sampleState },
+  (dispatch) => { return {actions: redux.bindActionCreators(actions, dispatch)} }
 )(CalendarMonth)
 
 React.render(
