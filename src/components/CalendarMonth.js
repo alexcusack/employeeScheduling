@@ -15,7 +15,6 @@ export default class CalendarMonth extends React.Component {
       return [userID, this.props.users[userID]]
     })
 
-
     const datesInMonth = (m, yyyy) => {
       const numberOfDays = getDaysOfMonth(m, yyyy)
       const dates = []
@@ -24,16 +23,13 @@ export default class CalendarMonth extends React.Component {
     }
 
     const datesWithAssignments = datesInMonth(9, 2015).map((date) => {
-      console.log('new assignmentNode')
       const displayDate = date.toISOString().slice(0, 10)
       const assignmentID = this.props.assignmentsIDsByDate[displayDate]
       let assignment = this.props.assignments[assignmentID]
-      console.log(displayDate)
       if (assignment) { assignment.assignmentID = assignmentID }
       if (this.props.visibilityFilter === 'currentUser' && assignment && assignment.user !== this.props.currentUserID) { assignment = null }
       return [date, assignment]
     })
-
 
     return (
       <div>

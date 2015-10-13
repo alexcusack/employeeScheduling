@@ -6,7 +6,7 @@ export class User extends React.Component {
     const { id, name, setCurrentUser } = this.props
     return (
       <div className='username' onClick={setCurrentUser.bind(null, id)}>
-        <a href='#'> {name} </a>
+        {name}
       </div>
     )
   }

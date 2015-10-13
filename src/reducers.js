@@ -33,8 +33,10 @@ export const readJournal = (journalEntries, state) => {
 }
 
 export const setUser = (userid, state) => {
+  console.log('reduce set user', userid)
   let newState = Object.assign({}, state)
-  newState.currrentUserID = userid
+  newState.currentUserID = userid
+  console.log(newState)
   return newState
 }
 
