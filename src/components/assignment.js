@@ -2,7 +2,7 @@ import React from 'react'
 
 export class Assignment extends React.Component {
   render () {
-    const { startSwapAssignment, createUnavailability } = this.props
+    const { startSwapAssignment, swapAssignment, createUnavailability } = this.props
     return this.props.userID === this.props.currentUserID ? (
       // assigned user is currrent user
       <div className='assignmentNode' data-assignmentid={this.props.assignmentID.toString()} data-userid={this.props.userID}>
@@ -13,15 +13,15 @@ export class Assignment extends React.Component {
     )
     : (// assigned user is not currrent user
       <div className='assignmentNode' data-assignmentid={this.props.assignmentID.toString()} data-userid={this.props.userID}>
-        Assignee: {this.props.userName}
+        {this.props.swapStarted ? // display swap options view?
+          <div onClick={swapAssignment.bind(null, this.props.swapStarted.assignmentID, this.props.assignmentID, this.props.swapStarted.userID, this.props.userID)}>
+            {'Trade with' + this.props.userName}
+          </div>
+          : 'Assignee ' + this.props.userName}
         <button className='swapWith'>Swap </button>
       </div>
-    )
+   )
   }
-
-  // createUnavailability () {
-  //   this.props.createUnavailability(this.props.userID, this.props.assignmentID, this.props.date)
-  // }
 }
 
 Assignment.propTypes = {

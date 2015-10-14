@@ -5,12 +5,12 @@ import * as redux from 'redux'
 import { connect, Provider } from 'react-redux'
 import CalendarMonth from './components/CalendarMonth'
 import * as actions from './actions'
-import { readJournal, setUser, changeVisibility, addUnavailabilityAndReplacementUser, showAssignmentSwapOptions } from './reducers'
+import { readJournal, setUser, changeVisibility, addUnavailabilityAndReplacementUser, showAssignmentSwapOptions, swapAssignments } from './reducers'
 import { pushToServer, pullFromServer } from './server_calls'
 // import { generateUnavailabilityFacts, generateRemoveUnavailabilityFacts, generateAssignmentSwapFacts } from './helpers'
 import { sampleState } from './sampleState'
 
-const initialState = { users: {}, assignments: {}, unavailabilities: {}, lastEntryDate: undefined, currentUserID: '658e7931-4e5d-4d28-97fb-25466ca85c78', visibilityFilter: 'all', todaysDate: '2015-10-13', 'swapStarted': false, 'loading': true }
+const initialState = { users: {}, assignments: {}, unavailabilities: {}, lastEntryDate: undefined, currentUserID: '658e7931-4e5d-4d28-97fb-25466ca85c78', visibilityFilter: 'all', todaysDate: () => { const date = new Date; return date.toISOString().slice(0, 10)}.call(), 'swapStarted': false, 'loading': true }
 
 const dispatch = (state = initialState, action) => {
   console.log('in dispatch', action)
@@ -18,7 +18,8 @@ const dispatch = (state = initialState, action) => {
   if (action.type === 'SET_CURRENT_USER') { return setUser(action.userid, state) }
   if (action.type === 'SET_VISIBILITY_FILTER') { return changeVisibility(action.filter, state) }
   if (action.type === 'CREATE_UNAVAILABILITY') { return addUnavailabilityAndReplacementUser(action.facts, state) }
-  // if (action.type === 'START_ASSIGNMENT_SWAP') { return showAssignmentSwapOptions(action.assignmentID, action.date, action.possibleReplacements, state) }
+  if (action.type === 'START_ASSIGNMENT_SWAP') { return showAssignmentSwapOptions(action.assignmentID, action.date, action.possibleReplacements, action.initiatingUserID, state) }
+  if (action.type === 'SWAP_ASSIGNMENT') { return swapAssignments(action.assignmentA, action.assignmentB, action.userA, action.userB, state)}
   // if (action.type === 'CHECK_FOR_NEW_FACTS') { return readJournal(action.journalEntries, state) }
   // if (action.type === 'FETCH_FROM_SERVER') { pullFromServer() }
   // if (action.type === 'SEND_FACT_TO_SERVER') { pushToServer(action.facts, action.originatingAction) }
@@ -30,7 +31,14 @@ global.store = store
 
 export const Controller = connect(
   (state) => {
-    state.assignmentsIDsByDate = Object.keys(state.assignments).reduce((dateToAssignment, currentAssignment) => {
+    state.swapStarted ?
+      state.assignmentsIDsByDate = state.swapStarted.possibleReplacements.reduce((dateToAssignment, assignmentIDUserID) => {
+        const assignmentID = assignmentIDUserID[0]
+        const userID = assignmentIDUserID[1]
+        dateToAssignment[state.assignments[assignmentID].date] = assignmentID
+        return dateToAssignment
+      }, {})
+     :state.assignmentsIDsByDate = Object.keys(state.assignments).reduce((dateToAssignment, currentAssignment) => {
       dateToAssignment[state.assignments[currentAssignment].date] = currentAssignment
       return dateToAssignment
     }, {})

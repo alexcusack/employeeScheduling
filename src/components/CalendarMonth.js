@@ -12,7 +12,7 @@ export default class CalendarMonth extends React.Component {
     const todaysHero = (todaysAssignment) => { return todaysAssignment ? this.props.users[todaysAssignment.user] : 'loading' }.call(null, todaysAssignment)
 
     // extract actions
-    const { setCurrentUser, createUnavailability, startSwapAssignment, setVisibilityFilter } = this.props.actions
+    const { setCurrentUser, createUnavailability, startSwapAssignment, swapAssignment, setVisibilityFilter } = this.props.actions
 
     const userIDsAndNames = Object.keys(this.props.users).map((userID) => {
       return [userID, this.props.users[userID]]
@@ -65,6 +65,7 @@ export default class CalendarMonth extends React.Component {
                   date={assignment.date}
                   userName={this.props.users[assignment.user]}
                   swapStarted={this.props.swapStarted}
+                  swapAssignment={swapAssignment}
                   {... {createUnavailability, startSwapAssignment}}
                 />}
                </DayOfMonth>

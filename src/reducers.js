@@ -1,3 +1,4 @@
+import {generateAssignmentSwapFacts} from './helpers'
 
 export const readJournal = (journalEntries, state) => {
   //Journal Entry shape: json: {status: 200, updates: [], lastEntry:  '2015-10-08 00:06:00 UTC'}
@@ -53,13 +54,25 @@ export const addUnavailabilityAndReplacementUser = (facts, state) => {
   return newState
 }
 
-export const showAssignmentSwapOptions = (assignmentID, date, possibleReplacements, state) => {
+export const showAssignmentSwapOptions = (assignmentID, date, possibleReplacements, userID, state) => {
   let newState = Object.assign({}, state)
   newState.swapStarted = {
     assignmentID: assignmentID,
     date: date,
     possibleReplacements: possibleReplacements,
+    userID: userID,
   }
   return newState
 }
 
+
+export const swapAssignments = (assignmentA, assignmentB, userA, userB, state) => {
+  const facts = generateAssignmentSwapFacts(assignmentA, assignmentB, userA, userB, store.getState().assignments[assignmentA].date)
+  console.log(facts)
+  if (facts.length === 0) { return state }
+  let newState = Object.assign({}, state)
+  newState.assignments[facts[0][1]].user = facts[0][3]
+  newState.assignments[facts[1][1]].user = facts[1][3]
+  newState.swapStarted = false
+  return newState
+}

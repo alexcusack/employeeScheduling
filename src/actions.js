@@ -39,6 +39,7 @@ export const startSwapAssignment = (userID, assignmentID, date) => {
     assignmentID: assignmentID,
     date: date,
     possibleReplacements: possibleReplacements,
+    initiatingUserID: userID,
   }
 }
 
