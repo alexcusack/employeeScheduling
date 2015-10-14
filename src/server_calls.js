@@ -24,7 +24,6 @@ export const pullFromServer = (dispatch, date) => {
   fetch('http://localhost:3000/journal?date=' + date)
   .then((response) => response.json())
   .then(response => {
-    console.log(response)
     if (response.status === 200) { dispatch(loadEntries(response)) }
     // 200 -> full log update
     // 304 -> no updates

@@ -38,9 +38,7 @@ export const createUnavailability = (userID, assignmentID, date) => {
 }
 
 export const startSwapAssignment = (userID, assignmentID, date) => {
-  console.log('start swap')
   const possibleReplacements = findRepalcement(userID, date)
-  console.log(possibleReplacements)
   return {
     type: 'START_ASSIGNMENT_SWAP',
     assignmentID: assignmentID,
@@ -79,10 +77,3 @@ export const checkForNewFacts = () => {
     type: 'CHECK_FOR_NEW_FACTS',
   }
 }
-
-// export const removeUnavailability = (unavailabilityID) => {
-//   return {
-//     type: 'REMOVE_UNAVAILABILITY',
-//     unavailabilityID: unavailabilityID,
-//   }
-// }

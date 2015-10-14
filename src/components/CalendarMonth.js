@@ -6,13 +6,11 @@ import { User } from './user'
 
 export default class CalendarMonth extends React.Component {
   render () {
-    console.log('calender month rendering')
-
-    const todaysAssignment = this.props.assignments[this.props.assignmentsIDsByDate[this.props.todaysDate]]
-    const todaysHero = (todaysAssignment) => { return todaysAssignment ? this.props.users[todaysAssignment.user] : 'loading' }.call(null, todaysAssignment)
 
     // extract actions
     const { setCurrentUser, createUnavailability, startSwapAssignment, swapAssignment, setVisibilityFilter, changeMonth } = this.props.actions
+    const todaysAssignment = this.props.assignments[this.props.assignmentsIDsByDate[this.props.todaysDate]]
+    const todaysHero = (todaysAssignment) => { return todaysAssignment ? this.props.users[todaysAssignment.user] : 'loading' }.call(null, todaysAssignment)
 
     const userIDsAndNames = Object.keys(this.props.users).map((userID) => {
       return [userID, this.props.users[userID]]
@@ -35,7 +33,7 @@ export default class CalendarMonth extends React.Component {
     })
 
     return (
-      <div>
+      <div key={this.props.calendarMonthYear}>
         <div>
           <button onClick={changeMonth.bind(null, -1)} >PreviousMonth</button>
           <button onClick={changeMonth.bind(null, +1)} >NextMonth</button>
@@ -56,9 +54,10 @@ export default class CalendarMonth extends React.Component {
           dateIsWeekend(date)
             ? <div className='weekend'><DayOfMonth calendarDate={date.toString()} /></div>
             : <div className='weekday'>
-                <DayOfMonth calendarDate={date.toString()}>
+                <DayOfMonth key={date.toString()} calendarDate={date.toString()}>
                   {assignment &&
                   <Assignment
+                  key={assignment.assignmentID}
                   assignmentID={assignment.assignmentID}
                   userID={assignment.user}
                   currentUserID={this.props.currentUserID}
@@ -75,22 +74,5 @@ export default class CalendarMonth extends React.Component {
       </div>
     )
   }
-
-  viewAll () {
-    this.props.actions.setVisibilityFilter('all')
-  }
-
-  viewCurrentUser () {
-    this.props.actions.setVisibilityFilter('currentUser')
-  }
-
-  previousMonth () {
-    //
-  }
-
-   NextMonth () {
-    //
-  }
-
 }
 

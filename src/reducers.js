@@ -2,7 +2,6 @@ import {generateAssignmentSwapFacts} from './helpers'
 
 export const readJournal = (journalEntries, state) => {
   //Journal Entry shape: json: {status: 200, updates: [], lastEntry:  '2015-10-08 00:06:00 UTC'}
-  console.log('loading entries', journalEntries)
   if (journalEntries === undefined) { return Object.assign({}, state) }
   let newState = Object.assign({}, state)
   newState.lastEntryDate = journalEntries.lastEntry
@@ -65,7 +64,6 @@ export const showAssignmentSwapOptions = (assignmentID, date, possibleReplacemen
   return newState
 }
 
-
 export const swapAssignments = (assignmentA, assignmentB, userA, userB, state) => {
   const facts = generateAssignmentSwapFacts(assignmentA, assignmentB, userA, userB, store.getState().assignments[assignmentA].date)
   console.log(facts)
@@ -76,7 +74,6 @@ export const swapAssignments = (assignmentA, assignmentB, userA, userB, state) =
   newState.swapStarted = false
   return newState
 }
-
 
 export const newMonth = (direction, state) => {
   let newState = Object.assign({}, state)
