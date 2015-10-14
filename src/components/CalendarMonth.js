@@ -7,7 +7,10 @@ import { User } from './user'
 export default class CalendarMonth extends React.Component {
   render () {
     console.log('calender month rendering')
-    let todaysHero = {}
+
+    const todaysAssignment = this.props.assignments[this.props.assignmentsIDsByDate[this.props.todaysDate]]
+    const todaysHero = (todaysAssignment) => { return todaysAssignment ? this.props.users[todaysAssignment.user] : 'loading' }.call(null, todaysAssignment)
+
     // extract actions
     const { setCurrentUser, createUnavailability, startSwapAssignment, setVisibilityFilter } = this.props.actions
 
@@ -37,7 +40,7 @@ export default class CalendarMonth extends React.Component {
           <button onClick={ () => this.previousMonth()} >PreviousMonth</button>
           <button onClick={ () => this.NextMonth()} >NextMonth</button>
         </div>
-        <div>Today's Hero: {this.props.users[todaysHero.user]}</div>
+        <div>Today's Hero: {todaysHero}</div>
         <div>
           <button onClick={ () => this.viewAll()} >View all users</button>
           <button onClick={ () => this.viewCurrentUser()}>View selected user schedule</button>
