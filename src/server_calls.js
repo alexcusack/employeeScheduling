@@ -3,21 +3,20 @@ import { loadEntries } from './actions'
 // import { store } from './main'
 import { readJournal } from './reducers'
 
-export const pushToServer = (facts, originalAction) => {
+export const pushToServer = (facts) => {
   const timestamp = new Date()
-  const postBody = { actionType: originalAction, timestamp: timestamp.toISOString(), facts: facts, lastEntryDate: store.getState().lastEntryDate }
-
+  const postBody = { timestamp: timestamp.toISOString(), facts: facts, lastEntryDate: store.getState().lastEntryDate }
+  console.log('pushToServer', postBody)
   fetch('http://localhost:3000/journal',
     {
       method: 'POST',
-      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
       body: JSON.stringify(postBody),
     })
     .then((response) => response.json())
     .then((response) => {
-      console.log(response.status)
-      if (/* log out of sync */ response.status === 406) { readJournal(response) /* retry last action */ }
-      if (/* successful appended facts */ response.status === 200) { return store.dispatch(updateState(facts)) }
+      console.log(response)
+      // if (/* log out of sync */ response.status === 406) { readJournal(response) /* retry last action */ }
+      // if (/* successful appended facts */ response.status === 200) { return store.dispatch(updateState(facts)) }
     })
 }
 

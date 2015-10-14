@@ -9,7 +9,7 @@ export default class CalendarMonth extends React.Component {
     console.log('calender month rendering')
     let todaysHero = {}
     // extract actions
-    const { setCurrentUser, createUnavailability, swapAssignment, setVisibilityFilter } = this.props.actions
+    const { setCurrentUser, createUnavailability, startSwapAssignment, setVisibilityFilter } = this.props.actions
 
     const userIDsAndNames = Object.keys(this.props.users).map((userID) => {
       return [userID, this.props.users[userID]]
@@ -23,8 +23,8 @@ export default class CalendarMonth extends React.Component {
     }
 
     const datesWithAssignments = datesInMonth(9, 2015).map((date) => {
-      const displayDate = date.toISOString().slice(0, 10)
-      const assignmentID = this.props.assignmentsIDsByDate[displayDate]
+      const referenceDate = date.toISOString().slice(0, 10)
+      const assignmentID = this.props.assignmentsIDsByDate[referenceDate]
       let assignment = this.props.assignments[assignmentID]
       if (assignment) { assignment.assignmentID = assignmentID }
       if (this.props.visibilityFilter === 'currentUser' && assignment && assignment.user !== this.props.currentUserID) { assignment = null }
@@ -52,17 +52,20 @@ export default class CalendarMonth extends React.Component {
         { datesWithAssignments.map(([date, assignment]) =>
           dateIsWeekend(date)
             ? <div className='weekend'><DayOfMonth calendarDate={date.toString()} /></div>
-            : <div className='weekday'><DayOfMonth calendarDate={date.toString()}>
-                {assignment &&
-                <Assignment
-                assignmentID={assignment.assignmentID}
-                userID={assignment.user}
-                currentUserID={this.props.currentUserID}
-                date={assignment.date}
-                userObject={this.props.users[assignment.user]}
-                {... {createUnavailability, swapAssignment}}
-              />}
-              </DayOfMonth></div>
+            : <div className='weekday'>
+                <DayOfMonth calendarDate={date.toString()}>
+                  {assignment &&
+                  <Assignment
+                  assignmentID={assignment.assignmentID}
+                  userID={assignment.user}
+                  currentUserID={this.props.currentUserID}
+                  date={assignment.date}
+                  userName={this.props.users[assignment.user]}
+                  swapStarted={this.props.swapStarted}
+                  {... {createUnavailability, startSwapAssignment}}
+                />}
+               </DayOfMonth>
+             </div>
         )}
       </div>
       </div>
@@ -74,10 +77,6 @@ export default class CalendarMonth extends React.Component {
   }
 
   viewCurrentUser () {
-    this.props.actions.setVisibilityFilter('currentUser')
-  }
-
-   viewCurrentUser () {
     this.props.actions.setVisibilityFilter('currentUser')
   }
 

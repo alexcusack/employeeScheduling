@@ -44,7 +44,7 @@ export const changeVisibility = (filter, state) => {
   return newState
 }
 
-export const addUnavailability = (facts, state) => {
+export const addUnavailabilityAndReplacementUser = (facts, state) => {
   if (facts.length === 0) { return state }
   let newState = Object.assign({}, state)
   newState.assignments[facts[0][1]].user = facts[0][3]
@@ -52,3 +52,14 @@ export const addUnavailability = (facts, state) => {
   newState.unavailabilities[facts[2][1]] = { date: facts[3][3], user: facts[2][3] }
   return newState
 }
+
+export const showAssignmentSwapOptions = (assignmentID, date, possibleReplacements, state) => {
+  let newState = Object.assign({}, state)
+  newState.swapStarted = {
+    assignmentID: assignmentID,
+    date: date,
+    possibleReplacements: possibleReplacements,
+  }
+  return newState
+}
+

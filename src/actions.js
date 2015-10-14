@@ -1,4 +1,4 @@
-import { generateUnavailabilityFacts } from './helpers'
+import { generateUnavailabilityFacts, findRepalcement } from './helpers'
 
 export const loadEntries = (journalEntries) => {
   return {
@@ -27,6 +27,18 @@ export const createUnavailability = (userID, assignmentID, date) => {
   return {
     type: 'CREATE_UNAVAILABILITY',
     facts: generateUnavailabilityFacts(userID, assignmentID, date),
+  }
+}
+
+export const startSwapAssignment = (userID, assignmentID, date) => {
+  console.log('start swap')
+  const possibleReplacements = findRepalcement(userID, date)
+  console.log(possibleReplacements)
+  return {
+    type: 'START_ASSIGNMENT_SWAP',
+    assignmentID: assignmentID,
+    date: date,
+    possibleReplacements: possibleReplacements,
   }
 }
 

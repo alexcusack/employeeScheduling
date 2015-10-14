@@ -1,59 +1,59 @@
-// import uuid from 'uuid'
-// import { dateIsWeekend, getDate } from './helpers'
-// import { pushToServer } from './server_calls'
-// import fetch from 'node-fetch'
-// import { readJournal } from './reducers'
+import uuid from 'uuid'
+import { dateIsWeekend, getDate } from './helpers'
+import { pushToServer } from './server_calls'
+import fetch from 'node-fetch'
+import { readJournal } from './reducers'
 
-// const seedNames = ['Sherry', 'Boris', 'Vicente', 'Matte', 'Jack', 'Sherry',
-//  'Matte', 'Kevin', 'Kevin', 'Vicente', 'Zoe', 'Kevin',
-//  'Matte', 'Zoe', 'Jay', 'Boris', 'Eadon', 'Sherry',
-//  'Franky', 'Sherry', 'Matte', 'Franky', 'Franky', 'Kevin',
-//  'Boris', 'Franky', 'Vicente', 'Luis', 'Eadon', 'Boris',
-//  'Kevin', 'Matte', 'Jay', 'James', 'Kevin', 'Sherry',
-//  'Sherry', 'Jack', 'Sherry', 'Jack']
+const seedNames = ['Sherry', 'Boris', 'Vicente', 'Matte', 'Jack', 'Sherry',
+ 'Matte', 'Kevin', 'Kevin', 'Vicente', 'Zoe', 'Kevin',
+ 'Matte', 'Zoe', 'Jay', 'Boris', 'Eadon', 'Sherry',
+ 'Franky', 'Sherry', 'Matte', 'Franky', 'Franky', 'Kevin',
+ 'Boris', 'Franky', 'Vicente', 'Luis', 'Eadon', 'Boris',
+ 'Kevin', 'Matte', 'Jay', 'James', 'Kevin', 'Sherry',
+ 'Sherry', 'Jack', 'Sherry', 'Jack']
 
-// const unqiueNames = new Set(seedNames)
-// let facts = []
-// let mapNamesToIDs = {}
+const unqiueNames = new Set(seedNames)
+let facts = []
+let mapNamesToIDs = {}
 
-// unqiueNames.forEach((name) => {
-//   let date = new Date
-//   date = date.toISOString()
-//   const id = uuid()
-//   const entry = {
-//     timestamp: date,
-//     name: 'createUser',
-//     facts: ['assert', id, 'user/name', name],
-//   }
-//   facts.push(entry)
-//   mapNamesToIDs[name] = id
-// })
+unqiueNames.forEach((name) => {
+  let date = new Date
+  date = date.toISOString()
+  const id = uuid()
+  const entry = {
+    timestamp: date,
+    name: 'createUser',
+    facts: ['assert', id, 'user/name', name],
+  }
+  facts.push(entry)
+  mapNamesToIDs[name] = id
+})
 
-// function* assignmentDateGenerator (startDate) {
-//   while (true) {
-//     startDate.setDate(startDate.getDate() + 1)
-//     while (dateIsWeekend(startDate)) { startDate.setDate(startDate.getDate() + 1) }
-//     yield startDate
-//   }
-// }
+function* assignmentDateGenerator (startDate) {
+  while (true) {
+    startDate.setDate(startDate.getDate() + 1)
+    while (dateIsWeekend(startDate)) { startDate.setDate(startDate.getDate() + 1) }
+    yield startDate
+  }
+}
 
-// const assignmentDate = assignmentDateGenerator(new Date('Sun Oct 11 2015 17:05:24 GMT-0700 (PDT)'))
+const assignmentDate = assignmentDateGenerator(new Date('Sun Oct 11 2015 17:05:24 GMT-0700 (PDT)'))
 
-// seedNames.forEach((name) => {
-//   const date = (new Date).toISOString()
-//   const id = uuid()
-//   const newDay = new Date(assignmentDate.next().value)
-//   const entry = {
-//     timestamp: date,
-//     name: 'createAssignment',
-//     facts: [
-//       ['assert', id, 'assignment/user', mapNamesToIDs[name]],
-//       ['assert', id, 'assignment/date', newDay.toISOString().slice(0, 10)],
-//     ],
-//   }
-//   facts.push(entry)
-// })
-// pushToServer(facts)
+seedNames.forEach((name) => {
+  const date = (new Date).toISOString()
+  const id = uuid()
+  const newDay = new Date(assignmentDate.next().value)
+  const entry = {
+    timestamp: date,
+    name: 'createAssignment',
+    facts: [
+      ['assert', id, 'assignment/user', mapNamesToIDs[name]],
+      ['assert', id, 'assignment/date', newDay.toISOString().slice(0, 10)],
+    ],
+  }
+  facts.push(entry)
+})
+pushToServer(facts)
 
 // const pullFromServer = (date) => {
 //   fetch('http://localhost:3000/journal?date=' + date)
