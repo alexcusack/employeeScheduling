@@ -38,9 +38,9 @@ export const setUser = (userid, state) => {
 }
 
 export const changeVisibility = (filter, state) => {
-  console.log('change visibilityFiler to', filter)
+  console.log('change visibilityFilter to', filter)
   let newState = Object.assign({}, state)
-  newState.visibilityFiler = filter
+  newState.visibilityFilter = filter
   return newState
 }
 

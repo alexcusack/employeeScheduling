@@ -43,13 +43,3 @@ export const findRepalcement = (userID, date) => {
     }
   }
 }
-
-
-
-
-
-
-// export const generateRemoveUnavailabilityFacts = (unavailabilityID) => {
-//   const facts = ['retract', unavailabilityID]
-//   store.dispatch(sendFactToServer(facts, 'REMOVE_UNAVAILABILITY'))
-// }
