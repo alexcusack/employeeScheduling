@@ -15,7 +15,7 @@ export class Assignment extends React.Component {
       <div className='assignmentNode' data-assignmentid={this.props.assignmentID.toString()} data-userid={this.props.userID}>
         {this.props.swapStarted ? // display swap options view?
           <div onClick={swapAssignment.bind(null, this.props.swapStarted.assignmentID, this.props.assignmentID, this.props.swapStarted.userID, this.props.userID)}>
-            {'Trade with' + this.props.userName}
+            {'Trade with ' + this.props.userName}
           </div>
           : 'Assignee ' + this.props.userName}
         <button className='swapWith'>Swap </button>

@@ -39,7 +39,7 @@ export const findRepalcement = (userID, date) => {
   const unavailabilities = findUnavailableReplacements(date)
   for (let assignment in store.getState().assignments) {
     const thisAssignment = store.getState().assignments[assignment]
-    if (new Date(thisAssignment.date) > new Date(date)) {
+    if (new Date(thisAssignment.date) > new Date(store.getState().todaysDate)) {
       if (!unavailabilities[thisAssignment.user] && userID !== thisAssignment.user) { options.push([assignment, thisAssignment.user]) }
     }
   }
