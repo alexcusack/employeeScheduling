@@ -21,6 +21,7 @@ export const pushToServer = (facts) => {
 }
 
 export const pullFromServer = (dispatch, date) => {
+  console.log('pulling from server')
   fetch('http://localhost:3000/journal?date=' + date)
   .then((response) => response.json())
   .then(response => {

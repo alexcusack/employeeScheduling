@@ -6,7 +6,6 @@ import { User } from './user'
 
 export default class CalendarMonth extends React.Component {
   render () {
-
     // extract actions
     const { setCurrentUser, createUnavailability, startSwapAssignment, swapAssignment, setVisibilityFilter, changeMonth } = this.props.actions
     const todaysAssignment = this.props.assignments[this.props.assignmentsIDsByDate[this.props.todaysDate]]

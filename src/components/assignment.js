@@ -8,12 +8,12 @@ export class Assignment extends React.Component {
       <div className='assignmentNode' data-assignmentid={this.props.assignmentID.toString()} data-userid={this.props.userID}>
         Assignee: {this.props.userName}
         <button onClick={createUnavailability.bind(null, this.props.userID, this.props.assignmentID, this.props.date)}>I'm Unavailable</button>
-        <button onClick={startSwapAssignment.bind(null,this.props.userID, this.props.assignmentID, this.props.date)}>Trade Day</button>
+        <button onClick={startSwapAssignment.bind(null, this.props.userID, this.props.assignmentID, this.props.date)}>Trade Day</button>
       </div>
     )
     : (// assigned user is not currrent user
       <div className='assignmentNode' data-assignmentid={this.props.assignmentID.toString()} data-userid={this.props.userID}>
-        {this.props.swapStarted ? // display swap options view?
+        {this.props.swapStarted ? /*display swap options view? */
           <div onClick={swapAssignment.bind(null, this.props.swapStarted.assignmentID, this.props.assignmentID, this.props.swapStarted.userID, this.props.userID)}>
             {'Trade with ' + this.props.userName}
           </div>

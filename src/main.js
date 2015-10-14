@@ -48,3 +48,9 @@ React.render(
 )
 
 pullFromServer(store.dispatch.bind(store))
+
+const checkForUpdate = () => {
+  return pullFromServer(store.dispatch.bind(store))
+}
+
+setInterval(checkForUpdate, 10000)
