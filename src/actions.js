@@ -1,4 +1,5 @@
-// fetch full list from server
+import { generateUnavailabilityFacts } from './helpers'
+
 export const loadEntries = (journalEntries) => {
   return {
     type: 'LOAD_ENTRIES',
@@ -25,9 +26,7 @@ export const setVisibilityFilter = (filter) => {
 export const createUnavailability = (userID, assignmentID, date) => {
   return {
     type: 'CREATE_UNAVAILABILITY',
-    userID: userID,
-    assignmentID: assignmentID,
-    date: date,
+    facts: generateUnavailabilityFacts(userID, assignmentID, date),
   }
 }
 

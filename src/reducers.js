@@ -1,7 +1,7 @@
 
 export const readJournal = (journalEntries, state) => {
   //Journal Entry shape: json: {status: 200, updates: [], lastEntry:  '2015-10-08 00:06:00 UTC'}
-  console.log('loading journal entries')
+  console.log('loading entries', journalEntries)
   if (journalEntries === undefined) { return Object.assign({}, state) }
   let newState = Object.assign({}, state)
   newState.lastEntryDate = journalEntries.lastEntry
@@ -28,15 +28,12 @@ export const readJournal = (journalEntries, state) => {
       newState.unavailabilities[facts[2][1]] = { date: facts[3][3], user: facts[2][3] }
     }
   }
-  console.log('new state', newState)
   return newState
 }
 
 export const setUser = (userid, state) => {
-  console.log('reduce set user', userid)
   let newState = Object.assign({}, state)
   newState.currentUserID = userid
-  console.log(newState)
   return newState
 }
 
@@ -44,5 +41,14 @@ export const changeVisibility = (filter, state) => {
   console.log('change visibilityFiler to', filter)
   let newState = Object.assign({}, state)
   newState.visibilityFiler = filter
+  return newState
+}
+
+export const addUnavailability = (facts, state) => {
+  if (facts.length === 0) { return state }
+  let newState = Object.assign({}, state)
+  newState.assignments[facts[0][1]].user = facts[0][3]
+  newState.assignments[facts[1][1]].user = facts[1][3]
+  newState.unavailabilities[facts[2][1]] = { date: facts[3][3], user: facts[2][3] }
   return newState
 }

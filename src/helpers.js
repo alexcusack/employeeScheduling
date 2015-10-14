@@ -10,20 +10,19 @@ export const getDaysOfMonth = (m, yyyy) => { return new Date(yyyy, m, 0).getDate
 
 export const generateUnavailabilityFacts = (userID, assignmentID, date) => {
   const replacement = findRepalcement(userID, date)
-  generateAssignmentSwapFacts(assignmentID, replacement[0], userID, findRepalcement[1])
+  return generateAssignmentSwapFacts(assignmentID, replacement[0], userID, replacement[1], date)
 }
 
-export const generateAssignmentSwapFacts = (assignmentA, assignmentB, userA, userB) => {
+export const generateAssignmentSwapFacts = (assignmentA, assignmentB, userA, userB, date) => {
   const newUUID = uuid()
-  const unavailabilityDate = store.getState().assignmentList[assignmentA].date
   const facts = [
      [ 'assert', assignmentA, 'assignment/user', userB ],
      [ 'assert', assignmentB, 'assignment/user', userA ],
      [ 'assert', newUUID, 'unavailability/user', userA ],
-     [ 'assert', newUUID, 'unavailability/user', unavailabilityDate ],
+     [ 'assert', newUUID, 'unavailability/date', date ],
   ]
-  store.dispatch(sendFactToServer(facts, 'SWAP_ASSIGNMENT'))
-  // pushToServer(facts, 'SWAP_ASSIGNMENT')
+  return facts
+  // pushToServer(facts)
 }
 
 export const findUnavailableReplacements = (date) => {

@@ -2,11 +2,12 @@ import React from 'react'
 
 export class Assignment extends React.Component {
   render () {
+    const { swapAssignment, createUnavailability } = this.props
     return this.props.userID === this.props.currentUserID ? (
       // assigned user is currrent user
       <div className='assignmentNode' data-assignmentid={this.props.assignmentID.toString()} data-userid={this.props.userID}>
         Assignee: {this.props.userObject}
-        <button href='#' onClick={e => this.createUnavailability(e)}>I'm Unavailable</button>
+        <button onClick={createUnavailability.bind(null, this.props.userID, this.props.assignmentID, this.props.date)}>I'm Unavailable</button>
         <button onClick={e => this.startAssignmentSwap(e)}>Trade Day</button>
       </div>
     )
@@ -23,9 +24,9 @@ export class Assignment extends React.Component {
     // listen for next click on trade with and pull values from that.
   }
 
-  createUnavailability () {
-    this.props.createUnavailability(this.props.userID, this.props.assignmentID, this.props.date)
-  }
+  // createUnavailability () {
+  //   this.props.createUnavailability(this.props.userID, this.props.assignmentID, this.props.date)
+  // }
 }
 
 Assignment.propTypes = {
