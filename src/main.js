@@ -5,12 +5,12 @@ import * as redux from 'redux'
 import { connect, Provider } from 'react-redux'
 import CalendarMonth from './components/CalendarMonth'
 import * as actions from './actions'
-import { readJournal, setUser, changeVisibility, addUnavailabilityAndReplacementUser, showAssignmentSwapOptions, swapAssignments } from './reducers'
+import { readJournal, setUser, changeVisibility, addUnavailabilityAndReplacementUser, showAssignmentSwapOptions, swapAssignments, newMonth } from './reducers'
 import { pushToServer, pullFromServer } from './server_calls'
 // import { generateUnavailabilityFacts, generateRemoveUnavailabilityFacts, generateAssignmentSwapFacts } from './helpers'
 import { sampleState } from './sampleState'
 
-const initialState = { users: {}, assignments: {}, unavailabilities: {}, lastEntryDate: undefined, currentUserID: '658e7931-4e5d-4d28-97fb-25466ca85c78', visibilityFilter: 'all', todaysDate: () => { const date = new Date; return date.toISOString().slice(0, 10)}.call(), 'swapStarted': false, 'loading': true }
+const initialState = { users: {}, assignments: {}, unavailabilities: {}, lastEntryDate: undefined, currentUserID: '658e7931-4e5d-4d28-97fb-25466ca85c78', visibilityFilter: 'all', todaysDate: () => { const date = new Date; return date.toISOString().slice(0, 10)}.call(), calendarMonthYear: [9,2015], 'swapStarted': false, 'loading': true }
 
 const dispatch = (state = initialState, action) => {
   console.log('in dispatch', action)
@@ -20,9 +20,7 @@ const dispatch = (state = initialState, action) => {
   if (action.type === 'CREATE_UNAVAILABILITY') { return addUnavailabilityAndReplacementUser(action.facts, state) }
   if (action.type === 'START_ASSIGNMENT_SWAP') { return showAssignmentSwapOptions(action.assignmentID, action.date, action.possibleReplacements, action.initiatingUserID, state) }
   if (action.type === 'SWAP_ASSIGNMENT') { return swapAssignments(action.assignmentA, action.assignmentB, action.userA, action.userB, state)}
-  // if (action.type === 'CHECK_FOR_NEW_FACTS') { return readJournal(action.journalEntries, state) }
-  // if (action.type === 'FETCH_FROM_SERVER') { pullFromServer() }
-  // if (action.type === 'SEND_FACT_TO_SERVER') { pushToServer(action.facts, action.originatingAction) }
+  if (action.type === 'CHANGE_MONTH') { return newMonth(action.direction, state) }
   return state
 }
 

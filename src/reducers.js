@@ -76,3 +76,14 @@ export const swapAssignments = (assignmentA, assignmentB, userA, userB, state) =
   newState.swapStarted = false
   return newState
 }
+
+
+export const newMonth = (direction, state) => {
+  let newState = Object.assign({}, state)
+  let month = newState.calendarMonthYear[0] + (direction)
+  let year = newState.calendarMonthYear[1]
+  if (month < 0) { month = 12; year = year - 1 }
+  if (month > 12) { month = 1; year = year + 1 }
+  newState.calendarMonthYear = [month, year]
+  return newState
+}

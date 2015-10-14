@@ -12,7 +12,7 @@ export default class CalendarMonth extends React.Component {
     const todaysHero = (todaysAssignment) => { return todaysAssignment ? this.props.users[todaysAssignment.user] : 'loading' }.call(null, todaysAssignment)
 
     // extract actions
-    const { setCurrentUser, createUnavailability, startSwapAssignment, swapAssignment, setVisibilityFilter } = this.props.actions
+    const { setCurrentUser, createUnavailability, startSwapAssignment, swapAssignment, setVisibilityFilter, changeMonth } = this.props.actions
 
     const userIDsAndNames = Object.keys(this.props.users).map((userID) => {
       return [userID, this.props.users[userID]]
@@ -25,7 +25,7 @@ export default class CalendarMonth extends React.Component {
       return dates
     }
 
-    const datesWithAssignments = datesInMonth(9, 2015).map((date) => {
+    const datesWithAssignments = datesInMonth(this.props.calendarMonthYear[0], this.props.calendarMonthYear[1]).map((date) => {
       const referenceDate = date.toISOString().slice(0, 10)
       const assignmentID = this.props.assignmentsIDsByDate[referenceDate]
       let assignment = this.props.assignments[assignmentID]
@@ -37,8 +37,8 @@ export default class CalendarMonth extends React.Component {
     return (
       <div>
         <div>
-          <button onClick={ () => this.previousMonth()} >PreviousMonth</button>
-          <button onClick={ () => this.NextMonth()} >NextMonth</button>
+          <button onClick={changeMonth.bind(null, -1)} >PreviousMonth</button>
+          <button onClick={changeMonth.bind(null, +1)} >NextMonth</button>
         </div>
         <div>Today's Hero: {todaysHero}</div>
         <div>

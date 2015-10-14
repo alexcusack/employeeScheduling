@@ -15,6 +15,13 @@ export const setCurrentUser = (userID) => {
   }
 }
 
+export const changeMonth = (direction) => {
+  return {
+    type: 'CHANGE_MONTH',
+    direction: direction, // +1 or -1
+  }
+}
+
 // filter set to 'all' or 'currentUser'
 export const setVisibilityFilter = (filter) => {
   return {
