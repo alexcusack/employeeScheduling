@@ -42,15 +42,15 @@ export const Controller = connect(
   (dispatch) => { return {actions: redux.bindActionCreators(actions, dispatch)} }
 )(CalendarMonth)
 
-React.render(
-  <Provider store={store}>{() => <Controller/>}</Provider>,
-  document.querySelector('main')
-)
+// React.render(
+//   <Provider store={store}>{() => <Controller/>}</Provider>,
+//   document.querySelector('main')
+// )
 
-pullFromServer(store.dispatch.bind(store))
+// pullFromServer(store.dispatch.bind(store))
 
-const checkForUpdate = () => {
-  return pullFromServer(store.dispatch.bind(store))
-}
+// const checkForUpdate = () => {
+//   return pullFromServer(store.dispatch.bind(store))
+// }
 
-setInterval(checkForUpdate, 10000)
+// // setInterval(checkForUpdate, 10000)

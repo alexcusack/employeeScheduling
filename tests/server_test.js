@@ -1,5 +1,5 @@
-// import { pullFromServer, pushToServer } from '../server_calls'
-
+import { pullFromServer, pushToServer } from '../src/server_calls'
+import fetch from 'node-fetch'
 // // pullFromServer('2015-10-08 00:06:00 UTC')
 // // pullFromServer()
 // // pullFromServer('2015-10-08 00:05:00 UTC')
@@ -27,3 +27,40 @@
 //     process.exit()
 //   }
 // })
+
+const facts = [
+      ['assert', '3791D856-DBB2-4715-9CDB-9098286476C9', 'unavailability/user', 'D0DF1923-964B-4CF9-ACAE-C4D8CCA42EE0' ],
+      ['assert', '3791D856-DBB2-4715-9CDB-9098286476C9', 'unavailability/date', '2015-10-09' ]]
+
+// export const pushToServer = (facts) => {
+//   const timestamp = new Date()
+//   const postBody = { timestamp: timestamp.toISOString(), facts: facts }
+
+//   fetch('http://localhost:3000/journal',
+//     {
+//       method: 'POST',
+//       headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+//       body: JSON.stringify(postBody),
+//     })
+//     .then((response) => response.json())
+//     .then((response) => {
+//       console.log(response)
+//     })
+
+  // fetch('http://localhost:3000/journal',
+  //   {
+  //     method: 'POST',
+  //     headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+  //     body: postBody,
+  //   })
+  //   .then((response) => response.json())
+  //   .then((response) => {
+  //     console.log(response)
+  //     // if (/* log out of sync */ response.status === 406) { readJournal(response) /* retry last action */ }
+  //     // if (/* successful appended facts */ response.status === 200) { return store.dispatch(updateState(facts)) }
+  //   })
+// }
+
+
+
+pushToServer(facts)

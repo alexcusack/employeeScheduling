@@ -21,11 +21,12 @@ export const generateAssignmentSwapFacts = (assignmentA, assignmentB, userA, use
      [ 'assert', newUUID, 'unavailability/user', userA ],
      [ 'assert', newUUID, 'unavailability/date', date ],
   ]
+  console.log(facts)
   return facts
   // return pushToServer(facts)
 }
 
-export const findUnavailableReplacements = (date) => {
+export const findUnavailableUsers = (date) => {
   let set = {}
   for (let unavailability in store.getState().unavailabilities) {
     const thisUnavailability = store.getState().unavailabilities[unavailability]
@@ -36,7 +37,7 @@ export const findUnavailableReplacements = (date) => {
 
 export const findRepalcement = (userID, date) => {
   const options = []
-  const unavailabilities = findUnavailableReplacements(date)
+  const unavailabilities = findUnavailableUsers(date)
   for (let assignment in store.getState().assignments) {
     const thisAssignment = store.getState().assignments[assignment]
     if (new Date(thisAssignment.date) > new Date(store.getState().todaysDate)) {
