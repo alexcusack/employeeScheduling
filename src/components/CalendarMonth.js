@@ -61,6 +61,7 @@ export default class CalendarMonth extends React.Component {
                   userID={assignment.user}
                   currentUserID={this.props.currentUserID}
                   date={assignment.date}
+                  todaysDate={this.props.todaysDate}
                   userName={this.props.users[assignment.user]}
                   swapStarted={this.props.swapStarted}
                   swapAssignment={swapAssignment}

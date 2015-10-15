@@ -3,7 +3,7 @@ import React from 'react'
 export class Assignment extends React.Component {
   render () {
     const { startSwapAssignment, swapAssignment, createUnavailability } = this.props
-    return this.props.userID === this.props.currentUserID ? (
+    return this.props.userID === this.props.currentUserID && this.props.date > this.props.todaysDate ? (
       // assigned user is currrent user
       <div className='assignmentNode' data-assignmentid={this.props.assignmentID.toString()} data-userid={this.props.userID}>
         Assignee: {this.props.userName}

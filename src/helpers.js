@@ -43,11 +43,11 @@ export const findUnavailableUsers = (date) => {
 
 export const findRepalcement = (userID, date) => {
   const options = []
-  const unavailabilities = findUnavailableUsers(date)
+  const unavailableUsers = findUnavailableUsers(date)
   for (let assignment in store.getState().assignments) {
     const thisAssignment = store.getState().assignments[assignment]
-    if (new Date(thisAssignment.date) > new Date(store.getState().todaysDate)) {
-      if (!unavailabilities[thisAssignment.user] && userID !== thisAssignment.user) { options.push([assignment, thisAssignment.user]) }
+    if (new Date(thisAssignment.date) > new Date(store.getState().todaysDate) && !unavailableUsers[thisAssignment.user] && userID !== thisAssignment.user) {
+      options.push([assignment, thisAssignment.user])
     }
   }
   return options
