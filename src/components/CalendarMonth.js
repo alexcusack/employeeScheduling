@@ -39,8 +39,8 @@ export default class CalendarMonth extends React.Component {
         </div>
         <div>Today's Hero: {todaysHero}</div>
         <div>
-          <button onClick={ () => this.viewAll()} >View all users</button>
-          <button onClick={ () => this.viewCurrentUser()}>View selected user schedule</button>
+          <button onClick={setVisibilityFilter.bind(null, 'all')} >View all users</button>
+          <button onClick={setVisibilityFilter.bind(null, 'currentUser')}>View selected user schedule</button>
         </div>
 
         <div className='userlist'>
