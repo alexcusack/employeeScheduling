@@ -45,11 +45,15 @@ export const changeVisibility = (filter, state) => {
 }
 
 export const addUnavailabilityAndReplacementUser = (facts, state) => {
+  console.log('updating with facts', facts)
   if (facts.length === 0) { return state }
   let newState = Object.assign({}, state)
   newState.assignments[facts[0][1]].user = facts[0][3]
   newState.assignments[facts[1][1]].user = facts[1][3]
   newState.unavailabilities[facts[2][1]] = { date: facts[3][3], user: facts[2][3] }
+  if (facts[4]){
+    delete newState.unavailabilities[facts[4][3]]
+  }
   console.log(newState)
   return newState
 }

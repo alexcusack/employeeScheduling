@@ -1,6 +1,6 @@
 import fetch from 'node-fetch'
 import { loadEntries } from './actions'
-// import { store } from './main'
+import { store } from './main'
 import { readJournal } from './reducers'
 
 export const pushToServer = (facts) => {
@@ -16,6 +16,8 @@ export const pushToServer = (facts) => {
     .then((response) => response.json())
     .then((response) => {
       console.log(response)
+      if (response.status === 200) { /* facts were saved to db */ }
+      if (response.status === 406) { store.dispatch(loadEntries(response)) }
     }
   )
 }
