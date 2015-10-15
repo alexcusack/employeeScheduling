@@ -54,7 +54,6 @@ export const addUnavailabilityAndReplacementUser = (facts, state) => {
   if (facts[4]){
     delete newState.unavailabilities[facts[4][3]]
   }
-  console.log(newState)
   return newState
 }
 

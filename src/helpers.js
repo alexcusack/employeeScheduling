@@ -18,7 +18,7 @@ const userAlreadyMarkedUnavailability = (userID) => {
   Object.keys(store.getState().unavailabilities).map((unavailability) => {
     if (store.getState().unavailabilities[unavailability].user === userID) { fact = ['retract', 'null', 'removeUnavailability', unavailability] }
   })
-  return fact // user has not already marked a day as unavailable
+  return fact
 }
 
 export const generateAssignmentSwapFacts = (assignmentA, assignmentB, userA, userB, date) => {
@@ -36,7 +36,7 @@ export const findUnavailableUsers = (date) => {
   const userIDtoDate = {}
   for (let unavailability in store.getState().unavailabilities) {
     const thisUnavailability = store.getState().unavailabilities[unavailability]
-    if (thisUnavailability.date === date) { userIDtoDate[thisUnavailability.user] = true }
+    if (thisUnavailability.date === date) { userIDtoDate[thisUnavailability.user] = thisUnavailability.date }
   }
   return userIDtoDate
 }
