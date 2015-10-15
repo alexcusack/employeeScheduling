@@ -10,13 +10,15 @@ export const getDaysOfMonth = (m, yyyy) => { return new Date(yyyy, m, 0).getDate
 
 export const generateUnavailabilityFacts = (userID, assignmentID, date) => {
   const replacement = findRepalcement(userID, date)[0]
-  return generateAssignmentSwapFacts(assignmentID, replacement[0], userID, replacement[1], date).concat([userAlreadyMarkedUnavailability(userID)])
+  const facts = generateAssignmentSwapFacts(assignmentID, replacement[0], userID, replacement[1], date).concat([userAlreadyMarkedUnavailability(userID)])
+  pushToServer(facts)
+  return facts
 }
 
 const userAlreadyMarkedUnavailability = (userID) => {
   let fact = []
   Object.keys(store.getState().unavailabilities).map((unavailability) => {
-    if (store.getState().unavailabilities[unavailability].user === userID) { fact = ['retract', 'null', 'removeUnavailability', unavailability] }
+    if (store.getState().unavailabilities[unavailability].user === userID) { fact = ['retract', unavailability] }
   })
   return fact
 }
@@ -43,11 +45,11 @@ export const findUnavailableUsers = (date) => {
 
 export const findRepalcement = (userID, date) => {
   const options = []
-  const unavailableUsers = findUnavailableUsers(date)
+  const unavailabilities = findUnavailableUsers(date)
   for (let assignment in store.getState().assignments) {
     const thisAssignment = store.getState().assignments[assignment]
-    if (new Date(thisAssignment.date) > new Date(store.getState().todaysDate) && !unavailableUsers[thisAssignment.user] && userID !== thisAssignment.user) {
-      options.push([assignment, thisAssignment.user])
+    if (new Date(thisAssignment.date) > new Date(store.getState().todaysDate)) {
+      if (!unavailabilities[thisAssignment.user] && userID !== thisAssignment.user) { options.push([assignment, thisAssignment.user]) }
     }
   }
   return options

@@ -29,6 +29,7 @@ Assignment.propTypes = {
   currentUserID: React.PropTypes.string.isRequired,
   assignmentID: React.PropTypes.string.isRequired,
   date: React.PropTypes.string.isRequired,
+  todaysDate: React.PropTypes.string.isRequired,
   createUnavailability: React.PropTypes.func.isRequired,
   swapAssignment: React.PropTypes.func.isRequired,
 }
