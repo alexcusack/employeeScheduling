@@ -2,10 +2,11 @@ import React from 'react'
 
 export class DayOfMonth extends React.Component {
   render () {
+    const { calendarDate, children } = this.props
     return (
-      <div className='dayOfMonth' data-date={this.props.calendarDate.toString()}>
-        {this.props.calendarDate.toString().slice(0, 15)}
-        {this.props.children}
+      <div className='dayOfMonth' data-date={calendarDate.toString()}>
+        {calendarDate.toString().slice(0, 15)}
+        {children}
       </div>
     )
   }

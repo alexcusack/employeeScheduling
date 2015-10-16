@@ -2,23 +2,21 @@ import React from 'react'
 
 export class Assignment extends React.Component {
   render () {
-    const { startSwapAssignment, swapAssignment, createUnavailability } = this.props
-    return this.props.userID === this.props.currentUserID && this.props.date > this.props.todaysDate ? (
-      // assigned user is currrent user
-      <div className='assignmentNode' data-assignmentid={this.props.assignmentID.toString()} data-userid={this.props.userID}>
+    const { startSwapAssignment, swapAssignment, createUnavailability, userID, currentUserID, userName, assignmentID, date, swapStarted, todaysDate } = this.props
+    return userID === currentUserID /* assigned user is current user */ && date > todaysDate ? (
+      <div className='assignmentNode' data-assignmentid={assignmentID.toString()} data-userid={userID}>
         Assignee: {this.props.userName}
-        <button onClick={createUnavailability.bind(null, this.props.userID, this.props.assignmentID, this.props.date)}>I'm Unavailable</button>
-        <button onClick={startSwapAssignment.bind(null, this.props.userID, this.props.assignmentID, this.props.date)}>Trade Day</button>
+        <button onClick={createUnavailability.bind(null, userID, assignmentID, date)}>I'm Unavailable</button>
+        <button onClick={startSwapAssignment.bind(null, userID, assignmentID, date)}>Trade Day</button>
       </div>
     )
     : (// assigned user is not currrent user
-      <div className='assignmentNode' data-assignmentid={this.props.assignmentID.toString()} data-userid={this.props.userID}>
-        {this.props.swapStarted ? /*display swap options view? */
-          <div onClick={swapAssignment.bind(null, this.props.swapStarted.assignmentID, this.props.assignmentID, this.props.swapStarted.userID, this.props.userID)}>
-            {'Trade with ' + this.props.userName}
+      <div className='assignmentNode' data-assignmentid={assignmentID.toString()} data-userid={userID}>
+        {swapStarted ? /*display swap options view? */
+          <div onClick={swapAssignment.bind(null, swapStarted.assignmentID, assignmentID, swapStarted.userID, userID)}>
+            {'Trade with ' + userName}
           </div>
-          : 'Assignee ' + this.props.userName}
-        <button className='swapWith'>Swap </button>
+          : 'Assignee ' + userName}
       </div>
    )
   }

@@ -1,7 +1,6 @@
 import fetch from 'node-fetch'
 import { loadEntries } from './actions'
 import { store } from './main'
-import { readJournal } from './reducers'
 
 export const pushToServer = (facts) => {
   const timestamp = new Date()

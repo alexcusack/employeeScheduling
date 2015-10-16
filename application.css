@@ -21,22 +21,29 @@ button {
 
 main {
   height: 600px;
-  width: 1200px;
+  width: 1370px;
   float: left;
   margin: 80px;
 }
 
-.swapWith {
-  display: none;
+.togglemonth{
+  float: right;
+  margin-right: 112px;
 }
 
+
 .username{
+  float: left;
+  text-decoration: underline;
+  color: blue;
+  margin: 3px;
+}
+
+.usernamekey{
   float: left;
   margin: 3px;
 }
 
 .userlist {
-  display: block;
   height: 25px;
-
 }

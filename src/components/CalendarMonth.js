@@ -8,11 +8,12 @@ export default class CalendarMonth extends React.Component {
   render () {
     // extract actions
     const { setCurrentUser, createUnavailability, startSwapAssignment, swapAssignment, setVisibilityFilter, changeMonth } = this.props.actions
-    const todaysAssignment = this.props.assignments[this.props.assignmentsIDsByDate[this.props.todaysDate]]
-    const todaysHero = (todaysAssignment) => { return todaysAssignment ? this.props.users[todaysAssignment.user] : 'loading' }.call(null, todaysAssignment)
+    const { assignments, users, assignmentsIDsByDate, calendarMonthYear, currentUserID, todaysDate, visibilityFilter } = this.props
+    const todaysAssignment = assignments[assignmentsIDsByDate[todaysDate]]
+    const todaysHero = (todaysAssignment) => { return todaysAssignment ? users[todaysAssignment.user] : 'loading' }.call(null, todaysAssignment)
 
-    const userIDsAndNames = Object.keys(this.props.users).map((userID) => {
-      return [userID, this.props.users[userID]]
+    const userIDsAndNames = Object.keys(users).map((userID) => {
+      return [userID, users[userID]]
     })
 
     const datesInMonth = (m, yyyy) => {
@@ -22,28 +23,29 @@ export default class CalendarMonth extends React.Component {
       return dates
     }
 
-    const datesWithAssignments = datesInMonth(this.props.calendarMonthYear[0], this.props.calendarMonthYear[1]).map((date) => {
+    const datesWithAssignments = datesInMonth(calendarMonthYear[0], calendarMonthYear[1]).map((date) => {
       const referenceDate = date.toISOString().slice(0, 10)
-      const assignmentID = this.props.assignmentsIDsByDate[referenceDate]
-      let assignment = this.props.assignments[assignmentID]
+      const assignmentID = assignmentsIDsByDate[referenceDate]
+      let assignment = assignments[assignmentID]
       if (assignment) { assignment.assignmentID = assignmentID }
-      if (this.props.visibilityFilter === 'currentUser' && assignment && assignment.user !== this.props.currentUserID) { assignment = null }
+      if (visibilityFilter === 'currentUser' && assignment && assignment.user !== currentUserID) { assignment = null }
       return [date, assignment]
     })
 
     return (
-      <div key={this.props.calendarMonthYear}>
-        <div>
-          <button onClick={changeMonth.bind(null, -1)} >PreviousMonth</button>
-          <button onClick={changeMonth.bind(null, +1)} >NextMonth</button>
+      <div key={calendarMonthYear}>
+        <div className='togglemonth'>
+          <button onClick={changeMonth.bind(null, -1)} >Previous Month</button>
+          <button onClick={changeMonth.bind(null, +1)} >Next Month</button>
         </div>
-        <div>Today's Hero: {todaysHero}</div>
-        <div>
+        <div className="todayshero">Today's Hero: {todaysHero}</div>
+        <div className='filterView'>
           <button onClick={setVisibilityFilter.bind(null, 'all')} >View all users</button>
-          <button onClick={setVisibilityFilter.bind(null, 'currentUser')}>View selected user schedule</button>
+          <button onClick={setVisibilityFilter.bind(null, 'currentUser')}>View selected user's schedule</button>
         </div>
 
         <div className='userlist'>
+          <span className='usernamekey'> Select a user: </span>
           { userIDsAndNames.map(([id, name]) =>
             <User key={id} {...{id, name, setCurrentUser}}/>
           )}
@@ -59,10 +61,10 @@ export default class CalendarMonth extends React.Component {
                   key={assignment.assignmentID}
                   assignmentID={assignment.assignmentID}
                   userID={assignment.user}
-                  currentUserID={this.props.currentUserID}
+                  currentUserID={currentUserID}
                   date={assignment.date}
-                  todaysDate={this.props.todaysDate}
-                  userName={this.props.users[assignment.user]}
+                  todaysDate={todaysDate}
+                  userName={users[assignment.user]}
                   swapStarted={this.props.swapStarted}
                   swapAssignment={swapAssignment}
                   {... {createUnavailability, startSwapAssignment}}

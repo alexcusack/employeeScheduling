@@ -1,8 +1,8 @@
 import { sampleState } from '../src/sampleState'
-import { findUnavailableReplacements } from '../src/helpers'
+import { findUnavailableUsers } from '../src/helpers'
 
 export const findRepalcement = (userID, date) => {
-  const unavailabilities = findUnavailableReplacements(date)
+  const unavailabilities = findUnavailableUsers(date)
   for (let assignment in sampleState.assignments) {
     const thisAssignment = sampleState.assignments[assignment]
     if (new Date(thisAssignment.date) > new Date(date)) {

@@ -8,7 +8,18 @@ import * as actions from './actions'
 import { readJournal, setUser, changeVisibility, addUnavailabilityAndReplacementUser, showAssignmentSwapOptions, swapAssignments, newMonth } from './reducers'
 import { pullFromServer } from './server_calls'
 
-const initialState = { users: {}, assignments: {}, unavailabilities: {}, lastEntryDate: undefined, currentUserID: '', visibilityFilter: 'all', todaysDate: () => { const date = new Date; return date.toISOString().slice(0, 10)}.call(), calendarMonthYear: [9,2015], 'swapStarted': false, 'loading': true }
+const initialState = {
+  users: {},
+  assignments: {},
+  unavailabilities: {},
+  lastEntryDate: undefined,
+  currentUserID: undefined,
+  visibilityFilter: 'all',
+  todaysDate: () => { const date = new Date; return date.toISOString().slice(0, 10)}.call(),
+  calendarMonthYear: [9,2015],
+  'swapStarted': false,
+  'loading': true
+}
 
 const dispatch = (state = initialState, action) => {
   if (action.type === 'LOAD_ENTRIES') { return readJournal(action.journalEntries, state) }
@@ -27,12 +38,13 @@ global.store = store
 export const Controller = connect(
   (state) => {
     state.swapStarted ?
+      // if user has initiated a trade, display only tradable assignments, create dateToAssignment map
       state.assignmentsIDsByDate = state.swapStarted.possibleReplacements.reduce((dateToAssignment, assignmentIDUserID) => {
         const assignmentID = assignmentIDUserID[0]
-        const userID = assignmentIDUserID[1]
         dateToAssignment[state.assignments[assignmentID].date] = assignmentID
         return dateToAssignment
       }, {})
+      // display all assignments, create dateToAssignments map
      :state.assignmentsIDsByDate = Object.keys(state.assignments).reduce((dateToAssignment, currentAssignment) => {
       dateToAssignment[state.assignments[currentAssignment].date] = currentAssignment
       return dateToAssignment
@@ -53,4 +65,4 @@ const checkForUpdate = () => {
   return pullFromServer(store.dispatch.bind(store))
 }
 
-setInterval(checkForUpdate, 10000)
+// setInterval(checkForUpdate, 10000)
