@@ -8,7 +8,6 @@ export const loadEntries = (journalEntries) => {
 }
 
 export const setCurrentUser = (userID) => {
-  console.log('setting setCurrentUser', userID)
   return {
     type: 'SET_CURRENT_USER',
     userid: userID,
