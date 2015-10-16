@@ -62,7 +62,7 @@ React.render(
 pullFromServer(store.dispatch.bind(store))
 
 const checkForUpdate = () => {
-  return pullFromServer(store.dispatch.bind(store))
+  return pullFromServer(store.dispatch.bind(store), store.getState().lastEntryDate)
 }
 
 // setInterval(checkForUpdate, 10000)

@@ -21,17 +21,15 @@ export const pushToServer = (facts) => {
   )
 }
 
-export const pullFromServer = (dispatch, date) => {
+export const pullFromServer = (dispatch, lastEntryDate) => {
   console.log('pulling from server')
-  fetch('http://localhost:3000/journal?date=' + date)
+  fetch('http://localhost:3000/journal?date=' + lastEntryDate)
   .then((response) => response.json())
   .then(response => {
     if (response.status === 200) { dispatch(loadEntries(response)) }
-    // 200 -> full log update
-    // 304 -> no updates
+    // 304 -> no modifications
   })
   .catch(response => {
-    console.log('oops something went wrong', response)
+    console.log('Pull From Server Error:', response)
   })
-  // TODO: handle errors
 }
