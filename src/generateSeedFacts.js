@@ -28,7 +28,7 @@ unqiueNames.forEach((name) => {
 
 const weekendOrHoliday = (dateString) => {
   dateString = new Date(dateString)
-  if (dateString.getDay() === 6 || dateString.getDay() === 5) { return true }
+  if (dateString.getDay() === 6 || dateString.getDay() === 0) { return true }
   dateString = dateString.toISOString()
   if (dateString === new Date('January 1, 2015').toISOString()) { return true }
   if (dateString === new Date('January 19, 2015').toISOString()) { return true }
@@ -58,7 +58,7 @@ seedNames.forEach((name) => {
   const date = (new Date).toISOString()
   const id = uuid()
   const newDay = new Date(assignmentDate.next().value)
-  console.log(newDay)
+  // console.log(newDay)
   const entry = {
     timestamp: date,
     name: 'createAssignment',
@@ -70,5 +70,5 @@ seedNames.forEach((name) => {
   facts.push(entry)
 })
 // console.log(facts)
-// facts.forEach((fact) => pushToServer(fact))
+facts.forEach((fact) => pushToServer(fact))
 
