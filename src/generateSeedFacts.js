@@ -1,5 +1,5 @@
 import uuid from 'uuid'
-import { pushToServer, pullFromServer } from './server_calls'
+// import { pushToServer, pullFromServer } from './server_calls'
 
 const seedNames = ['Sherry', 'Boris', 'Vicente', 'Matte', 'Jack', 'Sherry',
  'Matte', 'Kevin', 'Kevin', 'Vicente', 'Zoe', 'Kevin',
@@ -10,7 +10,7 @@ const seedNames = ['Sherry', 'Boris', 'Vicente', 'Matte', 'Jack', 'Sherry',
  'Sherry', 'Jack', 'Sherry', 'Jack']
 
 const unqiueNames = new Set(seedNames)
-const facts = []
+const entries = []
 const mapNamesToIDs = {}
 
 unqiueNames.forEach((name) => {
@@ -22,7 +22,7 @@ unqiueNames.forEach((name) => {
     name: 'createUser',
     facts: ['assert', id, 'user/name', name],
   }
-  facts.push(entry)
+  entries.push(entry)
   mapNamesToIDs[name] = id
 })
 
@@ -66,7 +66,8 @@ seedNames.forEach((name) => {
       ['assert', id, 'assignment/date', newDay.toISOString().slice(0, 10)],
     ],
   }
-  facts.push(entry)
+  entries.push(entry)
 })
-facts.forEach((fact) => pushToServer(fact))
-
+// entries.forEach((entry) => pushToServer(entry))
+// entries.forEach((entry) => console.log(JSON.stringify(entry)))
+console.log(JSON.stringify(entries, null, 2))

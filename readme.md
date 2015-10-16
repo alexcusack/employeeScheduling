@@ -77,11 +77,16 @@ This entites are effected by three primary actions. These actions are the only o
   1. Creates a new Unavailability (this generates four facts about the application)
      ```
       ["assert", "06EC3D88-BA33-4151-8E87-97F025A8EACE", "unavailability/user", "D0DF1923-964B-4CF9-ACAE-C4D8CCA42EE0" ]
+
       ["assert", "06EC3D88-BA33-4151-8E87-97F025A8EACE", "unavailability/date", "2015-10-08" ]
+
       ["assert", "95D131AF-62CC-4C68-8202-B970EBBCC977", "assignment/user", "4BF57F2A-67AE-4C3D-AF7C-5B240F47E006" ]
+
       ["assert", "1A160698-EFE0-40E0-8300-233A9F5F2E4D", "assignment/user", "D0DF1923-964B-4CF9-ACAE-C4D8CCA42EE0" ]
      ```
+
   2. If the user as already marked a day as unavailable previously, that unavailability is retracted
+
     ```
       ['retract', "06EC3D88-BA33-4151-8E87-97F025A8EACE"]
     ```
@@ -89,6 +94,7 @@ This entites are effected by three primary actions. These actions are the only o
   1. Swaps the current users assigned day with another, user selected, user.
     ```
       ["assert", "95D131AF-62CC-4C68-8202-B970EBBCC977", "assignment/user", "4BF57F2A-67AE-4C3D-AF7C-5B240F47E006" ]
+
       ["assert", "1A160698-EFE0-40E0-8300-233A9F5F2E4D", "assignment/user", "D0DF1923-964B-4CF9-ACAE-C4D8CCA42EE0" ]
     ```
 
@@ -116,12 +122,32 @@ This then connects naturally to React with the State matching to React's State a
 
 
 ## Requirerments
+* Client:
+"babel": "^5.8.23",
+"babelify": "^6.3.0",
+"bluebird": "^2.10.2",
+"browserify": "^11.2.0",
+"http-server": "^0.8.5",
+"node-fetch": "^1.3.3",
+"react": "0.13.3",
+"react-redux": "3.0.1",
+"uuid": "^2.0.1",
+"watchify": "^3.4.0"
+
+* Server:
+gem 'rails', '4.2.3'
+gem 'rails-api'
+gem 'json'
+gem 'spring', :group => :development
+gem 'rack-cors', :require => 'rack/cors'
+gem 'sqlite3'
 
 
 
 ## Limitations
 * If the log became too large to effeciently read in its entirety on intial client load, "blobs" could be implemented. A blob would be a record of the application state at a specific momemnt in time, then that state would server as the initial state and only Log entries after that State's timestamp would be read.
 * In current version, there is no way to add additional users
+* The calendar display is imperfect. I could have used a calendar module but would add a layer of complexity (adding a depency into a not-well understood calendar library), and I fel the tradeoff of a less well rendered calendar was wise for this version. On next iteration I would manually setup the calendar rendering.
 
 
 

@@ -1,6 +1,5 @@
 import React from 'react'
 
-// change ancor tag to css
 export class User extends React.Component {
   render () {
     const { id, name, setCurrentUser } = this.props

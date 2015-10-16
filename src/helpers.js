@@ -1,5 +1,4 @@
 import uuid from 'uuid'
-import { sendFactToServer } from './actions'
 import { store } from './main'
 import { pushToServer } from './server_calls'
 
@@ -10,12 +9,16 @@ export const getDaysOfMonth = (m, yyyy) => { return new Date(yyyy, m, 0).getDate
 
 export const generateUnavailabilityFacts = (userID, assignmentID, date) => {
   const replacement = findRepalcement(userID, date)[0]
-  const facts = generateAssignmentSwapFacts(assignmentID, replacement[0], userID, replacement[1], date).concat([userAlreadyMarkedUnavailability(userID)])
-  pushToServer(facts)
+  const facts = generateAssignmentSwapFacts(assignmentID, replacement[0], userID, replacement[1], date)
+  // const retraction = retractUnavailabilityOfUserIfPresent(userID)
+  // if (retraction.length > 0) {
+  //   facts.push(retraction)
+  // }
+  pushToServer({name: 'createAssignment', facts: facts})
   return facts
 }
 
-const userAlreadyMarkedUnavailability = (userID) => {
+const retractUnavailabilityOfUserIfPresent = (userID) => {
   let fact = []
   Object.keys(store.getState().unavailabilities).map((unavailability) => {
     if (store.getState().unavailabilities[unavailability].user === userID) { fact = ['retract', unavailability] }

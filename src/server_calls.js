@@ -2,10 +2,9 @@ import fetch from 'node-fetch'
 import { loadEntries } from './actions'
 import { store } from './main'
 
-export const pushToServer = (facts) => {
+export const pushToServer = (entry) => {
   const timestamp = new Date()
-  const postBody = { timestamp: timestamp.toISOString(), facts: facts, lastEntryDate: store.getState().lastEntryDate }
-  console.log('pushToServer', postBody)
+  const postBody = { facts: entry.facts, name: entry.name, lastEntryDate: store.getState().lastEntryDate }
   fetch('http://localhost:3000/journal',
     {
       method: 'POST',
@@ -15,7 +14,7 @@ export const pushToServer = (facts) => {
     .then((response) => response.json())
     .then((response) => {
       console.log(response)
-      if (response.status === 200) { /* facts were saved to db */ }
+      // if (response.status === 200) { /* facts were saved to db */ }
     })
     .catch(response => {
       if (response.status === 406) { store.dispatch(loadEntries(response)) } // then retry ?
@@ -24,12 +23,10 @@ export const pushToServer = (facts) => {
 }
 
 export const pullFromServer = (dispatch, lastEntryDate) => {
-  console.log('pulling from server')
   fetch('http://localhost:3000/journal?date=' + lastEntryDate)
   .then((response) => response.json())
   .then(response => {
     if (response.status === 200) { dispatch(loadEntries(response)) }
-    // 304 -> no modifications
   })
   .catch(response => {
     console.log('Pull From Server Error:', response)

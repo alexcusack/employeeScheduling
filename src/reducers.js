@@ -3,7 +3,7 @@ import {generateAssignmentSwapFacts} from './helpers'
 export const readJournal = (journalEntries, state) => {
   //Journal Entry shape: json: {status: 200, updates: [], lastEntry:  '2015-10-08 00:06:00 UTC'}
   if (journalEntries === undefined) { return Object.assign({}, state) }
-  let newState = Object.assign({}, state)
+  const newState = Object.assign({}, state)
   newState.lastEntryDate = journalEntries.lastEntry
   for (let entry of journalEntries.updates) {
     const facts = JSON.parse(entry.facts)
@@ -32,32 +32,31 @@ export const readJournal = (journalEntries, state) => {
 }
 
 export const setUser = (userid, state) => {
-  let newState = Object.assign({}, state)
+  const newState = Object.assign({}, state)
   newState.currentUserID = userid
   return newState
 }
 
 export const changeVisibility = (filter, state) => {
-  console.log('change visibilityFilter to', filter)
-  let newState = Object.assign({}, state)
+  const newState = Object.assign({}, state)
   newState.visibilityFilter = filter
   return newState
 }
 
 export const addUnavailabilityAndReplacementUser = (facts, state) => {
   if (facts.length === 0) { return state }
-  let newState = Object.assign({}, state)
+  const newState = Object.assign({}, state)
   newState.assignments[facts[0][1]].user = facts[0][3]
   newState.assignments[facts[1][1]].user = facts[1][3]
   newState.unavailabilities[facts[2][1]] = { date: facts[3][3], user: facts[2][3] }
-  if (facts[4]){
+  if (facts[4]) {
     delete newState.unavailabilities[facts[4][1]]
   }
   return newState
 }
 
 export const showAssignmentSwapOptions = (assignmentID, date, possibleReplacements, userID, state) => {
-  let newState = Object.assign({}, state)
+  const newState = Object.assign({}, state)
   newState.swapStarted = {
     assignmentID: assignmentID,
     date: date,
@@ -68,10 +67,9 @@ export const showAssignmentSwapOptions = (assignmentID, date, possibleReplacemen
 }
 
 export const swapAssignments = (assignmentA, assignmentB, userA, userB, state) => {
-  const facts = generateAssignmentSwapFacts(assignmentA, assignmentB, userA, userB, store.getState().assignments[assignmentA].date)
-  console.log(facts)
+  const facts = generateAssignmentSwapFacts(assignmentA, assignmentB, userA, userB, state.assignments[assignmentA].date)
   if (facts.length === 0) { return state }
-  let newState = Object.assign({}, state)
+  const newState = Object.assign({}, state)
   newState.assignments[facts[0][1]].user = facts[0][3]
   newState.assignments[facts[1][1]].user = facts[1][3]
   newState.swapStarted = false
@@ -79,7 +77,7 @@ export const swapAssignments = (assignmentA, assignmentB, userA, userB, state) =
 }
 
 export const newMonth = (direction, state) => {
-  let newState = Object.assign({}, state)
+  const newState = Object.assign({}, state)
   let month = newState.calendarMonthYear[0] + (direction)
   let year = newState.calendarMonthYear[1]
   if (month < 0) { month = 12; year = year - 1 }

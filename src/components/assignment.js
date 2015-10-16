@@ -12,7 +12,7 @@ export class Assignment extends React.Component {
     )
     : (// assigned user is not currrent user
       <div className='assignmentNode' data-assignmentid={assignmentID.toString()} data-userid={userID}>
-        {swapStarted ? /*display swap options view? */
+        {/* display swap options view? */swapStarted ?
           <div onClick={swapAssignment.bind(null, swapStarted.assignmentID, assignmentID, swapStarted.userID, userID)}>
             {'Trade with ' + userName}
           </div>

@@ -56,23 +56,3 @@ export const swapAssignment = (assignmentA, assignmentB, userA, userB) => {
     userB: userB,
   }
 }
-
-export const sendFactToServer = (facts, originatingAction) => {
-  return {
-    type: 'SEND_FACT_TO_SERVER',
-    facts: facts,
-    originatingAction: originatingAction,
-  }
-}
-
-export const fetchFromServer = () => {
-  return {
-    type: 'FETCH_FROM_SERVER',
-  }
-}
-
-export const checkForNewFacts = () => {
-  return {
-    type: 'CHECK_FOR_NEW_FACTS',
-  }
-}
