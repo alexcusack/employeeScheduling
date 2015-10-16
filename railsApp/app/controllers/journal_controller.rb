@@ -10,6 +10,7 @@ class JournalController < ApplicationController
       @journalEntries = []
       status = 304
     end
+    # p @journalEntries
     render json: {status: status, updates: @journalEntries, lastEntry: @lastEntry}
   end
 

@@ -15,7 +15,7 @@ export const generateUnavailabilityFacts = (userID, assignmentID, date, state) =
   if (retraction.length > 0) {
     facts.push(retraction)
   }
-  // pushToServer({name: 'createUnavailability', facts: facts})
+  pushToServer({name: 'createUnavailability', facts: facts})
   return facts
 }
 
@@ -27,7 +27,7 @@ const retractUnavailabilityOfUserIfPresent = (userID, state) => {
   return fact
 }
 
-export const generateAssignmentSwapFacts = (assignmentA, assignmentB, userA, userB, date) => {
+export const generateAssignmentSwapFacts = (assignmentA, assignmentB, userA, userB, date, swapping = false) => {
   const newUUID = uuid()
   const facts = [
      [ 'assert', assignmentA, 'assignment/user', userB ],
@@ -35,7 +35,8 @@ export const generateAssignmentSwapFacts = (assignmentA, assignmentB, userA, use
      [ 'assert', newUUID, 'unavailability/user', userA ],
      [ 'assert', newUUID, 'unavailability/date', date ],
   ]
-  // pushToServer({name: 'swapAssignment', facts: facts})
+  if (swapping) { pushToServer({name: 'swapAssignment', facts: facts}) }
+  return facts
 }
 
 export const findUnavailableUsers = (date, state) => {
