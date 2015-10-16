@@ -2,7 +2,7 @@ import fetch from 'node-fetch'
 import { loadEntries } from './actions'
 // import { store } from './main'
 
-export const pushToServer = (entry) => {
+export const pushToServer = (entry, attempts = 0) => {
   const timestamp = new Date()
   const postBody = { facts: entry.facts, name: entry.name, lastEntryDate: store.getState().lastEntryDate }
   fetch('http://localhost:3000/journal',
@@ -14,11 +14,12 @@ export const pushToServer = (entry) => {
     .then((response) => response.json())
     .then((response) => {
       console.log(response)
-      // if (response.status === 200) { store.dispatch(loadEntries(response)) }
     })
     .catch(response => {
-      if (response.status === 406) { store.dispatch(loadEntries(response)) } // then retry ?
-      console.log('Push to Server Error:', response)
+      if (response.status === 406) { store.dispatch(loadEntries(response)) }
+      // retrying save.
+
+      if (attempts === 1) { pushToServer({name: entry.name, facts: entry.facts}, 1) }
     })
 }
 
