@@ -1,39 +1,29 @@
+require 'json'
 class JournalController < ApplicationController
-  before_action :set_item, only: [:show, :update, :destroy]
   before_action :allow_cross_domain
 
   def index
     status = 200
     @lastEntry = Journal.last.timestamp.to_s
-    if params['date'] == 'undefined'
-      @journalEntries = Journal.all
-    end
-    if params['date'] == @lastEntry.to_s
+    @journalEntries = Journal.all
+    if params['date'] && params['date'] == @lastEntry.to_s
+      p 'no updates'
       @journalEntries = []
-      staus = 204
-    end
-    if params['date'] < @lastEntry.to_s
-      @journalEntries = Journal.where("timestamp > ?", params['date'])
-      staus = 206
+      status = 304
     end
     render json: {status: status, updates: @journalEntries, lastEntry: @lastEntry}
   end
 
 
   def create
-    if params['timestamp'] > Journal.last.timestamp
-      params['facts'].each do |fact|
-        newEntry = Journal.new(timestamp: params['timestamp'], name: params['actionType'], facts: params['facts'].to_json)
-        p 'new entry created'
-        p newEntry
-      end
-      render json: {status: 200}
-    elsif # verify fact compatability
-      # need to check update compatability somewhere in here
-      render json: {status: 201, updates: []}
-    else # non-compatible fact
-      render json: { status: 400, updates: [], error: 'incompatable fact' }
+    p 'IN post /journal'
+    if params['lastEntryDate'] !=  Journal.last.timestamp
+      render json: { status: 406, updates: Journal.where("timestamp > ?", params['lastEntryDate']), lastEntry: Journal.last.timestamp.to_s }
     end
+    entry = params['facts']
+    newEntry = Journal.new(timestamp: entry['timestamp'], name: entry['name'], facts: entry['facts'])
+    newEntry.save
+    render json: {status: 200, updates: params['facts'], lastEntry: Journal.last.timestamp.to_s }
   end
 
 
@@ -44,8 +34,5 @@ private
     headers['Access-Control-Allow-Methods'] = 'POST, GET, PUT, PATCH, DELETE, OPTIONS'
     headers['Access-Control-Allow-Headers'] = 'Origin, Content-Type, Accept, Authorization, Token'
   end
-
-  # def journal_params
-  # end
 
 end

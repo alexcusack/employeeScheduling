@@ -8,6 +8,8 @@ gem 'json'
 
 gem 'spring', :group => :development
 
+gem 'rack-cors', :require => 'rack/cors'
+
 # gem 'babel-transpiler'
 
 # gem 'sprockets-rails', github: 'rails/sprockets-rails', branch: 'master'

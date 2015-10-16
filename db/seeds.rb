@@ -50,7 +50,7 @@ seedJournalEntries = [
     "name" => "createAssignment",
     "facts" => [
       ["assert", "1A160698-EFE0-40E0-8300-233A9F5F2E4D", "assignment/user", "4BF57F2A-67AE-4C3D-AF7C-5B240F47E006" ],
-      ["assert", "1A160698-EFE0-40E0-8300-233A9F5F2E4D", "assignment/date", "2015-10-10" ],
+      ["assert", "1A160698-EFE0-40E0-8300-233A9F5F2E4D", "assignment/date", "2015-10-12pa" ],
     ]
   },
 
