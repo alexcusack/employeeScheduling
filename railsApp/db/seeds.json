@@ -1,0 +1,842 @@
+[
+  {
+    "timestamp": "2015-10-16T18:44:03.652Z",
+    "name": "createUser",
+    "facts": [
+      "assert",
+      "fdce4323-63b9-46de-ab34-2130974fe466",
+      "user/name",
+      "Sherry"
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.652Z",
+    "name": "createUser",
+    "facts": [
+      "assert",
+      "580de00c-250c-46ae-99a7-5d42aec77851",
+      "user/name",
+      "Boris"
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.652Z",
+    "name": "createUser",
+    "facts": [
+      "assert",
+      "74a9f02e-dc15-45b2-8d4f-21580fc7cef2",
+      "user/name",
+      "Vicente"
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.652Z",
+    "name": "createUser",
+    "facts": [
+      "assert",
+      "20690f1f-5377-4c3a-8c74-4339685ec005",
+      "user/name",
+      "Matte"
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.652Z",
+    "name": "createUser",
+    "facts": [
+      "assert",
+      "d62e8225-ba88-41a8-9e29-f01e9cac541d",
+      "user/name",
+      "Jack"
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.652Z",
+    "name": "createUser",
+    "facts": [
+      "assert",
+      "a5ab2315-9b11-44c2-8f80-82dc039b1127",
+      "user/name",
+      "Kevin"
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.652Z",
+    "name": "createUser",
+    "facts": [
+      "assert",
+      "f51fa13a-3098-416a-82ab-86d2839eb69e",
+      "user/name",
+      "Zoe"
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.652Z",
+    "name": "createUser",
+    "facts": [
+      "assert",
+      "063a4388-c81f-495b-b03a-ba544ddd5b2f",
+      "user/name",
+      "Jay"
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.652Z",
+    "name": "createUser",
+    "facts": [
+      "assert",
+      "6ff34c71-7021-4711-97dc-94ef74600bd3",
+      "user/name",
+      "Eadon"
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.652Z",
+    "name": "createUser",
+    "facts": [
+      "assert",
+      "ce063499-eff2-4154-9d19-90098c0985f5",
+      "user/name",
+      "Franky"
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.652Z",
+    "name": "createUser",
+    "facts": [
+      "assert",
+      "c8a2646f-ebb7-4168-85a4-81ebcef7db3d",
+      "user/name",
+      "Luis"
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.652Z",
+    "name": "createUser",
+    "facts": [
+      "assert",
+      "14f2ce7a-f9b2-4b46-a777-7aa9b38ce188",
+      "user/name",
+      "James"
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.655Z",
+    "name": "createAssignment",
+    "facts": [
+      [
+        "assert",
+        "f0e4efdb-158b-4347-8ae9-8e599de49e49",
+        "assignment/user",
+        "fdce4323-63b9-46de-ab34-2130974fe466"
+      ],
+      [
+        "assert",
+        "f0e4efdb-158b-4347-8ae9-8e599de49e49",
+        "assignment/date",
+        "2015-10-12"
+      ]
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.655Z",
+    "name": "createAssignment",
+    "facts": [
+      [
+        "assert",
+        "88a3a33d-7536-46f0-8015-b4e423df1d18",
+        "assignment/user",
+        "580de00c-250c-46ae-99a7-5d42aec77851"
+      ],
+      [
+        "assert",
+        "88a3a33d-7536-46f0-8015-b4e423df1d18",
+        "assignment/date",
+        "2015-10-13"
+      ]
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.656Z",
+    "name": "createAssignment",
+    "facts": [
+      [
+        "assert",
+        "0cc34df3-e1ee-4018-99ad-94ae9055bd17",
+        "assignment/user",
+        "74a9f02e-dc15-45b2-8d4f-21580fc7cef2"
+      ],
+      [
+        "assert",
+        "0cc34df3-e1ee-4018-99ad-94ae9055bd17",
+        "assignment/date",
+        "2015-10-14"
+      ]
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.656Z",
+    "name": "createAssignment",
+    "facts": [
+      [
+        "assert",
+        "268ae458-7028-4389-8ccd-76e9d1f249cd",
+        "assignment/user",
+        "20690f1f-5377-4c3a-8c74-4339685ec005"
+      ],
+      [
+        "assert",
+        "268ae458-7028-4389-8ccd-76e9d1f249cd",
+        "assignment/date",
+        "2015-10-15"
+      ]
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.656Z",
+    "name": "createAssignment",
+    "facts": [
+      [
+        "assert",
+        "5b3302a8-25df-490d-ac17-c88d59212002",
+        "assignment/user",
+        "d62e8225-ba88-41a8-9e29-f01e9cac541d"
+      ],
+      [
+        "assert",
+        "5b3302a8-25df-490d-ac17-c88d59212002",
+        "assignment/date",
+        "2015-10-16"
+      ]
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.656Z",
+    "name": "createAssignment",
+    "facts": [
+      [
+        "assert",
+        "76c4fbc2-6f2a-4fcd-88cb-665e519b1879",
+        "assignment/user",
+        "fdce4323-63b9-46de-ab34-2130974fe466"
+      ],
+      [
+        "assert",
+        "76c4fbc2-6f2a-4fcd-88cb-665e519b1879",
+        "assignment/date",
+        "2015-10-19"
+      ]
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.656Z",
+    "name": "createAssignment",
+    "facts": [
+      [
+        "assert",
+        "16d27944-a66b-4ec2-8028-96eb3dbdd68b",
+        "assignment/user",
+        "20690f1f-5377-4c3a-8c74-4339685ec005"
+      ],
+      [
+        "assert",
+        "16d27944-a66b-4ec2-8028-96eb3dbdd68b",
+        "assignment/date",
+        "2015-10-20"
+      ]
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.656Z",
+    "name": "createAssignment",
+    "facts": [
+      [
+        "assert",
+        "025457b5-0286-4338-9785-50077273ded1",
+        "assignment/user",
+        "a5ab2315-9b11-44c2-8f80-82dc039b1127"
+      ],
+      [
+        "assert",
+        "025457b5-0286-4338-9785-50077273ded1",
+        "assignment/date",
+        "2015-10-21"
+      ]
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.656Z",
+    "name": "createAssignment",
+    "facts": [
+      [
+        "assert",
+        "1a699308-8b06-461b-b402-ba8906f7930d",
+        "assignment/user",
+        "a5ab2315-9b11-44c2-8f80-82dc039b1127"
+      ],
+      [
+        "assert",
+        "1a699308-8b06-461b-b402-ba8906f7930d",
+        "assignment/date",
+        "2015-10-22"
+      ]
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.656Z",
+    "name": "createAssignment",
+    "facts": [
+      [
+        "assert",
+        "345f6b4b-0d1d-478a-bf19-e8b15228d478",
+        "assignment/user",
+        "74a9f02e-dc15-45b2-8d4f-21580fc7cef2"
+      ],
+      [
+        "assert",
+        "345f6b4b-0d1d-478a-bf19-e8b15228d478",
+        "assignment/date",
+        "2015-10-23"
+      ]
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.656Z",
+    "name": "createAssignment",
+    "facts": [
+      [
+        "assert",
+        "afeaba4b-dd49-48aa-9aad-9159b37250aa",
+        "assignment/user",
+        "f51fa13a-3098-416a-82ab-86d2839eb69e"
+      ],
+      [
+        "assert",
+        "afeaba4b-dd49-48aa-9aad-9159b37250aa",
+        "assignment/date",
+        "2015-10-26"
+      ]
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.657Z",
+    "name": "createAssignment",
+    "facts": [
+      [
+        "assert",
+        "736267b0-ee56-4ae2-a59f-243f10a9117f",
+        "assignment/user",
+        "a5ab2315-9b11-44c2-8f80-82dc039b1127"
+      ],
+      [
+        "assert",
+        "736267b0-ee56-4ae2-a59f-243f10a9117f",
+        "assignment/date",
+        "2015-10-27"
+      ]
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.657Z",
+    "name": "createAssignment",
+    "facts": [
+      [
+        "assert",
+        "23514857-bef1-47e8-9e7b-400dec517ba6",
+        "assignment/user",
+        "20690f1f-5377-4c3a-8c74-4339685ec005"
+      ],
+      [
+        "assert",
+        "23514857-bef1-47e8-9e7b-400dec517ba6",
+        "assignment/date",
+        "2015-10-28"
+      ]
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.657Z",
+    "name": "createAssignment",
+    "facts": [
+      [
+        "assert",
+        "77741bf1-7d86-43a7-803b-cb6ae46d4d49",
+        "assignment/user",
+        "f51fa13a-3098-416a-82ab-86d2839eb69e"
+      ],
+      [
+        "assert",
+        "77741bf1-7d86-43a7-803b-cb6ae46d4d49",
+        "assignment/date",
+        "2015-10-29"
+      ]
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.657Z",
+    "name": "createAssignment",
+    "facts": [
+      [
+        "assert",
+        "5f7779e5-8209-451d-9c2c-502215ac6247",
+        "assignment/user",
+        "063a4388-c81f-495b-b03a-ba544ddd5b2f"
+      ],
+      [
+        "assert",
+        "5f7779e5-8209-451d-9c2c-502215ac6247",
+        "assignment/date",
+        "2015-10-30"
+      ]
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.657Z",
+    "name": "createAssignment",
+    "facts": [
+      [
+        "assert",
+        "45800d21-39e9-4c1d-92d9-59e6605949ae",
+        "assignment/user",
+        "580de00c-250c-46ae-99a7-5d42aec77851"
+      ],
+      [
+        "assert",
+        "45800d21-39e9-4c1d-92d9-59e6605949ae",
+        "assignment/date",
+        "2015-11-02"
+      ]
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.657Z",
+    "name": "createAssignment",
+    "facts": [
+      [
+        "assert",
+        "612dc68a-bc0c-4f17-882d-96348652035a",
+        "assignment/user",
+        "6ff34c71-7021-4711-97dc-94ef74600bd3"
+      ],
+      [
+        "assert",
+        "612dc68a-bc0c-4f17-882d-96348652035a",
+        "assignment/date",
+        "2015-11-03"
+      ]
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.657Z",
+    "name": "createAssignment",
+    "facts": [
+      [
+        "assert",
+        "e37c1bca-547a-48e6-bf74-6fc734ef8a0d",
+        "assignment/user",
+        "fdce4323-63b9-46de-ab34-2130974fe466"
+      ],
+      [
+        "assert",
+        "e37c1bca-547a-48e6-bf74-6fc734ef8a0d",
+        "assignment/date",
+        "2015-11-04"
+      ]
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.658Z",
+    "name": "createAssignment",
+    "facts": [
+      [
+        "assert",
+        "8b55bb74-7476-4514-98c9-db44dba50dd2",
+        "assignment/user",
+        "ce063499-eff2-4154-9d19-90098c0985f5"
+      ],
+      [
+        "assert",
+        "8b55bb74-7476-4514-98c9-db44dba50dd2",
+        "assignment/date",
+        "2015-11-05"
+      ]
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.658Z",
+    "name": "createAssignment",
+    "facts": [
+      [
+        "assert",
+        "789edd94-55d7-494c-8cec-38ca71982b39",
+        "assignment/user",
+        "fdce4323-63b9-46de-ab34-2130974fe466"
+      ],
+      [
+        "assert",
+        "789edd94-55d7-494c-8cec-38ca71982b39",
+        "assignment/date",
+        "2015-11-06"
+      ]
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.659Z",
+    "name": "createAssignment",
+    "facts": [
+      [
+        "assert",
+        "1c34276c-6fa3-4401-9287-685dd1056984",
+        "assignment/user",
+        "20690f1f-5377-4c3a-8c74-4339685ec005"
+      ],
+      [
+        "assert",
+        "1c34276c-6fa3-4401-9287-685dd1056984",
+        "assignment/date",
+        "2015-11-09"
+      ]
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.659Z",
+    "name": "createAssignment",
+    "facts": [
+      [
+        "assert",
+        "7691a8b3-a6d2-4041-9f95-44972af401a6",
+        "assignment/user",
+        "ce063499-eff2-4154-9d19-90098c0985f5"
+      ],
+      [
+        "assert",
+        "7691a8b3-a6d2-4041-9f95-44972af401a6",
+        "assignment/date",
+        "2015-11-10"
+      ]
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.659Z",
+    "name": "createAssignment",
+    "facts": [
+      [
+        "assert",
+        "179a25df-1c01-47aa-8566-cd459623829d",
+        "assignment/user",
+        "ce063499-eff2-4154-9d19-90098c0985f5"
+      ],
+      [
+        "assert",
+        "179a25df-1c01-47aa-8566-cd459623829d",
+        "assignment/date",
+        "2015-11-12"
+      ]
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.659Z",
+    "name": "createAssignment",
+    "facts": [
+      [
+        "assert",
+        "26066d7a-bd08-46df-ab33-4ef05dc77587",
+        "assignment/user",
+        "a5ab2315-9b11-44c2-8f80-82dc039b1127"
+      ],
+      [
+        "assert",
+        "26066d7a-bd08-46df-ab33-4ef05dc77587",
+        "assignment/date",
+        "2015-11-13"
+      ]
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.659Z",
+    "name": "createAssignment",
+    "facts": [
+      [
+        "assert",
+        "0b82bd6e-f058-417f-99b5-df881d5d5692",
+        "assignment/user",
+        "580de00c-250c-46ae-99a7-5d42aec77851"
+      ],
+      [
+        "assert",
+        "0b82bd6e-f058-417f-99b5-df881d5d5692",
+        "assignment/date",
+        "2015-11-16"
+      ]
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.659Z",
+    "name": "createAssignment",
+    "facts": [
+      [
+        "assert",
+        "63c79aa3-3580-4c76-a9f3-670003478ff7",
+        "assignment/user",
+        "ce063499-eff2-4154-9d19-90098c0985f5"
+      ],
+      [
+        "assert",
+        "63c79aa3-3580-4c76-a9f3-670003478ff7",
+        "assignment/date",
+        "2015-11-17"
+      ]
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.659Z",
+    "name": "createAssignment",
+    "facts": [
+      [
+        "assert",
+        "9a0004c3-ca1d-4011-9f21-f4869feb858b",
+        "assignment/user",
+        "74a9f02e-dc15-45b2-8d4f-21580fc7cef2"
+      ],
+      [
+        "assert",
+        "9a0004c3-ca1d-4011-9f21-f4869feb858b",
+        "assignment/date",
+        "2015-11-18"
+      ]
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.659Z",
+    "name": "createAssignment",
+    "facts": [
+      [
+        "assert",
+        "87fc4f0e-a38b-45cd-9c72-130f6e6150ed",
+        "assignment/user",
+        "c8a2646f-ebb7-4168-85a4-81ebcef7db3d"
+      ],
+      [
+        "assert",
+        "87fc4f0e-a38b-45cd-9c72-130f6e6150ed",
+        "assignment/date",
+        "2015-11-19"
+      ]
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.659Z",
+    "name": "createAssignment",
+    "facts": [
+      [
+        "assert",
+        "cbb88ca0-ff5d-4cf2-b043-8b03a73bd167",
+        "assignment/user",
+        "6ff34c71-7021-4711-97dc-94ef74600bd3"
+      ],
+      [
+        "assert",
+        "cbb88ca0-ff5d-4cf2-b043-8b03a73bd167",
+        "assignment/date",
+        "2015-11-20"
+      ]
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.659Z",
+    "name": "createAssignment",
+    "facts": [
+      [
+        "assert",
+        "133ad1ea-604f-4956-b1a8-e99cd018520b",
+        "assignment/user",
+        "580de00c-250c-46ae-99a7-5d42aec77851"
+      ],
+      [
+        "assert",
+        "133ad1ea-604f-4956-b1a8-e99cd018520b",
+        "assignment/date",
+        "2015-11-23"
+      ]
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.659Z",
+    "name": "createAssignment",
+    "facts": [
+      [
+        "assert",
+        "91acafde-835f-4592-9c4e-5658b574db97",
+        "assignment/user",
+        "a5ab2315-9b11-44c2-8f80-82dc039b1127"
+      ],
+      [
+        "assert",
+        "91acafde-835f-4592-9c4e-5658b574db97",
+        "assignment/date",
+        "2015-11-24"
+      ]
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.659Z",
+    "name": "createAssignment",
+    "facts": [
+      [
+        "assert",
+        "141bb19b-8abf-4296-b60e-a9594a5071b3",
+        "assignment/user",
+        "20690f1f-5377-4c3a-8c74-4339685ec005"
+      ],
+      [
+        "assert",
+        "141bb19b-8abf-4296-b60e-a9594a5071b3",
+        "assignment/date",
+        "2015-11-25"
+      ]
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.659Z",
+    "name": "createAssignment",
+    "facts": [
+      [
+        "assert",
+        "c332af8f-71e0-4b95-970c-7d8842f268f2",
+        "assignment/user",
+        "063a4388-c81f-495b-b03a-ba544ddd5b2f"
+      ],
+      [
+        "assert",
+        "c332af8f-71e0-4b95-970c-7d8842f268f2",
+        "assignment/date",
+        "2015-11-30"
+      ]
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.660Z",
+    "name": "createAssignment",
+    "facts": [
+      [
+        "assert",
+        "a427bed7-34ae-40dc-b1ec-26cfd34633f3",
+        "assignment/user",
+        "14f2ce7a-f9b2-4b46-a777-7aa9b38ce188"
+      ],
+      [
+        "assert",
+        "a427bed7-34ae-40dc-b1ec-26cfd34633f3",
+        "assignment/date",
+        "2015-12-01"
+      ]
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.660Z",
+    "name": "createAssignment",
+    "facts": [
+      [
+        "assert",
+        "053798c3-b668-41ac-820a-5006247a64e3",
+        "assignment/user",
+        "a5ab2315-9b11-44c2-8f80-82dc039b1127"
+      ],
+      [
+        "assert",
+        "053798c3-b668-41ac-820a-5006247a64e3",
+        "assignment/date",
+        "2015-12-02"
+      ]
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.660Z",
+    "name": "createAssignment",
+    "facts": [
+      [
+        "assert",
+        "3b01d137-aa9e-4226-8b0d-c32bfa6700c6",
+        "assignment/user",
+        "fdce4323-63b9-46de-ab34-2130974fe466"
+      ],
+      [
+        "assert",
+        "3b01d137-aa9e-4226-8b0d-c32bfa6700c6",
+        "assignment/date",
+        "2015-12-03"
+      ]
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.660Z",
+    "name": "createAssignment",
+    "facts": [
+      [
+        "assert",
+        "5c5860ad-4029-47da-88aa-38b1c61ebbb4",
+        "assignment/user",
+        "fdce4323-63b9-46de-ab34-2130974fe466"
+      ],
+      [
+        "assert",
+        "5c5860ad-4029-47da-88aa-38b1c61ebbb4",
+        "assignment/date",
+        "2015-12-04"
+      ]
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.660Z",
+    "name": "createAssignment",
+    "facts": [
+      [
+        "assert",
+        "29447130-50fd-4dd5-94a8-8137a71f2871",
+        "assignment/user",
+        "d62e8225-ba88-41a8-9e29-f01e9cac541d"
+      ],
+      [
+        "assert",
+        "29447130-50fd-4dd5-94a8-8137a71f2871",
+        "assignment/date",
+        "2015-12-07"
+      ]
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.660Z",
+    "name": "createAssignment",
+    "facts": [
+      [
+        "assert",
+        "7ac5da9b-dc5c-4ee8-a818-23644902d709",
+        "assignment/user",
+        "fdce4323-63b9-46de-ab34-2130974fe466"
+      ],
+      [
+        "assert",
+        "7ac5da9b-dc5c-4ee8-a818-23644902d709",
+        "assignment/date",
+        "2015-12-08"
+      ]
+    ]
+  },
+  {
+    "timestamp": "2015-10-16T18:44:03.661Z",
+    "name": "createAssignment",
+    "facts": [
+      [
+        "assert",
+        "6808ca7d-1061-427f-a76e-fe166a417a54",
+        "assignment/user",
+        "d62e8225-ba88-41a8-9e29-f01e9cac541d"
+      ],
+      [
+        "assert",
+        "6808ca7d-1061-427f-a76e-fe166a417a54",
+        "assignment/date",
+        "2015-12-09"
+      ]
+    ]
+  }
+]
