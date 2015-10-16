@@ -2,9 +2,9 @@ import React from 'react'
 
 export class DayOfMonth extends React.Component {
   render () {
-    const { calendarDate, children } = this.props
+    const { calendarDate, children, key } = this.props
     return (
-      <div className='dayOfMonth' data-date={calendarDate.toString()}>
+      <div key={key} className='dayOfMonth' data-date={calendarDate.toString()}>
         {calendarDate.toString().slice(0, 15)}
         {children}
       </div>
@@ -14,4 +14,5 @@ export class DayOfMonth extends React.Component {
 
 DayOfMonth.propTypes = {
   calendarDate: React.PropTypes.string.isRequired,
+  children: React.PropTypes.array,
 }

@@ -2,9 +2,9 @@ import React from 'react'
 
 export class User extends React.Component {
   render () {
-    const { id, name, setCurrentUser } = this.props
+    const { id, name, setCurrentUser, key } = this.props
     return (
-      <div className='username' onClick={setCurrentUser.bind(null, id)}>
+      <div key={key} className='username' onClick={setCurrentUser.bind(null, id)}>
         {name}
       </div>
     )

@@ -1,5 +1,5 @@
 import uuid from 'uuid'
-import { store } from './main'
+// import { store } from './main'
 import { pushToServer } from './server_calls'
 
 //dateString 'Mon Oct 01 2015 17:05:24 GMT-0700 (PDT)'
@@ -8,7 +8,7 @@ export const getDate = (dateString) => { return new Date(Date.parse(dateString))
 export const getDaysOfMonth = (m, yyyy) => { return new Date(yyyy, m, 0).getDate() }
 
 export const generateUnavailabilityFacts = (userID, assignmentID, date) => {
-  const replacement = findRepalcement(userID, date)[0]
+  const replacement = findRepalcement(userID, date, store.getState())[0]
   const facts = generateAssignmentSwapFacts(assignmentID, replacement[0], userID, replacement[1], date)
   // const retraction = retractUnavailabilityOfUserIfPresent(userID)
   // if (retraction.length > 0) {
@@ -46,12 +46,12 @@ export const findUnavailableUsers = (date) => {
   return userIDtoDate
 }
 
-export const findRepalcement = (userID, date) => {
+export const findRepalcement = (userID, date, state) => {
   const options = []
   const unavailabilities = findUnavailableUsers(date)
-  for (let assignment in store.getState().assignments) {
-    const thisAssignment = store.getState().assignments[assignment]
-    if (new Date(thisAssignment.date) > new Date(store.getState().todaysDate)) {
+  for (let assignment in state.assignments) {
+    const thisAssignment = state.assignments[assignment]
+    if (new Date(thisAssignment.date) > new Date(state.todaysDate)) {
       if (!unavailabilities[thisAssignment.user] && userID !== thisAssignment.user) { options.push([assignment, thisAssignment.user]) }
     }
   }

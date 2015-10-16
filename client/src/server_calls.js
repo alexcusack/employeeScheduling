@@ -1,6 +1,6 @@
 import fetch from 'node-fetch'
 import { loadEntries } from './actions'
-import { store } from './main'
+// import { store } from './main'
 
 export const pushToServer = (entry) => {
   const timestamp = new Date()
