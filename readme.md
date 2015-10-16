@@ -3,7 +3,7 @@
 
 
 ## Use
-* The schdule is generated starting October 13th, 2015
+* The schdule is generated starting October 12th, 2015
 * The default view is All Users
 * Click a usersname to set that user as the `currentUser`
 * Options to mark unavailability or trade days will render on days the `currentUser` is scheduled for that are after today's date
@@ -109,7 +109,7 @@ The strategy of Using a Log with deterministic Facts pairs really well with Redu
 Reducers generate a new state anytime a new Fact is introduced.
 Actions are all sent through a single Dispatch, and only reducers called through the Dispatch can effect the state.
 
-// add a diagram
+![React with Redux flow ](/src/images/react_redux_flow.png?raw=true "React with Redux flow")
 
 
 This then connects naturally to React with the State matching to React's State and the actions being passed as indivdual props to the corresponding React Components.
@@ -121,7 +121,7 @@ This then connects naturally to React with the State matching to React's State a
 
 ## Limitations
 * If the log became too large to effeciently read in its entirety on intial client load, "blobs" could be implemented. A blob would be a record of the application state at a specific momemnt in time, then that state would server as the initial state and only Log entries after that State's timestamp would be read.
-
+* In current version, there is no way to add additional users
 
 
 

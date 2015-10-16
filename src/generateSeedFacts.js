@@ -58,7 +58,6 @@ seedNames.forEach((name) => {
   const date = (new Date).toISOString()
   const id = uuid()
   const newDay = new Date(assignmentDate.next().value)
-  // console.log(newDay)
   const entry = {
     timestamp: date,
     name: 'createAssignment',
@@ -69,6 +68,5 @@ seedNames.forEach((name) => {
   }
   facts.push(entry)
 })
-// console.log(facts)
 facts.forEach((fact) => pushToServer(fact))
 
