@@ -22,9 +22,7 @@ class JournalController < ApplicationController
     params['timestamp'] = Time.now
     params['facts'] = params['facts'].to_json
     entry = params.permit(:name, :facts, :timestamp)
-    p entry
     newEntry = Journal.new(entry)
-    p newEntry
     newEntry.save
     render json: {status: 200, lastEntry: Journal.last.timestamp.to_s }
   end

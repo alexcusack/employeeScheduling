@@ -4,24 +4,25 @@ import { pushToServer } from './server_calls'
 
 //dateString 'Mon Oct 01 2015 17:05:24 GMT-0700 (PDT)'
 export const dateIsWeekend = (dateString) => { dateString = new Date(dateString); return dateString.getDay() === 6 || dateString.getDay() === 0 }
+export const firstOfMonth = (dateString) => { dateString = new Date(dateString); return dateString.getDay() === 0 }
 export const getDate = (dateString) => { return new Date(Date.parse(dateString)) }
 export const getDaysOfMonth = (m, yyyy) => { return new Date(yyyy, m, 0).getDate() }
 
-export const generateUnavailabilityFacts = (userID, assignmentID, date) => {
-  const replacement = findRepalcement(userID, date, store.getState())[0]
+export const generateUnavailabilityFacts = (userID, assignmentID, date, state) => {
+  const replacement = findRepalcement(userID, date, state)[0]
   const facts = generateAssignmentSwapFacts(assignmentID, replacement[0], userID, replacement[1], date)
-  // const retraction = retractUnavailabilityOfUserIfPresent(userID)
-  // if (retraction.length > 0) {
-  //   facts.push(retraction)
-  // }
-  pushToServer({name: 'createAssignment', facts: facts})
+  const retraction = retractUnavailabilityOfUserIfPresent(userID, state)
+  if (retraction.length > 0) {
+    facts.push(retraction)
+  }
+  pushToServer({name: 'createUnavailability', facts: facts})
   return facts
 }
 
-const retractUnavailabilityOfUserIfPresent = (userID) => {
+const retractUnavailabilityOfUserIfPresent = (userID, state) => {
   let fact = []
-  Object.keys(store.getState().unavailabilities).map((unavailability) => {
-    if (store.getState().unavailabilities[unavailability].user === userID) { fact = ['retract', unavailability] }
+  Object.keys(state.unavailabilities).map((unavailability) => {
+    if (state.unavailabilities[unavailability].user === userID) { fact = ['retract', unavailability] }
   })
   return fact
 }
@@ -37,10 +38,10 @@ export const generateAssignmentSwapFacts = (assignmentA, assignmentB, userA, use
   return facts
 }
 
-export const findUnavailableUsers = (date) => {
+export const findUnavailableUsers = (date, state) => {
   const userIDtoDate = {}
-  for (let unavailability in store.getState().unavailabilities) {
-    const thisUnavailability = store.getState().unavailabilities[unavailability]
+  for (let unavailability in state.unavailabilities) {
+    const thisUnavailability = state.unavailabilities[unavailability]
     if (thisUnavailability.date === date) { userIDtoDate[thisUnavailability.user] = thisUnavailability.date }
   }
   return userIDtoDate
@@ -48,7 +49,7 @@ export const findUnavailableUsers = (date) => {
 
 export const findRepalcement = (userID, date, state) => {
   const options = []
-  const unavailabilities = findUnavailableUsers(date)
+  const unavailabilities = findUnavailableUsers(date, state)
   for (let assignment in state.assignments) {
     const thisAssignment = state.assignments[assignment]
     if (new Date(thisAssignment.date) > new Date(state.todaysDate)) {

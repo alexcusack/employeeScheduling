@@ -14,7 +14,9 @@ export const readJournal = (journalEntries, state) => {
       newState.assignments[facts[0][1]] = { date: facts[1][3], user: facts[0][3] }
     }
     if (entry.name === 'createUnavailability') {
-      newState.unavailabilities[facts[0][1]] = { date: facts[1][3], user: facts[0][3] }
+      newState.unavailabilities[facts[2][1]] = { date: facts[3][3], user: facts[2][2] }
+      newState.assignments[facts[0][1]].user = facts[0][3]
+      newState.assignments[facts[1][1]].user = facts[1][3]
     }
     if (entry.name === 'removeUnavailability') {
       delete newState.unavailabilities[facts[0][1]]

@@ -29,15 +29,15 @@ export const setVisibilityFilter = (filter) => {
   }
 }
 
-export const createUnavailability = (userID, assignmentID, date) => {
+export const createUnavailability = (userID, assignmentID, date, state) => {
   return {
     type: 'CREATE_UNAVAILABILITY',
-    facts: generateUnavailabilityFacts(userID, assignmentID, date),
+    facts: generateUnavailabilityFacts(userID, assignmentID, date, state),
   }
 }
 
-export const startSwapAssignment = (userID, assignmentID, date) => {
-  const possibleReplacements = findRepalcement(userID, date)
+export const startSwapAssignment = (userID, assignmentID, date, state) => {
+  const possibleReplacements = findRepalcement(userID, date, state)
   return {
     type: 'START_ASSIGNMENT_SWAP',
     assignmentID: assignmentID,

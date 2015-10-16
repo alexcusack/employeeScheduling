@@ -52,7 +52,8 @@ export default class CalendarMonth extends React.Component {
       </div>
       <div>
         { datesWithAssignments.map(([date, assignment]) =>
-           <div className='weekday'>
+          dateIsWeekend(date) ? <div className='weekend'><DayOfMonth key={date.toString()} calendarDate={date.toString()}/></div>
+           :<div className='weekday'>
               <DayOfMonth key={date.toString()} calendarDate={date.toString()}>
                 {assignment &&
                 <Assignment
