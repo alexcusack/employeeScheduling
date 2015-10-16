@@ -15,7 +15,7 @@ export const generateUnavailabilityFacts = (userID, assignmentID, date, state) =
   if (retraction.length > 0) {
     facts.push(retraction)
   }
-  pushToServer({name: 'createUnavailability', facts: facts})
+  // pushToServer({name: 'createUnavailability', facts: facts})
   return facts
 }
 
@@ -35,7 +35,7 @@ export const generateAssignmentSwapFacts = (assignmentA, assignmentB, userA, use
      [ 'assert', newUUID, 'unavailability/user', userA ],
      [ 'assert', newUUID, 'unavailability/date', date ],
   ]
-  return facts
+  // pushToServer({name: 'swapAssignment', facts: facts})
 }
 
 export const findUnavailableUsers = (date, state) => {

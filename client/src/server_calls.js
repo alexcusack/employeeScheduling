@@ -14,7 +14,7 @@ export const pushToServer = (entry) => {
     .then((response) => response.json())
     .then((response) => {
       console.log(response)
-      // if (response.status === 200) { /* facts were saved to db */ }
+      // if (response.status === 200) { store.dispatch(loadEntries(response)) }
     })
     .catch(response => {
       if (response.status === 406) { store.dispatch(loadEntries(response)) } // then retry ?
