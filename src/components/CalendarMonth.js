@@ -52,25 +52,23 @@ export default class CalendarMonth extends React.Component {
       </div>
       <div>
         { datesWithAssignments.map(([date, assignment]) =>
-          dateIsWeekend(date)
-            ? <div className='weekend'><DayOfMonth calendarDate={date.toString()} /></div>
-            : <div className='weekday'>
-                <DayOfMonth key={date.toString()} calendarDate={date.toString()}>
-                  {assignment &&
-                  <Assignment
-                  key={assignment.assignmentID}
-                  assignmentID={assignment.assignmentID}
-                  userID={assignment.user}
-                  currentUserID={currentUserID}
-                  date={assignment.date}
-                  todaysDate={todaysDate}
-                  userName={users[assignment.user]}
-                  swapStarted={this.props.swapStarted}
-                  swapAssignment={swapAssignment}
-                  {... {createUnavailability, startSwapAssignment}}
-                />}
-               </DayOfMonth>
-             </div>
+           <div className='weekday'>
+              <DayOfMonth key={date.toString()} calendarDate={date.toString()}>
+                {assignment &&
+                <Assignment
+                key={assignment.assignmentID}
+                assignmentID={assignment.assignmentID}
+                userID={assignment.user}
+                currentUserID={currentUserID}
+                date={assignment.date}
+                todaysDate={todaysDate}
+                userName={users[assignment.user]}
+                swapStarted={this.props.swapStarted}
+                swapAssignment={swapAssignment}
+                {... {createUnavailability, startSwapAssignment}}
+              />}
+             </DayOfMonth>
+           </div>
         )}
       </div>
       </div>
