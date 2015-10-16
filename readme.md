@@ -5,9 +5,9 @@
 ## Use
 * The schdule is generated starting October 13th, 2015
 * The default view is All Users
-* Click a usersname to act as that user
-* Options to mark unavailability or trade days will render on days the selected user is scheduled
-* To view just days the current user is scheduled, click 'view selected user's schedule'
+* Click a usersname to set that user as the `currentUser`
+* Options to mark unavailability or trade days will render on days the `currentUser` is scheduled for that are after today's date
+* To view  days the `currentUser` is scheduled for, click 'view selected user's schedule'
 * Trading Days:
   1. Select the user to act on behalf of
   2. Click 'Trade Day'
@@ -20,24 +20,39 @@
 * Toggle between months with the 'Previous Month', 'Next Month' buttons (extends into years as well)
 
 ## Design
-I used Redux with React on the frontend with a Rails API backend, using a single Log database rather than multiple object databases.
+I used Redux with React on the frontend and a Rails API backend with a single Log format database.
 
 Why use a Log?
-The log solves the issue of event timing and ordering in distributed systems like this one(Client/Server). Logs are append ony, ones something is entered in the log it is never updated or destroyed.
+The log solves the issue of event timing and ordering in distributed systems like this one(Client/Server). Logs are append ony, once something is entered in the log it is never modified or destroyed.
 This means that at anytime the Log can be reread from it's first entry and successfully return the exact state of the application.
-The Log entry format (I call them Facts) I used was:
+The Log entry format used was:
 ```
-Table: Journal
+TableName: Journal
+------------------
 timestamp: datetime
 name: string
 facts: string
 ```
-`facts` is a JSON string of facts about the application. Facts are deterministic events that change the State of the application.
-Facts are formatted as quads, like so:
+`facts` is a JSON string of facts. Facts are deterministic events that change the State of the application.
+Assertiong Facts are formatted as quads, like so:
 `["assert", fact UUID, "assignment/user", <userUUID>],`
+Retraction facts are formatted as doubles:
+`["retract", <uuid>],`
 Fact are deterministic inputs that result in a specific change to the State of the application.
-Deterministic inputs make it so replaying the Log (reading all the facts) will produce the same output State everytime. (Even if there was an error, that error can simply be replayed)
-00000
+Deterministic inputs make it possible to replay the Log (read all the facts) and produce the same output State everytime. (Even if there was an error, that error can simply be replayed)
+A single Log entry sent to the server would be look like this:
+```
+ { timestamp: '2015-10-16T16:04:46.208Z',
+   name: 'createAssignment',
+   facts: [
+            ["assert", "95D131AF-62CC-4C68-8202-B970EBBCC977", "assignment/user", "D0DF1923-964B-4CF9-ACAE-C4D8CCA42EE0" ],
+            ["assert", "95D131AF-62CC-4C68-8202-B970EBBCC977", "assignment/date", "2015-10-08" ]
+          ]
+}
+```
+
+The use of a Log with Entities, within the scope of this project, eliminates the need to maintain a seperate Tables for each of the entites.
+Since there are not seperate tables, UUIDs were used to ensure universal uniqueness amongest Entity IDs.
 
 ###Entities
 The calendar is built around three core entites
@@ -105,6 +120,11 @@ This then connects naturally to React with the State matching to React's State a
 
 
 ## Limitations
+* If the log became too large to effeciently read in its entirety on intial client load, "blobs" could be implemented. A blob would be a record of the application state at a specific momemnt in time, then that state would server as the initial state and only Log entries after that State's timestamp would be read.
+
+
+
+
 
 
 + Entities

@@ -16,9 +16,11 @@ export const pushToServer = (facts) => {
     .then((response) => {
       console.log(response)
       if (response.status === 200) { /* facts were saved to db */ }
-      if (response.status === 406) { store.dispatch(loadEntries(response)) }
-    }
-  )
+    })
+    .catch(response => {
+      if (response.status === 406) { store.dispatch(loadEntries(response)) } // then retry ?
+      console.log('Push to Server Error:', response)
+    })
 }
 
 export const pullFromServer = (dispatch, lastEntryDate) => {

@@ -24,7 +24,6 @@ export class Assignment extends React.Component {
 
 Assignment.propTypes = {
   userID: React.PropTypes.string.isRequired,
-  currentUserID: React.PropTypes.string.isRequired,
   assignmentID: React.PropTypes.string.isRequired,
   date: React.PropTypes.string.isRequired,
   todaysDate: React.PropTypes.string.isRequired,
