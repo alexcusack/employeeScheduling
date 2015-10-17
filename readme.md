@@ -81,16 +81,16 @@ Since there are not separate tables, UUIDs were used to ensure universal uniquen
 ###Entities
 The calendar is built around three core entities
 * Users
-  -- UUID
-  -- name
+  1. UUID
+  2. name
 * Assignments
-  -- UUID
-  -- date
-  -- userUUID
+  1. UUID
+  2. date
+  3. userUUID
 * Unavailabilities
-  -- UUID
-  -- Date
-  -- UUID
+  1. UUID
+  2. Date
+  3. UUID
 
 ###Actions
 The entities are effected by three primary actions. These actions are the only ones that effect the state of the program, and the last two are the only ones that generate new facts about the program.
