@@ -10,7 +10,7 @@ export default class CalendarMonth extends React.Component {
     const { setCurrentUser, createUnavailability, startSwapAssignment, swapAssignment, setVisibilityFilter, changeMonth } = this.props.actions
     const { assignments, users, assignmentsIDsByDate, calendarMonthYear, currentUserID, todaysDate, visibilityFilter } = this.props
     const todaysAssignment = assignments[assignmentsIDsByDate[todaysDate]]
-    const todaysHero = (todaysAssignment) => { return todaysAssignment ? users[todaysAssignment.user] : 'loading' }.call(null, todaysAssignment)
+    const todaysHero = (todaysAssignment) => { return todaysAssignment ? users[todaysAssignment.user] : 'No one assigned today' }.call(null, todaysAssignment)
 
     const userIDsAndNames = Object.keys(users).map((userID) => {
       return [userID, users[userID]]
