@@ -172,38 +172,3 @@ gem 'sqlite3'
 * If the log became too large to efficiently read in its entirety on initial client load, "packing" could be implemented. A 'pack' would be a record of the application state at a specific moment in time, then that state would server as the initial state and only Log entries after that State's timestamps would be read.
 * In current version, there is no way to add additional users
 * The calendar display is imperfect. I could have used a calendar module but would add a layer of complexity (adding a dependency into a not-well understood calendar library), and I felt the trade-off of a less well rendered calendar was wise for this version. On next iteration I would manually setup the calendar rendering.
-
-
-
-
-
-+ Entities
-  + User- UUID--- non UUID would potentially collide on system scale
-    - name
-  + Dates don't need to be saved to db since they're inherently distinct
-  + Holidays -- UUID
-    - Date, name
-  + Unavailabilities -- UUID
-    - Date, reason
-  + Assignments -- UUID
-    - User, Date
-
-+ Commands
-  //+ LoadSeedNames(list of names)
-    - Generate entity for each name
-    - Attach name attribute to entity
-    - Generate Assignment Entities
-  + SwapAssignments(userA, dateA, userB, dateB)
-    - Generate user unavailability(userA, DateA)
-    - Assert assignment(userA, dateB)
-    - Assert assignment(userB, dateA)
-  + CreateUnavailability(User, date)
-
-+ Queries
-  + Schedule for current month
-    - unavailability for everyday of month
-  + Show all users and passed assigned days
-
-
-
-
