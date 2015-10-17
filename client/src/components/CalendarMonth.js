@@ -32,6 +32,14 @@ export default class CalendarMonth extends React.Component {
       return [date, assignment]
     })
 
+    const fillerNodes = () => {
+      const fillerNodes = []
+      const dateString = new Date(datesWithAssignments[0])
+      const nodeCount = dateString.getDay()
+      for (let nodes = 0; nodes < nodeCount; ++nodes){fillerNodes.push(<div className='weekday'></div>)}
+      return fillerNodes
+    }.call()
+
     return (
       <div key={calendarMonthYear}>
         <div className='togglemonth'>
@@ -51,7 +59,9 @@ export default class CalendarMonth extends React.Component {
           )}
       </div>
       <div>
-        { datesWithAssignments.map(([date, assignment]) =>
+        {fillerNodes}
+        {
+          datesWithAssignments.map(([date, assignment]) =>
           dateIsWeekend(date) ? <div className='weekend'><DayOfMonth key={date.toString()} calendarDate={date.toString()}/></div>
            :<div className='weekday'>
               <DayOfMonth key={date.toString()} calendarDate={date.toString()}>

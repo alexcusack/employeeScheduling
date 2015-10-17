@@ -4,7 +4,6 @@ import { pushToServer } from './server_calls'
 
 //dateString 'Mon Oct 01 2015 17:05:24 GMT-0700 (PDT)'
 export const dateIsWeekend = (dateString) => { dateString = new Date(dateString); return dateString.getDay() === 6 || dateString.getDay() === 0 }
-export const firstOfMonth = (dateString) => { dateString = new Date(dateString); return dateString.getDay() === 0 }
 export const getDate = (dateString) => { return new Date(Date.parse(dateString)) }
 export const getDaysOfMonth = (m, yyyy) => { return new Date(yyyy, m, 0).getDate() }
 
