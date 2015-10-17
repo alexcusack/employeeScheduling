@@ -9,12 +9,12 @@ export const getDaysOfMonth = (m, yyyy) => { return new Date(yyyy, m, 0).getDate
 
 export const generateUnavailabilityFacts = (userID, assignmentID, date, state) => {
   const replacement = findRepalcement(userID, date, state)[0]
-  const facts = generateAssignmentSwapFacts(assignmentID, replacement[0], userID, replacement[1], date)
+  const facts = generateAssignmentSwapFacts(assignmentID, replacement[0], userID, replacement[1], state, date)
   const retraction = retractUnavailabilityOfUserIfPresent(userID, state)
   if (retraction.length > 0) {
     facts.push(retraction)
   }
-  pushToServer({name: 'createUnavailability', facts: facts})
+  pushToServer({name: 'createUnavailability', state, facts: facts}, state)
   return facts
 }
 
@@ -26,7 +26,7 @@ const retractUnavailabilityOfUserIfPresent = (userID, state) => {
   return fact
 }
 
-export const generateAssignmentSwapFacts = (assignmentA, assignmentB, userA, userB, date, swapping = false) => {
+export const generateAssignmentSwapFacts = (assignmentA, assignmentB, userA, userB, state, date, swapping = false) => {
   const newUUID = uuid()
   const facts = [
      [ 'assert', assignmentA, 'assignment/user', userB ],
@@ -34,7 +34,7 @@ export const generateAssignmentSwapFacts = (assignmentA, assignmentB, userA, use
      [ 'assert', newUUID, 'unavailability/user', userA ],
      [ 'assert', newUUID, 'unavailability/date', date ],
   ]
-  if (swapping) { pushToServer({name: 'swapAssignment', facts: facts}) }
+  if (swapping) { pushToServer({name: 'swapAssignment', facts: facts}, state) }
   return facts
 }
 

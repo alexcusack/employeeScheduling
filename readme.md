@@ -139,7 +139,7 @@ The strategy of Using a Log with deterministic Facts pairs really well with Redu
 Reducers generate a new state anytime a new Fact is introduced.
 Actions are all sent through a single Dispatch, and only reducers called through the Dispatch can effect the state.
 
-![React with Redux flow ](/src/images/react_redux_flow.png?raw=true "React with Redux flow")
+![React with Redux flow ](/client/src/images/react_redux_flow.png?raw=true "React with Redux flow")
 
 
 This then connects naturally to React with the State matching to React's State and the actions being passed as individual props to the corresponding React Components.

@@ -69,7 +69,7 @@ export const showAssignmentSwapOptions = (assignmentID, date, possibleReplacemen
 }
 
 export const swapAssignments = (assignmentA, assignmentB, userA, userB, state) => {
-  const facts = generateAssignmentSwapFacts(assignmentA, assignmentB, userA, userB, state.assignments[assignmentA].date, true)
+  const facts = generateAssignmentSwapFacts(assignmentA, assignmentB, userA, userB, state, state.assignments[assignmentA].date, true)
   if (facts.length === 0) { return state }
   const newState = Object.assign({}, state)
   newState.assignments[facts[0][1]].user = facts[0][3]

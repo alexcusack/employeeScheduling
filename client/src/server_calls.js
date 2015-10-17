@@ -1,6 +1,6 @@
 import fetch from 'node-fetch'
 import { loadEntries } from './actions'
-import { store } from './main'
+// import { store } from './main'
 
 export const pushToServer = (entry, state, attempts = 0) => {
   const postBody = { facts: entry.facts, name: entry.name, lastEntryDate: store.getState().lastEntryDate }
@@ -21,7 +21,7 @@ export const pushToServer = (entry, state, attempts = 0) => {
     })
 }
 
-export const pullFromServer = (dispatch, lastEntryDate) => {
+export const pullFromServer = (dispatch, lastEntryDate, state) => {
   fetch('http://localhost:3000/journal?date=' + lastEntryDate)
   .then((response) => response.json())
   .then(response => {

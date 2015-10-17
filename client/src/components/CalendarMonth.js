@@ -55,6 +55,7 @@ export default class CalendarMonth extends React.Component {
         <div className='userlist'>
           <span className='usernamekey'> Select a user: </span>
           { userIDsAndNames.map(([id, name]) =>
+
             <User key={id} {...{id, name, setCurrentUser}}/>
           )}
       </div>
