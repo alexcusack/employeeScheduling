@@ -1,6 +1,6 @@
 import { getDaysOfMonth } from '../src/helpers'
 
-;[
+[;[
   {
     name: 'number of days in month, standard month',
     input: [10, 2015],
@@ -27,4 +27,4 @@ import { getDaysOfMonth } from '../src/helpers'
     console.log('expected:', td.expected)
     process.exit()
   }
-})
+})]
