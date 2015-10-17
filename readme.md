@@ -27,9 +27,9 @@ $ ./node_modules/.bin/http-server
 Now visit <http://localhost:8080/>
 
 ## Use
-* The schdule is generated starting October 12th, 2015
+* The schedule is generated starting October 12th, 2015
 * The default view is All Users
-* Click a usersname to set that user as the `currentUser`
+* Click a user's name to set that user as the `currentUser`
 * Options to mark unavailability or trade days will render on days the `currentUser` is scheduled for that are after today's date
 * To view  days the `currentUser` is scheduled for, click 'view selected user's schedule'
 * Trading Days:
@@ -75,11 +75,11 @@ A single Log entry sent to the server would be look like this:
 }
 ```
 
-The use of a Log with Entities, within the scope of this project, eliminates the need to maintain a seperate Tables for each of the entites.
-Since there are not seperate tables, UUIDs were used to ensure universal uniqueness amongest Entity IDs.
+The use of a Log with Entities, within the scope of this project, eliminates the need to maintain a separate Tables for each of the entities.
+Since there are not separate tables, UUIDs were used to ensure universal uniqueness amongst Entity IDs.
 
 ###Entities
-The calendar is built around three core entites
+The calendar is built around three core entities
 * Users
   -- UUID
   -- name
@@ -93,7 +93,7 @@ The calendar is built around three core entites
   -- UUID
 
 ###Actions
-This entites are effected by three primary actions. These actions are the only ones that effect the state of the program, and the last two are the only ones that generate new facts about the program.
+The entities are effected by three primary actions. These actions are the only ones that effect the state of the program, and the last two are the only ones that generate new facts about the program.
 * LoadEntries
   1. Reads the Log from the Rails API
   2. Uses the facts from the Log to update the State of the Application (which is built client side)
@@ -122,8 +122,8 @@ This entites are effected by three primary actions. These actions are the only o
       ["assert", "1A160698-EFE0-40E0-8300-233A9F5F2E4D", "assignment/user", "D0DF1923-964B-4CF9-ACAE-C4D8CCA42EE0" ]
     ```
 
-Facts generated from actions are sent to the Log as a single Journal Entry, which eliminates the risk of partial actions, since the Journal Entry is only logged if all facts are compatiable.
-Compatability is checked both client and server side but comparing the timestamp of the last Journal Entry that the client as read with the actual last Journal Entry. If they're not the same, the client is said to be out of sync and pulls the missing entries.
+Facts generated from actions are sent to the Log as a single Journal Entry, which eliminates the risk of partial actions, since the Journal Entry is only logged if all facts are compatible.
+Compatibility is checked both client and server side but comparing the timestamps of the last Journal Entry that the client as read with the actual last Journal Entry. If they're not the same, the client is said to be out of sync and pulls the missing entries.
 
 ### Queries
 User interactions that have an effect on the state of the program
@@ -142,7 +142,7 @@ Actions are all sent through a single Dispatch, and only reducers called through
 ![React with Redux flow ](/src/images/react_redux_flow.png?raw=true "React with Redux flow")
 
 
-This then connects naturally to React with the State matching to React's State and the actions being passed as indivdual props to the corresponding React Components.
+This then connects naturally to React with the State matching to React's State and the actions being passed as individual props to the corresponding React Components.
 
 
 ## Requirerments
@@ -169,16 +169,16 @@ gem 'sqlite3'
 
 
 ## Limitations
-* If the log became too large to effeciently read in its entirety on intial client load, "blobs" could be implemented. A blob would be a record of the application state at a specific momemnt in time, then that state would server as the initial state and only Log entries after that State's timestamp would be read.
+* If the log became too large to efficiently read in its entirety on initial client load, "packing" could be implemented. A 'pack' would be a record of the application state at a specific moment in time, then that state would server as the initial state and only Log entries after that State's timestamps would be read.
 * In current version, there is no way to add additional users
-* The calendar display is imperfect. I could have used a calendar module but would add a layer of complexity (adding a depency into a not-well understood calendar library), and I fel the tradeoff of a less well rendered calendar was wise for this version. On next iteration I would manually setup the calendar rendering.
+* The calendar display is imperfect. I could have used a calendar module but would add a layer of complexity (adding a dependency into a not-well understood calendar library), and I felt the trade-off of a less well rendered calendar was wise for this version. On next iteration I would manually setup the calendar rendering.
 
 
 
 
 
 + Entities
-  + User- UUID--- non UUID would pontentially collide on system scale
+  + User- UUID--- non UUID would potentially collide on system scale
     - name
   + Dates don't need to be saved to db since they're inherently distinct
   + Holidays -- UUID
@@ -201,7 +201,7 @@ gem 'sqlite3'
 
 + Queries
   + Schedule for current month
-    - unavailabity for everyday of month
+    - unavailability for everyday of month
   + Show all users and passed assigned days
 
 
