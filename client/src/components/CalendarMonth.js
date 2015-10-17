@@ -34,9 +34,9 @@ export default class CalendarMonth extends React.Component {
 
     const fillerNodes = () => {
       const fillerNodes = []
-      const dateString = new Date(datesWithAssignments[0])
+      const dateString = new Date(datesWithAssignments[0][0])
       const nodeCount = dateString.getDay()
-      for (let nodes = 0; nodes < nodeCount; ++nodes){fillerNodes.push(<div className='weekday'></div>)}
+      for (let nodes = 0; nodes < nodeCount; ++nodes){fillerNodes.push(<div className='filler'></div>)}
       return fillerNodes
     }.call()
 
